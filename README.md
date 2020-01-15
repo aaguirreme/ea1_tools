@@ -5,4 +5,4 @@ Link to the site: https://aaguirreme.github.io/ea1_tools/
 
 This is a test of embedded Wolfram cloud content:
 
-<iframe src="https://www.wolframcloud.com/obj/c0a7fe65-09fa-4bce-a93a-0467c8f5d9d2?_embed=iframe" width="600" height="800"></iframe>
+<iframe width="800" height="600" src="https://www.wolframcloud.com/obj/aaguirr2/Published/Hello.nb"></iframe>
