@@ -11,4 +11,4 @@ Link to this site: [https://aaguirreme.github.io/ea1_tools/](https://aaguirreme.
 
 Run online on mybinder.org [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/aaguirreme/ea1_tools/master?filepath=gauss_calc%2Fgauss_calculator_notebook.ipynb)
 
-[https://github.com/aaguirreme/ea1_tools/tree/master/gauss_calc](See files)
+[See files](https://github.com/aaguirreme/ea1_tools/tree/master/gauss_calc)
