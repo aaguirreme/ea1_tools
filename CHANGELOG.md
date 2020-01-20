@@ -6,6 +6,11 @@
 
 - First version of Laplace transforms flashcards in LaTeX format.
 
+### Added to the README file
+
+- Links to compile the 1st version of the LaTeX Laplace transforms flashcards,
+  and link to the source files.
+
 ## 2020-01-19
 
 ### Added to gauss_calc
@@ -27,5 +32,5 @@
 
 ### Added to the README file
 
-- Added a binder badge of the Gauss elimination calculator notebook.
-- Added a hyperlink to the files of the Gauss elimination calculator.
+- Binder badge of the Gauss elimination calculator notebook.
+- Hyperlink to the files of the Gauss elimination calculator.
