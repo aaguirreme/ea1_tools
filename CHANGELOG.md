@@ -9,7 +9,7 @@
 
 ### Added to the README file
 
-- Links to compile the 1st version of the LaTeX Laplace transforms flashcards,
+- Links to compile the last version of the LaTeX Laplace transforms flashcards,
   and link to the source files.
 
 ## 2020-01-19
@@ -18,9 +18,6 @@
 
 - Section headers and minimal instructions for the notebook.
 - Missing comments and docstrings to the library file "lib_gauss.py".
-- A "binder" subfolder for compatibility with mybinder.org. Includes the file
-  requirements.txt that specifies that sympy is required for the notebook to
-  work.
 
 ### Changed to gauss_calc
 
