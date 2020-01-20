@@ -4,7 +4,8 @@
 
 ### Added to the repository
 
-- First and second versions of Laplace transforms flashcards in LaTeX format.
+- First, second and third versions of Laplace transforms flashcards in LaTeX
+  format.
 
 ### Added to the README file
 

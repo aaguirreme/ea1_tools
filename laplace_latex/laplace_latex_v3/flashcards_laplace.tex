@@ -1,0 +1,306 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% Name:   flashcards_laplace
+%
+% Author: Andres M. Aguirre-Mesa
+%         Ph.D student, Mechanical Engineering
+%         University of Texas at San Antonio
+%
+% Date:   03/21/2019
+% Update: 11/19/2019
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%\documentclass[grid, avery5371]{flashcards}  % Uncomment for small cards.
+\documentclass[grid, custom]{flashcards}      % Comment for small cards.
+
+\usepackage{amsmath}
+\usepackage{tikz}
+%\usepackage{bm}                              % Uncomment for bold math fonts.
+
+\begin{document}
+
+  \cardfrontstyle[\Huge]{plain}
+  \cardbackstyle[\Huge]{plain}
+
+  % Definition of the Laplace Transform
+
+  %1
+  \begin{flashcard}{ Integral definition of $ \mathcal{L} \{ f(t) \} $ }
+    \[
+      \int_0^\infty e^{-st} f(t) \, dt
+    \]
+  \end{flashcard}
+
+  % % This is a version of card #1 with all text in bold fonts.
+  % %1
+  % \begin{flashcard}{ \textbf{Integral definition of} 
+  %   $ \bm{ \mathcal{L} \{ f(t) \} } $ }
+  %   \[
+  %     \bm{\mathcal{L} \{ f(t) \}  = \int_0^\infty e^{-st} f(t) \, dt}
+  %   \]
+  % \end{flashcard}
+
+  % Transforms of basic functions
+
+  %2
+  \begin{flashcard}{ \[ 1 \] }
+    \[
+      \frac{1}{s}
+    \]
+  \end{flashcard}
+
+  %3
+  \begin{flashcard}{ \[ t \] }
+    \[
+      \frac{ 1 }{ s^2 }
+    \]
+  \end{flashcard}
+
+  %4
+  \begin{flashcard}{ \[ t^n, \quad n=1,2,3,\ldots \] }
+    \[
+      \frac{ n! }{ s^{n + 1} }, \quad n=1,2,3,\ldots
+    \]
+  \end{flashcard}
+
+  %5 
+  \begin{flashcard}{ \[ e^{at} \] }
+    \[
+      \frac{ 1 }{ s - a }
+    \]
+  \end{flashcard}
+
+  %6
+  \begin{flashcard}{\[ \sin kt \] }
+    \[
+      \frac{ k }{ s^2 + k^2 }
+    \]
+  \end{flashcard}
+
+  %7
+  \begin{flashcard}{ \[ \cos kt \] }
+    \[
+      \frac{ s }{ s^2 + k^2 }
+    \]
+  \end{flashcard}
+
+  %8
+  \begin{flashcard}{ \[ \sinh kt \] }
+    \[
+      \frac{ k }{ s^2 - k^2 }
+    \]
+  \end{flashcard}
+
+  %9
+  \begin{flashcard}{ \[ \cosh kt \] }
+    \[
+      \frac{ s }{ s^2 - k^2 }
+    \]
+  \end{flashcard}
+
+
+  % Inverse transforms
+
+  % %10
+  % \begin{flashcard}{ \[ \mathcal{L}^{-1} \left \{ \frac{1}{s} \right \} \] }
+  %   \[
+  %     \mathcal{L}^{-1} \left \{ \frac{1}{s} \right \}  = 1
+  %   \]
+  % \end{flashcard}
+
+  % %11
+  % \begin{flashcard}{ \[ \mathcal{L}^{-1} \left \{ \frac{1}{s^2} \right \} \] }
+  %   \[
+  %     \mathcal{L}^{-1} \left \{ \frac{1}{s^2} \right \}  = t
+  %   \]
+  % \end{flashcard}
+
+  % %12
+  % \begin{flashcard}{ \[ \mathcal{L}^{-1} 
+  %   \left \{ \frac{ n! }{ s^{n + 1} } \right \}, \quad n=1,2,3,\ldots \] }
+  %   \[
+  %     \mathcal{L}^{-1} \left \{ \frac{ n! }{ s^{n + 1} } \right \}  = t^n,
+  %     n=1,2,3,\ldots
+  %   \]
+  % \end{flashcard}
+
+  % %13
+  % \begin{flashcard}{ \[ \mathcal{L}^{-1} 
+  %   \left \{ \frac{ 1 }{ s - a } \right \} \] }
+  %   \[
+  %     \mathcal{L}^{-1} \left \{ \frac{ 1 }{ s - a } \right \}  = e^{at}
+  %   \]
+  % \end{flashcard}
+
+  % %14
+  % \begin{flashcard}{ \[ \mathcal{L}^{-1} 
+  %   \left \{ \frac{ k }{ s^2 + k^2 } \right \}  \] }
+  %   \[
+  %     \mathcal{L}^{-1} \left \{ \frac{ k }{ s^2 + k^2 } \right \}  = \sin kt
+  %   \]
+  % \end{flashcard}
+
+  % %15
+  % \begin{flashcard}{\[ \mathcal{L}^{-1} 
+  %   \left \{ \frac{ s }{ s^2 + k^2 } \right \} \] }
+  %   \[
+  %     \mathcal{L}^{-1} \left \{ \frac{ s }{ s^2 + k^2 } \right \}  = \cos kt
+  %   \]
+  % \end{flashcard}
+
+  % %16
+  % \begin{flashcard}{ \[ \mathcal{L}^{-1} 
+  %   \left \{ \frac{ k }{ s^2 - k^2 } \right \}  \] }
+  %   \[
+  %     \mathcal{L}^{-1} \left \{ \frac{ k }{ s^2 - k^2 } \right \}  = \sinh kt
+  %   \]
+  % \end{flashcard}
+
+  % %17
+  % \begin{flashcard}{ \[ \mathcal{L}^{-1} 
+  %   \left \{ \frac{ s }{ s^2 - k^2 } \right \} \] }
+  %   \[
+  %     \mathcal{L}^{-1} \left \{ \frac{ s }{ s^2 - k^2 } \right \}  = \cosh kt
+  %   \]
+  % \end{flashcard}
+
+
+  % Transforms of derivatives
+
+  %18
+  \begin{flashcard}{ \[ f'(t) \] }
+    \[
+      s \, F(s)-f(0)
+    \]
+  \end{flashcard}
+
+  %19
+  \begin{flashcard}{ \[ f''(t) \] }
+    \[
+      s^{2} F(s) -s\,f(0) - f'(0)
+    \]
+  \end{flashcard}
+
+
+  % Translations
+
+  %20
+  \begin{flashcard}{ \[ e^{at} f(t) \] }
+    \[
+      F(s-a)
+    \]
+  \end{flashcard}
+
+  %21
+  \begin{flashcard}{Piecewise definition of $ u(t - a) $}
+    \[
+      u(t - a) = 
+      \begin{cases}
+        0, & 0 \leq t < a \\
+        1, & t \geq a.
+      \end{cases}
+    \]
+  \end{flashcard}
+
+  %22
+  \begin{flashcard}{Graph of $ u(t - a) $}
+    \begin{tikzpicture}
+      \draw (-1,  0) -- (2, 0) node[right] {$t$};
+      \draw ( 0, -1) -- (0, 2) node[left] {$y(t)$};
+      \draw (1.0, 0.1) -- ( 1.0, -0.1) node[below] {$a$};
+      \draw (0.1, 1.0) -- (-0.1, 1.0) node[left] {$1$};
+      \draw[very thick] (0, 0) -- (1, 0);
+      \draw[very thick] (1, 1) -- (2, 1);
+      \fill (1,1) circle [radius=0.05];
+    \end{tikzpicture}
+  \end{flashcard}
+
+  %23
+  \begin{flashcard}{Write $f(t)$ using the unit step function.
+    \[ f(t) =
+       \begin{cases}
+          0,    & 0 \leq t < a, \\
+          g(t), & a \leq t < b, \\
+          0,    & b \leq t.
+        \end{cases}
+    \]
+    }
+    \[
+      f(t) = g(t) \left[ u(t-a) - u(t-b) \right]
+    \]
+  \end{flashcard}
+
+  % %24
+  % \begin{flashcard}{ \[ \mathcal{L} 
+  %   \left \{ u(t - a) \right \}  \] }
+  %   \begin{align*}
+  %     \mathcal{L} \left\{ u(t-a)\right\} 
+  %       & = \mathcal{L}\left\{ \left(1\right)\,u(t-a)\right\} \\
+  %       & = e^{-as}  \, \mathcal{L}\left\{ 1\right\} \\
+  %       & =\frac{e^{-as}}{s}
+  %   \end{align*}
+  % \end{flashcard}
+
+  %25
+  \begin{flashcard}{ \[ f(t - a) \, u(t - a) \] }
+    \[
+      e^{-as} F(s)
+    \]
+  \end{flashcard}
+
+  %26
+  \begin{flashcard}{ \[ g(t) \, u(t - a) \] }
+    \[
+        e^{-as} \mathcal{L} \left \{ g(t + a) \right \}
+    \]
+  \end{flashcard}
+
+  
+  % Convolution
+
+  %27
+  \begin{flashcard}{ Integral definition of $ f * g $ }
+    \[
+      \int_0^t f(\tau) \, g(t - \tau) \, d\tau
+    \]
+  \end{flashcard}
+
+  %28 
+  \begin{flashcard}{ \[ f * g \] }
+    \[
+      F(s) \, G(s)
+    \]
+  \end{flashcard}
+
+
+  % Transform of the Dirac Delta Function
+
+  % %29
+  % \begin{flashcard}{ \[ \mathcal{L} \{ \delta( t - a ) \}  \] }
+  %   \[
+  %     \mathcal{L} \{ \delta( t - a ) \} = e^{-as}, \quad a>0.
+  %   \]
+  % \end{flashcard}
+
+  % Other
+
+  % \begin{flashcard}{ Complete the square \[ a\,s^2 + b\,s + c \] }
+  %   \begin{align*}
+  %     & a\,s^2 + b\,s + c \\
+  %     & = a \left( s^{2} + \tfrac{b}{a}\,s + \tfrac{c}{a} \right) \\
+  %     & = a \left[ \left( s + \tfrac{b}{2a}\right)^2 + \tfrac{c}{a} 
+  %       - \left( \tfrac{b}{2a} \right)^2 \right]
+  %   \end{align*}
+  % \end{flashcard}
+
+  \begin{flashcard}{ \[ \frac{ k\,e^{-a\,s} }{ s^2 + k^2} \] }
+    \[
+      u(t - a) \sin(k\,t - k\,a)
+    \]
+  \end{flashcard}
+
+
+
+
+\end{document}
