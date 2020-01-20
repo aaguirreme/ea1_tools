@@ -14,7 +14,7 @@
 
 - Saved the status of the widgets in the notebook.
 
-### Removed from the repository
+### Modified to the repository
 
-- Files "requirements.txt" and "runtime.txt" from the root folder of the
-  repository.
+- Moved the configuration file "requirements.txt" to a subfolder called "binder"
+  for compatibility with mybinder.org.
