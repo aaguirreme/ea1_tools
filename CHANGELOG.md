@@ -22,3 +22,4 @@
 ### Added to the README file
 
 - Added a binder badge of the Gauss elimination calculator notebook.
+- Added a hyperlink to the files of the Gauss elimination calculator.
