@@ -9,6 +9,6 @@ Link to this site: [https://aaguirreme.github.io/ea1_tools/](https://aaguirreme.
 
 ### Gauss Elimination Calculator
 
-Run online on mybinder.org [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/aaguirreme/ea1_tools/master?filepath=gauss_calc%2Fgauss_calculator_notebook.ipynb)
+Run online [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/aaguirreme/ea1_tools/master?filepath=gauss_calc%2Fgauss_calculator_notebook.ipynb)
 
-[See files](https://github.com/aaguirreme/ea1_tools/tree/master/gauss_calc)
+[View files](https://github.com/aaguirreme/ea1_tools/tree/master/gauss_calc)
