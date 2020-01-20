@@ -10,11 +10,15 @@
   requirements.txt that specifies that sympy is required for the notebook to
   work.
 
-### Modified to gauss_calc
+### Changed to gauss_calc
 
 - Saved the status of the widgets in the notebook.
 
-### Modified to the repository
+### Changed to the repository
 
 - Moved the configuration file "requirements.txt" to a subfolder called "binder"
   for compatibility with mybinder.org.
+
+### Added to the README file
+
+- Added a binder badge of the Gauss elimination calculator notebook.
