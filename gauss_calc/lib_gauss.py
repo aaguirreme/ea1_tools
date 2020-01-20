@@ -5,7 +5,7 @@
 #               PhD student, Mechanical Engineering.
 #               University of Texas at San Antonio.
 # Date:         June 10, 2019.
-# Update:       July  8, 2019.
+# Update:       January 19, 2019.
 
 
 #*******************************************************************************
@@ -23,6 +23,8 @@ from ipywidgets import Layout, Text, HTML, HTMLMath, Box, HBox, VBox, Button, \
 #           Global variables definition and notebook initialization
 #*******************************************************************************
 
+# NOTE: These commands are executed when the library is imported.
+
 # Define initial values for the coefficient matrix A.
 A = sym.Matrix([[2, -6,  1],
                 [1,  2, -1],
@@ -30,13 +32,6 @@ A = sym.Matrix([[2, -6,  1],
 
 # Define initial values for the constant (right hand side) matrix B.
 B = sym.Matrix([ 7, -1, 9])
-
-
-#*******************************************************************************
-#           Global variables definition and notebook initialization
-#*******************************************************************************
-
-# NOTE: These commands are executed when the library is imported.
 
 is_started = False
 
@@ -254,6 +249,14 @@ def row_add(M, new_rid, c1, rid1, c2, rid2):
 
 #*******************************************************************************
 def row_times_scalar(M, c, rid):
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  '''
+  Multiplies the row of a Sympy matrix times a scalar value.
+
+  M:        SymPy matrix to be modified.
+  c:        real, scalar value to multiply the row.
+  rid:      integer identificator of the row. One based (1, 2, ...).
+  '''
 #*******************************************************************************
 
   new_M = M.copy()
@@ -267,6 +270,13 @@ def row_times_scalar(M, c, rid):
 
 #*******************************************************************************
 def convert_mat_to_latex(M):
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  '''
+  Convert a Sympy matrix to a LaTeX. It generates the code to print the
+  augmented matrix used for the Gauss elimination process.
+
+  M:        SymPy matrix to be modified.
+  '''
 #*******************************************************************************
 
   latex_str = r''' 
@@ -289,6 +299,16 @@ def convert_mat_to_latex(M):
 
 #*******************************************************************************
 def update_aug_matrix(change):
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  '''
+  Transfer the augmented matrix contained in different input text boxes
+  (A11_tbox, A12_tbox, ..., B1_tbox, B2_tbox, etc) to the output HTMLMath object
+  "amat_latex". This function is activated by the button "start_btn".
+
+  change:   dictionary holding the information about the change of the button
+            "start_btn". This argument is used to be compatible with the button
+            object but not involved in the code of this function.
+  '''
 #*******************************************************************************
 
   global is_started, M, M_0, M_old
@@ -316,12 +336,13 @@ def update_aug_matrix(change):
   M_0    = M.copy()   # Initial matrix.
   M_old  = M.copy()   # Old matrix.
 
-  detA = A.det()
+  detA = A.det()      # Compute determinant.
 
   # Create the string with the initial augmented matrix in LaTeX format.
   latex_str = r'The augmented matrix $(\bf{A}|\bf{B})$ is:' + '\n $$' \
     + convert_mat_to_latex(M) + '$$ \n' + f'with $\det{{\\bf A}} = {detA}$'
-  
+ 
+  # Update object "amat_latex" with the augmented matrix in LaTeX format. 
   amat_latex.value=latex_str
 
 #-------------------------------------------------------------------------------
@@ -329,11 +350,21 @@ def update_aug_matrix(change):
 
 #*******************************************************************************
 def apply_row_swap(change):
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  '''
+  Performs the swapping of two rows when the button "swap_btn" is pressed.
+  Updates the Sympy matrices M and M_old, and the HTMLMath object
+  "results_hmtl".
+
+  change:   dictionary holding information about the change of the button
+            "swap_btn". This argument is used to be compatible with the button
+            object but not involved in the code of this function.
+  '''
 #*******************************************************************************
 
   global M, M_old
 
-  rid1 = int(swap_rid1_drop.value)
+  rid1 = int(swap_rid1_drop.value)    # Read row indices.
   rid2 = int(swap_rid2_drop.value)
 
   if (not is_started):
@@ -343,7 +374,7 @@ def apply_row_swap(change):
 
   else:
 
-    M_old = M.copy()    # Store the old augmented matrix.
+    M_old = M.copy()                  # Store the old augmented matrix.
 
     # Verify if the two row indices the same.
 
@@ -369,9 +400,11 @@ def apply_row_swap(change):
 
     # End if.
 
+    # Update sympy matrices.
     M_old_str = convert_mat_to_latex(M_old)    
     M_str     = convert_mat_to_latex(M)
 
+    # Update output.
     results_html.value = err_str + '$$' + M_old_str + row_op_str + M_str + '$$'
 
   # End if.
@@ -381,12 +414,22 @@ def apply_row_swap(change):
 
 #*******************************************************************************
 def apply_row_times_scalar(change):
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  '''
+  Performs the multiplication of a row times a scalar when the button "mult_btn"
+  is pressed.  Updates the Sympy matrices M and M_old, and the HTMLMath object
+  "results_hmtl".
+
+  change:   dictionary holding information about the change of the button
+            "mult_btn". This argument is used to be compatible with the button
+            object but not involved in the code of this function.
+  '''
 #*******************************************************************************
 
   global M, M_old
 
-  rid = int(mult_rid_drop.value)
-  c   = parse_expr(mult_sc_tbox.value)
+  rid = int(mult_rid_drop.value)          # Read row index.
+  c   = parse_expr(mult_sc_tbox.value)    # Read scalar value.
 
   if (not is_started):
 
@@ -421,9 +464,11 @@ def apply_row_times_scalar(change):
 
     # End if.
 
+    # Update sympy matrices.
     M_old_str = convert_mat_to_latex(M_old)    
     M_str     = convert_mat_to_latex(M)
 
+    # Update output.
     results_html.value = err_str + '$$' + M_old_str + row_op_str + M_str + '$$'
 
   # End if.
@@ -433,14 +478,24 @@ def apply_row_times_scalar(change):
 
 #*******************************************************************************
 def apply_row_add(change):
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  '''
+  Performs the addition of two rows when the button "add_btn" is pressed.
+  Updates the Sympy matrices M and M_old, and the HTMLMath object
+  "results_hmtl".
+
+  change:   dictionary holding information about the change of the button
+            "add_btn". This argument is used to be compatible with the button
+            object but not involved in the code of this function.
+  '''
 #*******************************************************************************
 
   global M, M_old
 
-  rid1 = int(add_rid1_drop.value)
+  rid1 = int(add_rid1_drop.value)         # Read row indices.
   rid2 = int(add_rid2_drop.value)
-  c1   = parse_expr(add_sc_tbox.value)
-  c2   = parse_expr('1')
+  c1   = parse_expr(add_sc_tbox.value)    # Read scalars that multiply row 1 and
+  c2   = parse_expr('1')                  # row 2 before add them.
 
   if (not is_started):
 
@@ -476,9 +531,11 @@ def apply_row_add(change):
 
     # End if.
 
+    # Update sympy matrices.
     M_old_str = convert_mat_to_latex(M_old)    
     M_str     = convert_mat_to_latex(M)
 
+    # Update output.
     results_html.value = err_str + '$$' + M_old_str + row_op_str + M_str + '$$'
 
   # End if.
@@ -495,9 +552,10 @@ def run_app():
   mult_btn.on_click(apply_row_times_scalar)
   add_btn.on_click(apply_row_add)
 
-  display(all_inputs)
-  display(all_ctrls)
-  display(results_html)
+  # Display all objects.
+  display(all_inputs)     # Inputs.
+  display(all_ctrls)      # Controls.
+  display(results_html)   # Output.
 
 #-------------------------------------------------------------------------------
 
