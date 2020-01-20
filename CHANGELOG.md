@@ -1,5 +1,11 @@
 # Changelog
 
+## 2020-01-20
+
+### Added to the repository
+
+- First version of Laplace transforms flashcards in LaTeX format.
+
 ## 2020-01-19
 
 ### Added to gauss_calc
