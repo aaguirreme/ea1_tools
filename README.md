@@ -5,6 +5,13 @@ University of Texas at San Antonio
 
 Link to this site: [https://aaguirreme.github.io/ea1_tools/](https://aaguirreme.github.io/ea1_tools/)
 
+## Second order ODEs
+
+### Equation of motion of spring-mass systems
+
+Run online [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/aaguirreme/ea1_tools/master?filepath=spring_mass_plots%2Fspring_mass_notebook.ipynb) 
+[View source files](https://github.com/aaguirreme/ea1_tools/tree/master/spring_mass_plots)
+
 ## Laplace Transforms
 
 ### Flashcards to print

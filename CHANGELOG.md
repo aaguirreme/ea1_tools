@@ -11,6 +11,8 @@
 
 - Links to compile the last version of the LaTeX Laplace transforms flashcards,
   and link to the source files.
+- Binder badge of the spring-mass systems plots notebook.
+- Hyperlink to the files of the spring-mass systems plots notebook.
 
 ## 2020-01-19
 
