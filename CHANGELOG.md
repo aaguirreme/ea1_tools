@@ -4,7 +4,7 @@
 
 ### Added to the README file
 
-- Embedded Desmos graph of the solution of the growth or decay IVP.
+- Link to a Desmos.com graph of the solution of a typical growth or decay IVP.
 
 ## 2020-01-20
 

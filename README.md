@@ -9,8 +9,7 @@ Link to this site: [https://aaguirreme.github.io/ea1_tools/](https://aaguirreme.
 
 ### Growth or decay solution graph
 
-<iframe src="https://www.desmos.com/calculator/lcfdysesjm?embed" width="500px"
-height="500px" style="border: 1px solid #ccc" frameborder=0></iframe>
+[![Image](images/Desmos_Growth_Decay.png)](https://www.desmos.com/calculator/bb2ifdfjfh)
 
 ## Second order ODEs
 
