@@ -1,4 +1,4 @@
-# EA1 Tools
+# Welcome to EA1 Tools
 
 Educational tools for the students of EGR-2323 Engineering Analysis 1,
 University of Texas at San Antonio
@@ -9,13 +9,14 @@ Link to this site: [https://aaguirreme.github.io/ea1_tools/](https://aaguirreme.
 
 ### Growth or decay solution graph
 
-[![Image](images/Desmos_Growth_Decay.png)](https://www.desmos.com/calculator/bb2ifdfjfh)
+[![Desmos](images/Desmos_Growth_Decay.png)](https://www.desmos.com/calculator/bb2ifdfjfh)
 
 ## Second order ODEs
 
 ### Equation of motion of spring-mass systems
 
-Run online [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/aaguirreme/ea1_tools/master?filepath=spring_mass_plots%2Fspring_mass_notebook.ipynb)  
+Run online on mybinder.org (it may require to use Google Chrome)
+[![Binder](images/Spring_Mass_Notebook.png)](https://mybinder.org/v2/gh/aaguirreme/ea1_tools/master?filepath=spring_mass_plots%2Fspring_mass_notebook.ipynb)  
 [View source files](https://github.com/aaguirreme/ea1_tools/tree/master/spring_mass_plots)
 
 ## Laplace Transforms

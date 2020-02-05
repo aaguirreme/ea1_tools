@@ -6,6 +6,10 @@
 
 - Link to a Desmos.com graph of the solution of a typical growth or decay IVP.
 
+### Changed to the README file
+
+- The Binder badge of the spring mass notebook was changed to a screenshot.
+
 ## 2020-01-20
 
 ### Added to the repository
