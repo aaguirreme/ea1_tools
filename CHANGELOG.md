@@ -1,5 +1,11 @@
 # Changelog
 
+## 2020-02-05
+
+### Added to the README file
+
+- Embedded Desmos graph of the solution of the growth or decay IVP.
+
 ## 2020-01-20
 
 ### Added to the repository
