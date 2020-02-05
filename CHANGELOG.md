@@ -9,6 +9,9 @@
 ### Changed to the README file
 
 - The Binder badge of the spring mass notebook was changed to a screenshot.
+- The text hyperlink to compile the Laplace Transforms LaTeX document was
+  replaced with a hyperlink that includes a screenshot.
+
 
 ## 2020-01-20
 

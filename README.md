@@ -9,13 +9,15 @@ Link to this site: [https://aaguirreme.github.io/ea1_tools/](https://aaguirreme.
 
 ### Growth or decay solution graph
 
+Click the image to run.
 [![Desmos](images/Desmos_Growth_Decay.png)](https://www.desmos.com/calculator/bb2ifdfjfh)
 
 ## Second order ODEs
 
 ### Equation of motion of spring-mass systems
 
-Run online on mybinder.org (it may require to use Google Chrome)
+Click the image to run online on mybinder.org (it may require to use Google
+Chrome).
 [![Binder](images/Spring_Mass_Notebook.png)](https://mybinder.org/v2/gh/aaguirreme/ea1_tools/master?filepath=spring_mass_plots%2Fspring_mass_notebook.ipynb)  
 [View source files](https://github.com/aaguirreme/ea1_tools/tree/master/spring_mass_plots)
 
@@ -23,7 +25,8 @@ Run online on mybinder.org (it may require to use Google Chrome)
 
 ### Flashcards to print
 
-[Download PDF](https://latexonline.cc/compile?git=https%3A%2F%2Fgithub.com%2Faaguirreme%2Fea1_tools&target=laplace_latex%2Flaplace_latex_v3%2Fflashcards_laplace.tex&command=pdflatex&trackId=1579547601379)  
+Click the image to download the PDF file
+[![latexonline](images/Laplace_Index_Cards_PDF.png)](https://latexonline.cc/compile?git=https%3A%2F%2Fgithub.com%2Faaguirreme%2Fea1_tools&target=laplace_latex%2Flaplace_latex_v3%2Fflashcards_laplace.tex&command=pdflatex&trackId=1579547601379)  
 [View source files](https://github.com/aaguirreme/ea1_tools/tree/master/laplace_latex/laplace_latex_v3)
 
 ## Linear Algebra
