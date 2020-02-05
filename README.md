@@ -25,7 +25,7 @@ Chrome).
 
 ### Flashcards to print
 
-Click the image to download the PDF file
+Click the image to download the PDF file.  
 [![latexonline](images/Laplace_Index_Cards_PDF.png)](https://latexonline.cc/compile?git=https%3A%2F%2Fgithub.com%2Faaguirreme%2Fea1_tools&target=laplace_latex%2Flaplace_latex_v3%2Fflashcards_laplace.tex&command=pdflatex&trackId=1579547601379)  
 [View source files](https://github.com/aaguirreme/ea1_tools/tree/master/laplace_latex/laplace_latex_v3)
 
