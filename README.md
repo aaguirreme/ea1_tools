@@ -33,5 +33,7 @@ Click the image to download the PDF file.
 
 ### Gauss Elimination Calculator
 
-Run online [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/aaguirreme/ea1_tools/master?filepath=gauss_calc%2Fgauss_calculator_notebook.ipynb)  
+Click the image to run online on mybinder.org (it may require to use Google
+Chrome).
+[![Binder](images/Gauss_Elimination_Notebook.png)](https://mybinder.org/v2/gh/aaguirreme/ea1_tools/master?filepath=gauss_calc%2Fgauss_calculator_notebook.ipynb)  
 [View source files](https://github.com/aaguirreme/ea1_tools/tree/master/gauss_calc)
