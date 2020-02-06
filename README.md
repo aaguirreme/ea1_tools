@@ -10,7 +10,7 @@ Link to this site: [https://aaguirreme.github.io/ea1_tools/](https://aaguirreme.
 ### Growth or decay solution graph
 
 Click the image to run.  
-[![Desmos](images/Desmos_Growth_Decay.png)](https://www.desmos.com/calculator/78noqxqfjz)
+[![Desmos](images/Desmos_Growth_Decay.png)](https://www.desmos.com/calculator/yrgemltkg3)
 
 ## Second order ODEs
 
