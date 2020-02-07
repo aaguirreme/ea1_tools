@@ -1,5 +1,12 @@
 # Changelog
 
+## 2020-02-07
+
+### Added to the README file
+
+- Link to a Desmos.com graph of the solution of a typical Newton's law of
+  cooling IVP.
+
 ## 2020-02-05
 
 ### Added to the README file

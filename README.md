@@ -10,7 +10,12 @@ Link to this site: [https://aaguirreme.github.io/ea1_tools/](https://aaguirreme.
 ### Growth or decay solution graph
 
 Click the image to run.  
-[![Desmos](images/Desmos_Growth_Decay.png)](https://www.desmos.com/calculator/drt23jo5x8)
+[![Desmos](images/Desmos_Growth_Decay.png)](https://www.desmos.com/calculator/b0zdj7zozn)
+
+### Newton's law of cooling solution graph
+
+Click the image to run.  
+[![Desmos](images/Desmos_Newtons_Law_Cooling.png)](https://www.desmos.com/calculator/wx9kbojkba)
 
 ## Second order ODEs
 
