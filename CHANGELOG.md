@@ -1,5 +1,13 @@
 # Changelog
 
+## 2020-02-14
+
+### Added to laplace_latex folder
+
+- New version of the Laplace flashcards (v4). The new version has the size of
+  Poker playing cards, and it is available in portrait and landscape
+  orientations.
+
 ## 2020-02-07
 
 ### Added to the README file
