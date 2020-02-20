@@ -1,5 +1,11 @@
 # Changelog
 
+## 2020-02-20
+
+### Modified to Laplace flashcards v4
+
+- Uncommented flashcard of the Laplace transform of the unit step u(t - a).
+
 ## 2020-02-14
 
 ### Added to laplace_latex folder
