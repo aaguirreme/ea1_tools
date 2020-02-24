@@ -1,5 +1,14 @@
 # Changelog
 
+## 2020-02-24
+
+### Added to the repository
+
+- New project of unit-step function flashcards. The project combines Wolfram
+  Mathematica, Python and LaTeX. The plots and the mathematical functions are
+  generated in a Wolfram Mathematica notebook. Then, a Python script puts
+  together a LaTeX file using the flashcards document class.
+
 ## 2020-02-20
 
 ### Modified to Laplace flashcards v4
