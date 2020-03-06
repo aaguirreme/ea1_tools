@@ -1,5 +1,12 @@
 # Changelog
 
+## 2020-03-06
+
+## Modified to Laplace flashcards
+
+- Created version v6, that changes the symbol of the unit-step function from the
+  lowercase u letter to the uppercase cursive U letter.
+
 ## 2020-02-24
 
 ### Added to the repository
