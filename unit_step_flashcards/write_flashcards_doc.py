@@ -7,7 +7,7 @@ N = 11
 
 filename = 'flashcards_unit_step.tex'
 
-preamble = r'''\documentclass[grid, poker_portrait]{flashcards}
+preamble = r'''\documentclass[grid, poker_landscape]{flashcards}
 
 \usepackage{graphicx}
 \usepackage{mathrsfs}

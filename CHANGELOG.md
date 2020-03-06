@@ -14,6 +14,10 @@
   the unit-step function was changed from the lowercase u letter to the
   uppercase cursive U letter.
 
+### Modified to Unit Step Flashcards
+
+- The PDF document is now generated with the landscape orientation.
+
 ## 2020-02-24
 
 ### Added to the repository
