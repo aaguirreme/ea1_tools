@@ -1,0 +1,643 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 12.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     27375,        635]
+NotebookOptionsPosition[     26411,        611]
+NotebookOutlinePosition[     26782,        627]
+CellTagsIndexPosition[     26739,        624]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["Separation of variables notebook", "Title",
+ CellChangeTimes->{{3.79216517322576*^9, 3.792165174193922*^9}, {
+  3.792165246391243*^9, 
+  3.79216531248418*^9}},ExpressionUUID->"c2c2c06d-9d5b-4452-b2b3-\
+068316466a19"],
+
+Cell["\<\
+Andres M. Aguirre-Mesa
+Ph.D student, Mechanical Engineering\
+\>", "Author",
+ CellChangeTimes->{{3.7921653233801126`*^9, 
+  3.7921653502187347`*^9}},ExpressionUUID->"c9f2cd70-6f7f-46ee-b4b5-\
+1ccd9b739b57"],
+
+Cell["University of Texas at San Antonio", "Affiliation",
+ CellChangeTimes->{{3.792165377914338*^9, 
+  3.7921653843453903`*^9}},ExpressionUUID->"885468ab-7c33-41df-8b78-\
+c66aa5c9160a"],
+
+Cell["Date: 03/02/2020", "Text",
+ CellChangeTimes->{{3.792165450503152*^9, 
+  3.792165469278379*^9}},ExpressionUUID->"99dbcdfd-9c6d-45e1-ad85-\
+8b69548ce6da"],
+
+Cell[TextData[{
+ "This notebook contains an interactive application that explains the \
+step-by-step process of separation of variables for multiple first-order \
+ordinary differential equations. It is based on the Manipulate command of \
+Wolfram Mathematica.\n\nThis notebook was inspired by the Wolfram \
+Demonstration Project called \[OpenCurlyDoubleQuote]Some Homogeneous Ordinary \
+Differential Equations\[CloseCurlyDoubleQuote] by Izidor Hafner.\n\n",
+ ButtonBox["https://demonstrations.wolfram.com/\
+SomeHomogeneousOrdinaryDifferentialEquations/",
+  BaseStyle->"Hyperlink",
+  ButtonData->{
+    URL["https://demonstrations.wolfram.com/\
+SomeHomogeneousOrdinaryDifferentialEquations/"], None},
+  ButtonNote->
+   "https://demonstrations.wolfram.com/\
+SomeHomogeneousOrdinaryDifferentialEquations/"]
+}], "Abstract",
+ CellChangeTimes->{{3.792165489325856*^9, 3.7921655021725273`*^9}, {
+  3.792165543613538*^9, 3.792165556202414*^9}, {3.792165605217184*^9, 
+  3.792165714668082*^9}, {3.792165855615725*^9, 3.792165877694109*^9}, {
+  3.792165958595571*^9, 3.792166009289042*^9}, {3.792166051535903*^9, 
+  3.792166075611511*^9}},ExpressionUUID->"ee57b494-2302-4810-9cec-\
+9cc7176c7136"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Manipulate", "[", "\[IndentingNewLine]", 
+  RowBox[{"(*", 
+   RowBox[{"DEFINITION", " ", "OF", " ", "OUTPUTS"}], "*)"}], 
+  "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{"Module", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"deq0", ",", "deq1", ",", "deq2", ",", "deq3", ",", "deq4"}], 
+      "}"}], ",", "\[IndentingNewLine]", 
+     RowBox[{"(*", 
+      RowBox[{
+      "Module", " ", "groups", " ", "multiple", " ", "output", " ", 
+       "statements", " ", "that", " ", "are", " ", "evaluated", " ", "using", 
+       " ", "local", " ", 
+       RowBox[{"variables", "."}]}], "*)"}], "\[IndentingNewLine]", 
+     RowBox[{"(*", 
+      RowBox[{
+       RowBox[{
+       "The", " ", "local", " ", "variables", " ", "are", " ", "deq0"}], ",", 
+       " ", "deq1", ",", " ", "deq2", ",", " ", "deq3"}], "*)"}], " ", 
+     "\[IndentingNewLine]", 
+     RowBox[{"(*", 
+      RowBox[{
+       RowBox[{
+       "Note", " ", "that", " ", "all", " ", "local", " ", "variables", " ", 
+        "depend", " ", "on", " ", "the", " ", "integer", " ", "index", " ", 
+        "\"\<i\>\""}], ",", " ", 
+       RowBox[{
+        RowBox[{
+        "which", " ", "is", " ", "obtained", " ", "from", " ", "the", " ", 
+         "pop"}], "-", 
+        RowBox[{"up", " ", 
+         RowBox[{"menu", "."}]}]}]}], "*)"}], "\[IndentingNewLine]", 
+     RowBox[{"(*", 
+      RowBox[{
+       RowBox[{
+       "The", " ", "local", " ", "variables", " ", "also", " ", "depend", " ",
+         "on", " ", "initialization", " ", "variables", " ", 
+        "\"\<dequs\>\""}], ",", " ", "\"\<rhs1\>\"", ",", " ", 
+       RowBox[{"\"\<lhs2\>\"", " ", "and", " ", "\"\<rhs2\>\""}], ",", " ", 
+       RowBox[{
+       "defined", " ", "at", " ", "the", " ", "end", " ", "of", " ", "the", 
+        " ", "Manipulate", " ", 
+        RowBox[{"command", "."}]}]}], "*)"}], "\[IndentingNewLine]", 
+     RowBox[{"(*", 
+      RowBox[{"deq0", ":", " ", 
+       RowBox[{"Original", " ", "differential", " ", 
+        RowBox[{"equation", "."}]}]}], "*)"}], "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{"deq0", " ", "=", " ", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{"d", ",", "x"}], "}"}], "]"}], "/", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{"d", ",", "y"}], "}"}], "]"}]}], "\[Equal]", 
+        RowBox[{"dequs", "[", 
+         RowBox[{"[", "i", "]"}], "]"}]}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"(*", 
+       RowBox[{
+        RowBox[{"deq1", ":", " ", 
+         RowBox[{
+         "Verify", " ", "that", " ", "the", " ", "ODE", " ", "is", " ", "in", 
+          " ", "the", " ", "form", " ", 
+          RowBox[{"dy", "/", "dx"}]}]}], " ", "=", " ", 
+        RowBox[{"f", 
+         RowBox[{"(", "x", ")"}], "g", 
+         RowBox[{
+          RowBox[{"(", "y", ")"}], "."}]}]}], "*)"}], "\[IndentingNewLine]", 
+      RowBox[{"deq1", "=", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{"d", ",", "x"}], "}"}], "]"}], "/", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{"d", ",", "y"}], "}"}], "]"}]}], "\[Equal]", 
+        RowBox[{"rhs1", "[", 
+         RowBox[{"[", "i", "]"}], "]"}]}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"(*", 
+       RowBox[{
+        RowBox[{"deq2", ":", " ", 
+         RowBox[{"Separate", " ", 
+          RowBox[{"variables", ".", " ", "Put"}], " ", "equation", " ", 
+          "into", " ", "form", " ", "v", 
+          RowBox[{"(", "y", ")"}], "dy"}]}], " ", "=", " ", 
+        RowBox[{"w", 
+         RowBox[{"(", "x", ")"}], 
+         RowBox[{"dx", "."}]}]}], "*)"}], "\[IndentingNewLine]", 
+      RowBox[{"deq2", " ", "=", " ", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"lhs2", "[", 
+          RowBox[{"[", "i", "]"}], "]"}], "*", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{"d", ",", "y"}], "}"}], "]"}]}], " ", "\[Equal]", " ", 
+        RowBox[{
+         RowBox[{"rhs2", "[", 
+          RowBox[{"[", "i", "]"}], "]"}], "*", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{"d", ",", "x"}], "}"}], "]"}]}]}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"(*", 
+       RowBox[{"deq3", ":", " ", 
+        RowBox[{
+        "Integrate", " ", "both", " ", "sides", " ", "of", " ", "the", " ", 
+         RowBox[{"equation", "."}]}]}], "*)"}], "\[IndentingNewLine]", 
+      RowBox[{"deq3", "=", 
+       RowBox[{
+        RowBox[{"Integrate", "[", 
+         RowBox[{
+          RowBox[{"lhs2", "[", 
+           RowBox[{"[", "i", "]"}], "]"}], ",", "y"}], "]"}], "==", 
+        RowBox[{
+         RowBox[{"Integrate", "[", 
+          RowBox[{
+           RowBox[{"rhs2", "[", 
+            RowBox[{"[", "i", "]"}], "]"}], ",", "x"}], "]"}], "+", "C"}]}]}],
+       ";", "\[IndentingNewLine]", 
+      RowBox[{"(*", 
+       RowBox[{
+       "All", " ", "outputs", " ", "are", " ", "shown", " ", "in", " ", "a", 
+        " ", "Grid", " ", "on", " ", "the", " ", "plotting", " ", 
+        RowBox[{"window", "."}]}], "*)"}], "\[IndentingNewLine]", 
+      RowBox[{"Text", "@", 
+       RowBox[{"Pane", "[", 
+        RowBox[{
+         RowBox[{"Grid", "[", 
+          RowBox[{
+           RowBox[{"{", "\[IndentingNewLine]", 
+            RowBox[{
+             RowBox[{"{", 
+              RowBox[{
+               RowBox[{"TraditionalForm", "[", "deq0", "]"}], ",", 
+               "\"\<\>\""}], "}"}], ",", "\[IndentingNewLine]", 
+             RowBox[{"{", "}"}], ",", " ", 
+             RowBox[{"(*", 
+              RowBox[{
+              "The", " ", "empty", " ", "set", " ", "adds", " ", "vertical", 
+               " ", "space", " ", "in", " ", "the", " ", "outputs", " ", 
+               "area"}], "*)"}], " ", "\[IndentingNewLine]", 
+             RowBox[{"{", 
+              RowBox[{
+               RowBox[{"If", "[", 
+                RowBox[{"st1", ",", 
+                 RowBox[{"TraditionalForm", "[", "deq1", "]"}], ",", 
+                 RowBox[{"Invisible", "[", 
+                  RowBox[{"TraditionalForm", "[", "deq1", "]"}], "]"}]}], 
+                "]"}], ",", "\[IndentingNewLine]", 
+               RowBox[{"Style", "[", 
+                RowBox[{
+                "\"\<1. Verify that the ODE is separable. Put in the form \
+\!\(\*Cell[\"dy/dx = f(x) \
+g(y)\",ExpressionUUID->\"c8a3f6df-0677-47c8-a639-69f54922d488\"]\).\>\"", ",", 
+                 RowBox[{"FontColor", "\[Rule]", "Blue"}]}], "]"}]}], "}"}], 
+             ",", "\[IndentingNewLine]", 
+             RowBox[{"{", "}"}], ",", "\[IndentingNewLine]", 
+             RowBox[{"{", 
+              RowBox[{
+               RowBox[{"If", "[", 
+                RowBox[{"st2", ",", 
+                 RowBox[{"TraditionalForm", "[", "deq2", "]"}], ",", 
+                 RowBox[{"Invisible", "[", 
+                  RowBox[{"TraditionalForm", "[", "deq2", "]"}], "]"}]}], 
+                "]"}], ",", "\[IndentingNewLine]", 
+               RowBox[{"Style", "[", 
+                RowBox[{
+                "\"\<2. Separate variables. Put in the form \!\(\*Cell[\"v(y) \
+dy = w(x) dx\",ExpressionUUID->\"bd49a097-1633-45fb-8139-253c6e4b47eb\"]\).\>\
+\"", ",", 
+                 RowBox[{"FontColor", "\[Rule]", "Blue"}]}], "]"}]}], "}"}], 
+             ",", "\[IndentingNewLine]", 
+             RowBox[{"{", "}"}], ",", "\[IndentingNewLine]", 
+             RowBox[{"{", 
+              RowBox[{
+               RowBox[{"If", "[", 
+                RowBox[{"st3", ",", 
+                 RowBox[{"TraditionalForm", "[", "deq3", "]"}], ",", 
+                 RowBox[{"Invisible", "[", 
+                  RowBox[{"TraditionalForm", "[", "deq3", "]"}], "]"}]}], 
+                "]"}], ",", "\[IndentingNewLine]", 
+               RowBox[{"Style", "[", 
+                RowBox[{
+                "\"\<3. Integrate both sides of the equation.\>\"", ",", 
+                 RowBox[{"FontColor", "\[Rule]", "Blue"}]}], "]"}]}], "}"}]}],
+             "\[IndentingNewLine]", "}"}], ",", "\[IndentingNewLine]", 
+           RowBox[{"(*", 
+            RowBox[{
+            "Configuration", " ", "of", " ", "the", " ", "Grid", " ", 
+             RowBox[{"command", "."}]}], "*)"}], "\[IndentingNewLine]", 
+           RowBox[{"Alignment", "\[Rule]", "Left"}]}], "]"}], ",", 
+         "\[IndentingNewLine]", 
+         RowBox[{"(*", 
+          RowBox[{"Configuration", " ", "of", " ", "the", " ", "Pane", " ", 
+           RowBox[{"command", "."}]}], "*)"}], "\[IndentingNewLine]", 
+         RowBox[{"ImageSize", "\[Rule]", 
+          RowBox[{"{", 
+           RowBox[{"300", ",", "250"}], "}"}]}]}], "]"}]}]}]}], 
+    "\[IndentingNewLine]", "]"}], ",", "\[IndentingNewLine]", 
+   RowBox[{"(*", 
+    RowBox[{"DEFINITION", " ", "OF", " ", "CONTROLS"}], "*)"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{"(*", 
+    RowBox[{
+     RowBox[{"Equation", " ", "selection", " ", "pop"}], "-", 
+     RowBox[{"up", " ", "menu"}]}], "*)"}], "\[IndentingNewLine]", 
+   RowBox[{"Style", "[", 
+    RowBox[{"\"\<Separation of variables\>\"", ",", "Bold"}], "]"}], ",", 
+   "\[IndentingNewLine]", "\"\<Choose an equation\>\"", ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"i", ",", "1", ",", "\"\<\>\""}], "}"}], ",", 
+     RowBox[{"Table", "[", 
+      RowBox[{
+       RowBox[{"j", "\[Rule]", 
+        RowBox[{"TraditionalForm", "[", 
+         RowBox[{
+          RowBox[{"y", "'"}], "\[Equal]", 
+          RowBox[{"dequs", "[", 
+           RowBox[{"[", "j", "]"}], "]"}]}], "]"}]}], ",", 
+       RowBox[{"{", 
+        RowBox[{"j", ",", "1", ",", "4"}], "}"}]}], "]"}], ",", 
+     RowBox[{"ControlType", "\[Rule]", "PopupMenu"}]}], "}"}], ",", 
+   "\[IndentingNewLine]", "\"\<\>\"", ",", 
+   RowBox[{"(*", 
+    RowBox[{
+    "The", " ", "empty", " ", "string", " ", "adds", " ", "vertical", " ", 
+     "space", " ", "in", " ", "the", " ", "controls", " ", "area"}], "*)"}], 
+   " ", "\[IndentingNewLine]", 
+   RowBox[{"(*", 
+    RowBox[{"Step", " ", "1", " ", 
+     RowBox[{"checkbox", ".", " ", "Sets"}], " ", "binary", " ", "var", " ", 
+     RowBox[{"st1", "."}]}], "*)"}], "\[IndentingNewLine]", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"st1", ",", "False", ",", "\"\<step 1\>\""}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"True", ",", "False"}], "}"}]}], "}"}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"(*", 
+    RowBox[{"Step", " ", "2", " ", 
+     RowBox[{"checkbox", ".", " ", "Sets"}], " ", "binary", " ", "var", " ", 
+     RowBox[{"st2", "."}]}], "*)"}], "\[IndentingNewLine]", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"st2", ",", "False", ",", "\"\<step 2\>\""}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"True", ",", "False"}], "}"}]}], "}"}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"(*", 
+    RowBox[{"Step", " ", "3", " ", 
+     RowBox[{"checkbox", ".", " ", "Sets"}], " ", "binary", " ", "var", " ", 
+     RowBox[{"st3", "."}]}], "*)"}], "\[IndentingNewLine]", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"st3", ",", "False", ",", "\"\<step 3\>\""}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"True", ",", "False"}], "}"}]}], "}"}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"(*", 
+    RowBox[{"INITIALIZATION", " ", "OF", " ", "VARIABLES"}], "*)"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{"Initialization", " ", ":>", " ", 
+    RowBox[{"(", "\[IndentingNewLine]", 
+     RowBox[{"(*", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"List", " ", "of", " ", "differential", " ", 
+         RowBox[{"equations", ".", " ", "Only"}], " ", "contains", " ", 
+         "right"}], "-", 
+        RowBox[{"hand", " ", 
+         RowBox[{"sides", ".", " ", "The"}], " ", "left", " ", "hand", " ", 
+         "side", " ", "is", " ", 
+         RowBox[{
+          RowBox[{"<<", " ", "y"}], "'"}]}]}], " ", "=", "\"\< >>\>"}], 
+      "*)"}], "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{"dequs", "=", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"Sin", "[", "x", "]"}], "/", 
+          SuperscriptBox["\[ExponentialE]", "y"]}], " ", ",", 
+         RowBox[{"3", 
+          RowBox[{"y", "^", "2"}], 
+          RowBox[{"Cos", "[", "x", "]"}]}], ",", 
+         RowBox[{
+          RowBox[{"Cos", "[", "x", "]"}], "/", 
+          RowBox[{"Sin", "[", "y", "]"}]}], ",", 
+         RowBox[{
+          RowBox[{"x", "*", 
+           SuperscriptBox["\[ExponentialE]", 
+            RowBox[{"-", "y"}]]}], " ", "+", 
+          RowBox[{"10", "*", 
+           SuperscriptBox["\[ExponentialE]", 
+            RowBox[{"-", "y"}]]}]}]}], "}"}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"(*", 
+       RowBox[{
+        RowBox[{"List", " ", "of", " ", "right"}], "-", 
+        RowBox[{
+        "hand", " ", "sides", " ", "for", " ", "the", " ", "step", " ", 
+         "2."}]}], "*)"}], "\[IndentingNewLine]", 
+      RowBox[{"rhs1", " ", "=", " ", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"Sin", "[", "x", "]"}], "*", 
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{"-", "y"}]]}], ",", " ", 
+         RowBox[{"3", 
+          RowBox[{"Cos", "[", "x", "]"}], 
+          RowBox[{"y", "^", "2"}]}], ",", 
+         RowBox[{
+          RowBox[{"Cos", "[", "x", "]"}], "/", 
+          RowBox[{"Sin", "[", "y", "]"}]}], ",", " ", 
+         RowBox[{
+          RowBox[{"(", 
+           RowBox[{"x", "+", "10"}], ")"}], "*", 
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{"-", "y"}]]}]}], "}"}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"(*", 
+       RowBox[{
+        RowBox[{"List", " ", "of", " ", "left"}], "-", 
+        RowBox[{"hand", " ", "sides", " ", "for", " ", "step", " ", "2."}]}], 
+       "*)"}], "\[IndentingNewLine]", 
+      RowBox[{"lhs2", "=", 
+       RowBox[{"{", 
+        RowBox[{
+         SuperscriptBox["\[ExponentialE]", "y"], ",", 
+         RowBox[{"y", "^", 
+          RowBox[{"-", "2"}]}], ",", 
+         RowBox[{"Sin", "[", "y", "]"}], ",", 
+         SuperscriptBox["\[ExponentialE]", "y"]}], "}"}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"(*", 
+       RowBox[{
+        RowBox[{"List", " ", "of", " ", "Right"}], "-", 
+        RowBox[{"hand", " ", "sides", " ", "for", " ", "step", " ", "2."}]}], 
+       "*)"}], "\[IndentingNewLine]", 
+      RowBox[{"rhs2", "=", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"Sin", "[", "x", "]"}], ",", 
+         RowBox[{"3", 
+          RowBox[{"Cos", "[", "x", "]"}]}], ",", 
+         RowBox[{"Cos", "[", "x", "]"}], ",", 
+         RowBox[{"(", 
+          RowBox[{"x", "+", "10"}], ")"}]}], "}"}]}], ";"}], 
+     "\[IndentingNewLine]", ")"}]}], ",", "\[IndentingNewLine]", 
+   RowBox[{"(*", 
+    RowBox[{
+    "CONFIGURATION", " ", "OF", " ", "THE", " ", "MANIPULATE", " ", 
+     "COMMAND"}], "*)"}], "\[IndentingNewLine]", 
+   RowBox[{"ControlPlacement", "\[Rule]", "Left"}]}], "\[IndentingNewLine]", 
+  "]"}]], "Input",
+ CellChangeTimes->{{3.792153445687048*^9, 3.792153608241037*^9}, {
+   3.7921537283332653`*^9, 3.79215372885396*^9}, {3.792153842690811*^9, 
+   3.7921538668879128`*^9}, {3.792153898032854*^9, 3.792153902719331*^9}, {
+   3.792153968100223*^9, 3.792153971618778*^9}, {3.7921540658970127`*^9, 
+   3.792154066386071*^9}, {3.792154112325202*^9, 3.792154176314659*^9}, {
+   3.792154275647954*^9, 3.792154282670871*^9}, {3.79215436594945*^9, 
+   3.79215441796982*^9}, {3.792154455914318*^9, 3.7921545198303013`*^9}, {
+   3.7921545540640383`*^9, 3.792154604682199*^9}, {3.79215471895951*^9, 
+   3.792154791147891*^9}, {3.792154834218549*^9, 3.792154916871078*^9}, {
+   3.7921549572478228`*^9, 3.7921549579817038`*^9}, {3.792157452300305*^9, 
+   3.7921574892651443`*^9}, {3.792157765279696*^9, 3.792157773510051*^9}, {
+   3.7921580490694923`*^9, 3.792158051554738*^9}, {3.792158239797522*^9, 
+   3.792158335945302*^9}, {3.792158425735059*^9, 3.792158426241412*^9}, {
+   3.792158560537641*^9, 3.792158576607562*^9}, {3.792158619946014*^9, 
+   3.792158634133595*^9}, {3.792158804321562*^9, 3.7921588565189247`*^9}, {
+   3.7921589506513233`*^9, 3.792158962937387*^9}, {3.792159044142601*^9, 
+   3.792159062871228*^9}, {3.7921591298927803`*^9, 3.792159139178494*^9}, {
+   3.7921592709120293`*^9, 3.7921592713335342`*^9}, {3.792159353883686*^9, 
+   3.7921593606346273`*^9}, {3.792159606169755*^9, 3.7921596160004473`*^9}, {
+   3.79215994581278*^9, 3.792160007060071*^9}, {3.7921600462023573`*^9, 
+   3.792160060023149*^9}, {3.792160171677717*^9, 3.792160177227316*^9}, {
+   3.792164543688388*^9, 3.792164623139502*^9}, 3.792164689827104*^9, {
+   3.7921647561438313`*^9, 3.792164868403439*^9}, {3.792164899449212*^9, 
+   3.7921650414853153`*^9}, {3.792165079081789*^9, 3.792165080869512*^9}, {
+   3.7921657580797997`*^9, 3.792165829804381*^9}, {3.79216611470504*^9, 
+   3.792166116704525*^9}},ExpressionUUID->"be712381-07f7-4355-b85e-\
+c2c4b83d7161"],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`i$$ = 1, $CellContext`st1$$ = 
+    False, $CellContext`st2$$ = False, $CellContext`st3$$ = False, 
+    Typeset`show$$ = True, Typeset`bookmarkList$$ = {}, 
+    Typeset`bookmarkMode$$ = "Menu", Typeset`animator$$, Typeset`animvar$$ = 
+    1, Typeset`name$$ = "\"untitled\"", Typeset`specs$$ = {{
+      Hold[
+       Style["Separation of variables", Bold]], 
+      Manipulate`Dump`ThisIsNotAControl}, {
+      Hold["Choose an equation"], Manipulate`Dump`ThisIsNotAControl}, {{
+       Hold[$CellContext`i$$], 1, ""}, {
+      1 -> TraditionalForm[
+        Derivative[1][$CellContext`y] == 
+         E^(-$CellContext`y) Sin[$CellContext`x]], 2 -> 
+       TraditionalForm[
+        Derivative[1][$CellContext`y] == 
+         3 $CellContext`y^2 Cos[$CellContext`x]], 3 -> 
+       TraditionalForm[
+        Derivative[1][$CellContext`y] == 
+         Cos[$CellContext`x] Csc[$CellContext`y]], 4 -> 
+       TraditionalForm[
+        Derivative[1][$CellContext`y] == 
+         10 E^(-$CellContext`y) + E^(-$CellContext`y) $CellContext`x]}}, {
+      Hold[""], Manipulate`Dump`ThisIsNotAControl}, {{
+       Hold[$CellContext`st1$$], False, "step 1"}, {True, False}}, {{
+       Hold[$CellContext`st2$$], False, "step 2"}, {True, False}}, {{
+       Hold[$CellContext`st3$$], False, "step 3"}, {True, False}}}, 
+    Typeset`size$$ = {450., {183., 194.}}, Typeset`update$$ = 0, 
+    Typeset`initDone$$, Typeset`skipInitDone$$ = 
+    False, $CellContext`i$60169$$ = False, $CellContext`st1$60170$$ = 
+    False, $CellContext`st2$60171$$ = False, $CellContext`st3$60172$$ = 
+    False}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, 
+      "Variables" :> {$CellContext`i$$ = 1, $CellContext`st1$$ = 
+        False, $CellContext`st2$$ = False, $CellContext`st3$$ = False}, 
+      "ControllerVariables" :> {
+        Hold[$CellContext`i$$, $CellContext`i$60169$$, False], 
+        Hold[$CellContext`st1$$, $CellContext`st1$60170$$, False], 
+        Hold[$CellContext`st2$$, $CellContext`st2$60171$$, False], 
+        Hold[$CellContext`st3$$, $CellContext`st3$60172$$, False]}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$}, "Body" :> 
+      Module[{$CellContext`deq0$, $CellContext`deq1$, $CellContext`deq2$, \
+$CellContext`deq3$, $CellContext`deq4$}, $CellContext`deq0$ = 
+         Row[{$CellContext`d, $CellContext`x}]/
+           Row[{$CellContext`d, $CellContext`y}] == 
+          Part[$CellContext`dequs, $CellContext`i$$]; $CellContext`deq1$ = 
+         Row[{$CellContext`d, $CellContext`x}]/
+           Row[{$CellContext`d, $CellContext`y}] == 
+          Part[$CellContext`rhs1, $CellContext`i$$]; $CellContext`deq2$ = 
+         Part[$CellContext`lhs2, $CellContext`i$$] 
+           Row[{$CellContext`d, $CellContext`y}] == 
+          Part[$CellContext`rhs2, $CellContext`i$$] 
+           Row[{$CellContext`d, $CellContext`x}]; $CellContext`deq3$ = 
+         Integrate[
+            Part[$CellContext`lhs2, $CellContext`i$$], $CellContext`y] == 
+          Integrate[
+             Part[$CellContext`rhs2, $CellContext`i$$], $CellContext`x] + C; 
+        Text[
+          Pane[
+           Grid[{{
+              TraditionalForm[$CellContext`deq0$], ""}, {}, {
+              If[$CellContext`st1$$, 
+               TraditionalForm[$CellContext`deq1$], 
+               Invisible[
+                TraditionalForm[$CellContext`deq1$]]], 
+              Style[
+              "1. Verify that the ODE is separable. Put in the form \
+\!\(\*Cell[\"dy/dx = f(x) g(y)\"]\).", FontColor -> Blue]}, {}, {
+              If[$CellContext`st2$$, 
+               TraditionalForm[$CellContext`deq2$], 
+               Invisible[
+                TraditionalForm[$CellContext`deq2$]]], 
+              Style[
+              "2. Separate variables. Put in the form \!\(\*Cell[\"v(y) dy = \
+w(x) dx\"]\).", FontColor -> Blue]}, {}, {
+              If[$CellContext`st3$$, 
+               TraditionalForm[$CellContext`deq3$], 
+               Invisible[
+                TraditionalForm[$CellContext`deq3$]]], 
+              Style[
+              "3. Integrate both sides of the equation.", FontColor -> 
+               Blue]}}, Alignment -> Left], ImageSize -> {300, 250}]]], 
+      "Specifications" :> {
+        Style["Separation of variables", Bold], 
+        "Choose an equation", {{$CellContext`i$$, 1, ""}, {
+         1 -> TraditionalForm[
+           Derivative[1][$CellContext`y] == 
+            E^(-$CellContext`y) Sin[$CellContext`x]], 2 -> 
+          TraditionalForm[
+           Derivative[1][$CellContext`y] == 
+            3 $CellContext`y^2 Cos[$CellContext`x]], 3 -> 
+          TraditionalForm[
+           Derivative[1][$CellContext`y] == 
+            Cos[$CellContext`x] Csc[$CellContext`y]], 4 -> 
+          TraditionalForm[
+           Derivative[1][$CellContext`y] == 
+            10 E^(-$CellContext`y) + E^(-$CellContext`y) $CellContext`x]}, 
+         ControlType -> PopupMenu}, 
+        "", {{$CellContext`st1$$, False, "step 1"}, {
+         True, False}}, {{$CellContext`st2$$, False, "step 2"}, {
+         True, False}}, {{$CellContext`st3$$, False, "step 3"}, {
+         True, False}}}, "Options" :> {ControlPlacement -> Left}, 
+      "DefaultOptions" :> {}],
+     ImageSizeCache->{761., {228., 237.}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    Initialization:>(($CellContext`dequs = {
+        Sin[$CellContext`x]/E^$CellContext`y, 3 $CellContext`y^2 
+         Cos[$CellContext`x], Cos[$CellContext`x]/
+         Sin[$CellContext`y], $CellContext`x E^(-$CellContext`y) + 
+         10 E^(-$CellContext`y)}; $CellContext`rhs1 = {
+        Sin[$CellContext`x] E^(-$CellContext`y), 3 
+         Cos[$CellContext`x] $CellContext`y^2, Cos[$CellContext`x]/
+         Sin[$CellContext`y], ($CellContext`x + 10) 
+         E^(-$CellContext`y)}; $CellContext`lhs2 = {
+        E^$CellContext`y, $CellContext`y^(-2), 
+         Sin[$CellContext`y], E^$CellContext`y}; $CellContext`rhs2 = {
+         Sin[$CellContext`x], 3 Cos[$CellContext`x], 
+         Cos[$CellContext`x], $CellContext`x + 10}; Null); 
+     Typeset`initDone$$ = True),
+    SynchronousInitialization->True,
+    UndoTrackedVariables:>{Typeset`show$$, Typeset`bookmarkMode$$},
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellChangeTimes->{{3.792160046911673*^9, 3.792160094867937*^9}, {
+   3.792160184155815*^9, 3.7921601928879347`*^9}, {3.792164630141473*^9, 
+   3.792164691858531*^9}, {3.792165092616336*^9, 3.792165104260763*^9}, 
+   3.792165732662754*^9},
+ CellLabel->
+  "Out[157]=",ExpressionUUID->"d9e01485-cb0d-4fe9-a79f-45db04948ec9"]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{1280, 1395},
+WindowMargins->{{Automatic, -2560}, {Automatic, 0}},
+Magnification:>1.5 Inherited,
+FrontEndVersion->"12.0 for Mac OS X x86 (64-bit) (April 8, 2019)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 222, 4, 146, "Title",ExpressionUUID->"c2c2c06d-9d5b-4452-b2b3-068316466a19"],
+Cell[805, 28, 215, 6, 87, "Author",ExpressionUUID->"c9f2cd70-6f7f-46ee-b4b5-1ccd9b739b57"],
+Cell[1023, 36, 185, 3, 46, "Affiliation",ExpressionUUID->"885468ab-7c33-41df-8b78-c66aa5c9160a"],
+Cell[1211, 41, 158, 3, 53, "Text",ExpressionUUID->"99dbcdfd-9c6d-45e1-ad85-8b69548ce6da"],
+Cell[1372, 46, 1185, 22, 336, "Abstract",ExpressionUUID->"ee57b494-2302-4810-9cec-9cc7176c7136"],
+Cell[CellGroupData[{
+Cell[2582, 72, 16824, 393, 2028, "Input",ExpressionUUID->"be712381-07f7-4355-b85e-c2c4b83d7161"],
+Cell[19409, 467, 6974, 140, 493, "Output",ExpressionUUID->"d9e01485-cb0d-4fe9-a79f-45db04948ec9"]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+

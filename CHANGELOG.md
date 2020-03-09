@@ -1,5 +1,13 @@
 # Changelog
 
+## 2020-03-09
+
+### Added to the repository
+
+- Separation of variables step-by-step notebook. This project shows the
+  step-by-step process of the separation of variables method using an
+  interactive Wolfram Mathematica notebook.
+
 ## 2020-03-06
 
 ### Added to Laplace flashcards
