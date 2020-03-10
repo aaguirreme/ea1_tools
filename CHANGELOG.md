@@ -8,6 +8,12 @@
   step-by-step process of the separation of variables method using an
   interactive Wolfram Mathematica notebook.
 
+### Modified to Separation of Variables Notebook.
+
+- Removed integration calculations, and replaced with additional hard-coded
+  expressions for the last step of the separation process. Also, the built-in
+  exponential symbol was removed and replaced by the symbol "e".
+
 ## 2020-03-06
 
 ### Added to Laplace flashcards
