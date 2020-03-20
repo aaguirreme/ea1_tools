@@ -1,0 +1,187 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% Name:   flashcards_s_shift
+%
+% Author: Andres M. Aguirre-Mesa
+%         Ph.D student, Mechanical Engineering
+%         The University of Texas at San Antonio
+%
+% Date:   03/17/2020
+%
+% Description:  this is a set of cards on the topic of Laplace Transforms for
+%               translation on the s-axis, to be applied for solving ordinary
+%               differential equations. The size of each card is the same as
+%               Poker playing cards: 3.5" x 2.5"
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\documentclass[grid, poker_landscape]{flashcards}
+
+\usepackage{mathrsfs}
+\usepackage{color}
+\usepackage{ulem}
+
+% Macros definition
+
+% Laplace transform operator
+\newcommand{\Lap}{\ensuremath{\mathscr{L}}}
+
+% Inverse Laplace transform
+\newcommand{\invLap}{\ensuremath{\mathscr{L}^{-1}}}
+
+\begin{document}
+
+  \cardfrontstyle[\Huge]{plain}
+  \cardbackstyle[\Huge]{plain}
+
+  %0
+  \begin{flashcard}{ S-shift formulas  }
+    \begin{minipage}[t]{0.8\columnwidth}
+      \begin{center}
+        \uline{Color code}
+      \end{center}
+      \begin{flushleft}
+        Black: original transform \\
+        \color{blue}{Blue: s-shift}
+      \end{flushleft}
+    \end{minipage}
+  \end{flashcard}
+
+  %1
+  \begin{flashcard}{ \[ \Lap\left\{ {\color{blue}e^{at}}t\right\} \] }
+    \[
+      \frac{1}{\left(s{\color{blue}-a}\right)^{2}}
+    \]
+  \end{flashcard}
+
+  %2
+  \begin{flashcard}{ \[ \Lap\left\{ {\color{blue}e^{at}}t^{2}\right\} \] }
+    \[
+      \frac{2}{\left(s{\color{blue}-a}\right)^{3}}
+    \]
+  \end{flashcard}
+
+  %3
+  \begin{flashcard}{ \[ \Lap\left\{ {\color{blue}e^{at}}t^{3}\right\} \] }
+    \[
+      \frac{6}{\left(s{\color{blue}-a}\right)^{4}}
+    \]
+  \end{flashcard}
+  
+  %4
+  \begin{flashcard}{ \[ \Lap\left\{ {\color{blue}e^{at}}t^{n}\right\}  \] }
+    \[
+      \frac{n!}{\left(s{\color{blue}-a}\right)^{n+1}}
+    \]
+  \end{flashcard}
+
+  %5
+  \begin{flashcard}{ \[ \Lap\left\{ 
+      {\color{blue}e^{at}} \sin \left( kt \right)
+    \right\} \] }
+    \[
+      \frac{k}{\left( s {\color{blue}-a} \right)^{2} + k^{2}}
+    \]
+  \end{flashcard}
+
+  %6
+  \begin{flashcard}{ \[ \Lap\left\{
+      {\color{blue}e^{at}} \cos \left( kt \right)
+    \right\} \] }
+    \[
+      \frac{s{\color{blue}-a}}{\left( s {\color{blue}-a} \right)^{2} + k^{2}}
+    \]
+  \end{flashcard}
+
+  %7
+  \begin{flashcard}{ \[ \Lap\left\{ 
+      {\color{blue}e^{at}} \sinh \left( kt \right)
+    \right\} \] }
+    \[
+      \frac{k}{\left( s {\color{blue}-a} \right)^{2} - k^{2}}
+    \]
+  \end{flashcard}
+
+  %8
+  \begin{flashcard}{ \[ \Lap\left\{
+      {\color{blue}e^{at}} \cosh \left( kt \right)
+    \right\} \] }
+    \[
+      \frac{s{\color{blue}-a}}{\left( s {\color{blue}-a} \right)^{2} - k^{2}}
+    \]
+  \end{flashcard}
+  
+  %9
+  \begin{flashcard}{ \[ \invLap\left\{
+      \frac{1}{\left(s{\color{blue}-a}\right)^{2}}
+    \right\} \] }
+    \[
+      {\color{blue}e^{at}}t
+    \]
+  \end{flashcard}
+
+  %10
+  \begin{flashcard}{ \[ \invLap\left\{
+      \frac{2}{\left(s{\color{blue}-a}\right)^{3}}
+    \right\} \] }
+    \[
+      {\color{blue}e^{at}}t^{2}
+    \]
+  \end{flashcard}
+
+  %11
+  \begin{flashcard}{ \[ \invLap\left\{
+      \frac{6}{\left(s{\color{blue}-a}\right)^{4}}
+    \right\} \] }
+    \[
+      {\color{blue}e^{at}}t^{3}
+    \]
+  \end{flashcard}
+
+  %12
+  \begin{flashcard}{ \[ \invLap\left\{
+      \frac{n!}{\left(s{\color{blue}-a}\right)^{n+1}}
+    \right\} \] }
+    \[
+      {\color{blue}e^{at}}t^{n}
+    \]
+  \end{flashcard}
+
+  %13
+  \begin{flashcard}{ \[ \invLap\left\{
+      \frac{k}{\left(s{\color{blue}-a}\right)^{2}+k^{2}}
+    \right\} \] }
+    \[
+      {\color{blue}e^{at}}\sin\left(kt\right)
+    \]
+  \end{flashcard}
+
+  %14
+  \begin{flashcard}{ \[ \invLap\left\{
+    \frac{s{\color{blue}-a}}{\left(s{\color{blue}-a}\right)^{2}+k^{2}}
+    \right\} \] }
+    \[
+      {\color{blue}e^{at}}\cos\left(kt\right)
+    \]
+  \end{flashcard}
+
+  %15
+  \begin{flashcard}{ \[ \invLap\left\{
+    \frac{k}{\left(s{\color{blue}-a}\right)^{2}-k^{2}}
+    \right\} \] }
+    \[
+      {\color{blue}e^{at}}\sinh\left(kt\right)
+    \]
+  \end{flashcard}
+
+  %16
+  \begin{flashcard}{ \[ \invLap\left\{
+    \frac{s{\color{blue}-a}}{\left(s{\color{blue}-a}\right)^{2}-k^{2}}
+    \right\} \] }
+    \[
+      {\color{blue}e^{at}}\cosh\left(kt\right)
+    \]
+  \end{flashcard}
+
+
+\end{document}

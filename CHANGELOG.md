@@ -1,5 +1,15 @@
 # Changelog
 
+## 2020-03-19
+
+## Added to the repository
+
+- Printable flashcards on translation on the s-axis. This flashcard set includes
+  a color code that highlights on the basic laplace transforms due to s-shift.
+  Under the same project, two LaTeX files generate the left and right-hand sides
+  of the flashcards in PNG image format, to facilitate the creation of
+  flashcards on online services.
+
 ## 2020-03-09
 
 ### Added to the repository

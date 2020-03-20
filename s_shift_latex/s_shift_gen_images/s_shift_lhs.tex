@@ -1,0 +1,139 @@
+\documentclass[multi={mymath},convert={density=1200}]{standalone}
+
+\usepackage{mathrsfs}
+\usepackage{color}
+\usepackage{ulem}
+
+\newenvironment{mymath}{$\displaystyle}{$}
+
+% Macros definition
+
+% Laplace transform operator
+\newcommand{\Lap}{\ensuremath{\mathscr{L}}}
+
+% Inverse Laplace transform
+\newcommand{\invLap}{\ensuremath{\mathscr{L}^{-1}}}
+
+\begin{document}
+
+%1
+\begin{mymath}
+  \Lap\left\{ {\color{blue}e^{at}}t\right\}
+  %\frac{1}{\left(s{\color{blue}-a}\right)^{2}}
+\end{mymath}
+
+%2
+\begin{mymath}
+  \Lap\left\{ {\color{blue}e^{at}}t^{2}\right\}
+  %\frac{2}{\left(s{\color{blue}-a}\right)^{3}}
+\end{mymath}
+
+%3
+\begin{mymath}
+  \Lap\left\{ {\color{blue}e^{at}}t^{3}\right\}
+  %\frac{6}{\left(s{\color{blue}-a}\right)^{4}}
+\end{mymath}
+
+%4
+\begin{mymath}
+  \Lap\left\{ {\color{blue}e^{at}}t^{n}\right\} 
+  %\frac{n!}{\left(s{\color{blue}-a}\right)^{n+1}}
+\end{mymath}
+
+%5
+\begin{mymath}
+  \Lap\left\{ 
+    {\color{blue}e^{at}} \sin \left( kt \right)
+  \right\} 
+  %\frac{k}{\left( s {\color{blue}-a} \right)^{2} + k^{2}}
+\end{mymath}
+
+%6
+\begin{mymath}
+  \Lap\left\{ 
+    {\color{blue}e^{at}} \cos \left( kt \right)
+  \right\} 
+  %\frac{s{\color{blue}-a}}{\left( s {\color{blue}-a} \right)^{2} + k^{2}}
+\end{mymath}
+
+%7
+\begin{mymath}
+  \Lap\left\{ 
+    {\color{blue}e^{at}} \sinh \left( kt \right)
+  \right\} 
+  %\frac{k}{\left( s {\color{blue}-a} \right)^{2} - k^{2}}
+\end{mymath}
+
+%8
+\begin{mymath}
+  \Lap\left\{ 
+    {\color{blue}e^{at}} \cosh \left( kt \right)
+  \right\} 
+  %\frac{s{\color{blue}-a}}{\left( s {\color{blue}-a} \right)^{2} - k^{2}}
+\end{mymath}
+
+%9
+\begin{mymath}
+  \invLap\left\{ 
+    \frac{1}{\left(s{\color{blue}-a}\right)^{2}}
+  \right\} 
+  %{\color{blue}e^{at}}t
+\end{mymath}
+
+%10
+\begin{mymath}
+  \invLap\left\{ 
+    \frac{2}{\left(s{\color{blue}-a}\right)^{3}} 
+  \right\} 
+  %{\color{blue}e^{at}}t^{2}
+\end{mymath}
+
+%11
+\begin{mymath}
+  \invLap\left\{ 
+    \frac{6}{\left(s{\color{blue}-a}\right)^{4}}
+  \right\} 
+  %{\color{blue}e^{at}}t^{3}
+\end{mymath}
+
+%12
+\begin{mymath}
+  \invLap\left\{ 
+    \frac{n!}{\left(s{\color{blue}-a}\right)^{n+1}}
+  \right\} 
+  %{\color{blue}e^{at}}t^{n}
+\end{mymath}
+
+%13
+\begin{mymath}
+  \invLap\left\{ 
+    \frac{k}{\left(s{\color{blue}-a}\right)^{2}+k^{2}}
+  \right\} 
+  %{\color{blue}e^{at}}\sin\left(kt\right)
+\end{mymath}
+
+%14
+\begin{mymath}
+  \invLap\left\{ 
+    \frac{s{\color{blue}-a}}{\left(s{\color{blue}-a}\right)^{2}+k^{2}}
+  \right\} 
+  %{\color{blue}e^{at}}\cos\left(kt\right)
+\end{mymath}
+
+%15
+\begin{mymath}
+  \invLap\left\{ 
+    \frac{k}{\left(s{\color{blue}-a}\right)^{2}-k^{2}}
+  \right\} 
+  %{\color{blue}e^{at}}\sinh\left(kt\right)
+\end{mymath}
+
+%16
+\begin{mymath}
+  \invLap\left\{ 
+    \frac{s{\color{blue}-a}}{\left(s{\color{blue}-a}\right)^{2}-k^{2}}
+  \right\} 
+  %{\color{blue}e^{at}}\cosh\left(kt\right)
+\end{mymath}
+
+\end{document}
