@@ -1,8 +1,15 @@
 # Changelog
 
+## 2020-04-02
+
+### Modified to the README file
+
+- Removed the initial webpage of the project from the README file. Added the
+  link to the current Wix website.
+
 ## 2020-03-19
 
-## Added to the repository
+### Added to the repository
 
 - Printable flashcards on translation on the s-axis. This flashcard set includes
   a color code that highlights on the basic laplace transforms due to s-shift.
