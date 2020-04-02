@@ -7,6 +7,11 @@
 - Removed the initial webpage of the project from the README file. Added the
   link to the current Wix website.
 
+### Modified to the Gauss Elimination Calculator
+
+- The function update_aug_matrix now cleans the output of the elementary row
+  operations. The function is activated by the start button.
+
 ## 2020-03-19
 
 ### Added to the repository

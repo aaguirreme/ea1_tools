@@ -345,6 +345,10 @@ def update_aug_matrix(change):
   # Update object "amat_latex" with the augmented matrix in LaTeX format. 
   amat_latex.value=latex_str
 
+
+  # Clear the contents of the results_html output.
+  results_html.value = '' 
+
 #-------------------------------------------------------------------------------
 
 
