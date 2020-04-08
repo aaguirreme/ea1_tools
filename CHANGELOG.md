@@ -1,5 +1,14 @@
 # Changelog
 
+## 2020-04-08
+
+### Added to the repository
+
+- First version of the Mathematica notebook on Convolution vs Partial Fractions.
+  The notebook contains an interactive applications that shows the step by step
+  process of computing the inverse Laplace transform of different functions
+  using either convolution or partial fraction decomposition.
+
 ## 2020-04-02
 
 ### Modified to the README file
