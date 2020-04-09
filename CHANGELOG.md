@@ -1,5 +1,14 @@
 # Changelog
 
+## 2020-04-09
+
+### Modified to the convolution notebook
+
+- Minimum changes. Swapped the order of the Convolution and Partial Fraction
+  options to make PF the 1st option and the default one. Also, most of the
+  mathematical expressions are shown in standard mode (math-like) rather than in
+  input mode (code).
+
 ## 2020-04-08
 
 ### Added to the repository
