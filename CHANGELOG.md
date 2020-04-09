@@ -9,6 +9,11 @@
   process of computing the inverse Laplace transform of different functions
   using either convolution or partial fraction decomposition.
 
+### Modified to the convolution notebook
+
+- Modified the Convolution notebook to have a "radio button bar" instead of a
+  checkbox field.
+
 ## 2020-04-02
 
 ### Modified to the README file
