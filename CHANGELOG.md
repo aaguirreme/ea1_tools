@@ -8,6 +8,12 @@
   visibility of the formulas. Also changed some mathematical equations to
   standard mode to improve their readability.
 
+### Added to the repository
+
+- Mathematica notebook on translation on the s-axis. Contains an interactive app
+  that shows the original and shifted version of a Laplace transform. Includes a
+  sliding bar to control the shifting constant.
+
 ## 2020-04-09
 
 ### Modified to the convolution notebook

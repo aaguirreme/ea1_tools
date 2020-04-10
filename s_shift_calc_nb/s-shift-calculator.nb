@@ -1,0 +1,102 @@
+Notebook[{Cell[
+CellGroupData[{Cell[
+TextData[{"S","-","shift"," ","calculator"}],
+"Title",ExpressionUUID -> "b4691fcd-da57-4d46-98a7-4c4bbd6794d9"],Cell[
+TextData[
+{"Andres"," ","M",StyleBox[RowBox[{"."," "}]],"Aguirre","-","Mesa"," ","and"," ","Harry"," ","Millwater","\n","Department"," ","of"," ","Mechanical"," ","Engineering"}],
+"Text",ExpressionUUID -> "f85a5f05-e3bc-4f5c-89fa-911b349246e5"],Cell[
+TextData[{"The"," ","University"," ","of"," ","Texas"," ","at"," ","San"," ","Antonio"}],
+"Text",ExpressionUUID -> "13a9efe9-f316-475e-adab-04595a52bbca"],Cell[
+TextData[{"Date",StyleBox[
+RowBox[{":"," "}]],"03","/","30","/","2020"}],"Text",ExpressionUUID -> "7d0242b2-38ed-4d16-a40d-76d5458c73e9"],Cell[
+TextData[
+{"This"," ","notebook"," ","contains"," ","an"," ","interactive"," ","application"," ","to"," ","apply"," ","translation"," ","on"," ","the"," ","s","-","axis"," ","to"," ","multiple"," ","functions","."}],
+"Text",ExpressionUUID -> "86223c45-9a80-4f76-9175-76ab5e14f39e"],Cell[
+CellGroupData[
+{Cell[
+BoxData[RowBox[{"Manipulate","[","\n",RowBox[{"(*",RowBox[{"DEFINITION"," ","OF"," ","OUTPUTS"}],"*)"}],"\n",RowBox[
+{RowBox[{"Module","[",RowBox[{RowBox[{"{",RowBox[{"eq1",","," ","eq2"}],"}"}],",","\n",RowBox[
+{"(*",RowBox[{RowBox[{"Define"," ","expression"," ","of"," ","the"," ","Laplace"," ","transform"," ","without"," ","s"}],"-","shifting"}],"*)"}],"\n",RowBox[
+{RowBox[{"eq1"," ","="," ",RowBox[{RowBox[{"\[ScriptCapitalL]","["," ",RowBox[{"fun1","[",RowBox[
+{"[","i","]"}],"]"}]," ","]"}]," ","=="," ",RowBox[{"ftr1","[",RowBox[{"[","i","]"}],"]"}]}]}],";","\n",RowBox[
+{"(*",RowBox[{RowBox[{"Define"," ","expression"," ","of"," ","the"," ","Laplace"," ","transform"," ","with"," ","s"}],"-","shifting"}],"*)"}],"\n",RowBox[
+{"eq2"," ","="," ",RowBox[{RowBox[{"\[ScriptCapitalL]","["," ",RowBox[{RowBox[{"fun2","[",RowBox[
+{"[","i","]"}],"]"}],"/.",RowBox[{"b","\[Rule]","a"}]}]," ","]"}]," ","=="," ",RowBox[
+{"ReplaceAll","[",RowBox[{RowBox[{"ftr1","[",RowBox[{"[","i","]"}],"]"}],",",RowBox[
+{"{",RowBox[{"s","\[Rule]",RowBox[{"(",RowBox[{"s","-","a"}],")"}]}],"}"}]}],"]"}]}]}],";","\n",RowBox[
+{"Text","@",RowBox[{"Pane","[",RowBox[{"Grid","[",RowBox[{RowBox[{"{","\n",RowBox[
+{"(*",RowBox[{"Show"," ","Laplace"," ","transform"}],"*)"}],"\[IndentingNewLine]",RowBox[
+{RowBox[{"{",RowBox[{"TraditionalForm","[","eq1","]"}],"}"}],",","\n",RowBox[{"{","}"}],",","\n",RowBox[
+{"(*",RowBox[{RowBox[{"Show"," ","Laplace"," ","transform"," ","with"," ","s"}],"-","shifting"}],"*)"}],"\n",RowBox[
+{"{",RowBox[{"TraditionalForm","[","eq2","]"}],"}"}]}],"\[IndentingNewLine]","}"}],",","\[IndentingNewLine]",RowBox[
+{"(*",RowBox[{"Configuration"," ","of"," ","the"," ","Grid"," ",RowBox[{"command","."}]}],"*)"}],"\[IndentingNewLine]",RowBox[
+{"Alignment","\[Rule]","Left"}]}],"]"}],"]"}]}]}]}],"\[IndentingNewLine]","]"}],",","\n",RowBox[
+{"(*",RowBox[{"DEFINITION"," ","OF"," ","CONTROLS"}],"*)"}],"\n",RowBox[{"Style","[",RowBox[
+{"\"S-shift calculator\"",",","Bold"}],"]"}],",","\[IndentingNewLine]","\"Choose a function\"",",","\n",RowBox[
+{"(*",RowBox[{"Pop","-",RowBox[{"up"," ","menu"," ","to"," ","select"," ","the"," ","function"}]}],"*)"}],"\[IndentingNewLine]",RowBox[
+{"{",RowBox[{RowBox[{"{",RowBox[{"i",",","1",",","\"\""}],"}"}],",",RowBox[{"Table","[",RowBox[
+{RowBox[{"j","\[Rule]",RowBox[{"TraditionalForm","[",RowBox[{"y","\[Equal]",RowBox[
+{"fun1","[",RowBox[{"[","j","]"}],"]"}]}],"]"}]}],",",RowBox[{"{",RowBox[{"j",",","1",",","6"}],"}"}]}],"]"}],",",RowBox[
+{"ControlType","\[Rule]","PopupMenu"}]}],"}"}],",","\n",RowBox[{"(*",RowBox[{RowBox[
+{"Sliding"," ","bar"," ","to"," ","select"," ","the"," ","amount"," ","of"," ","s"}],"-","shifting"}],"*)"}],"\n",RowBox[
+{"{",RowBox[{"a",",","0.0",",","5",",","0.1",","," ",RowBox[{"Appearance","\[Rule]","\"Labeled\""}]}],"}"}],",","\n",RowBox[
+{"(*",RowBox[{"INITIALIZATION"," ","OF"," ","VARIABLES"}],"*)"}],"\[IndentingNewLine]",RowBox[
+{"Initialization"," ","\[RuleDelayed]"," ",RowBox[{"(","\n",RowBox[{"(*",RowBox[{RowBox[
+{"List"," ","of"," ","functions"," ","in"," ","terms"," ","of"," ","t"," ","without"," ","s"}],"-","shift"}],"*)"}],"\[IndentingNewLine]",RowBox[
+{RowBox[{"fun1",":=",RowBox[{"{",RowBox[{"1",",","t",",",SuperscriptBox["t","2"],",",SuperscriptBox[
+"\[ExponentialE]",RowBox[{"3"," ","t"}]],","," ",RowBox[{"Sin","[",RowBox[{"2","t"}],"]"}],","," ",RowBox[
+{"Cos","[",RowBox[{"3","t"}],"]"}]}],"}"}]}],";","\n",RowBox[{"(*",RowBox[{RowBox[
+{"List"," ","of"," ","Laplace"," ","transforms"," ","without"," ","s"}],"-","shift"}],"*)"}],"\n",RowBox[
+{"ftr1",":=",RowBox[{"{",RowBox[{FractionBox["1","s"],",",FractionBox["1",SuperscriptBox[
+"s","2"]],",",FractionBox["2",SuperscriptBox["s","3"]],",",FractionBox["1",RowBox[
+{"s","-","3"}]],",",FractionBox["2",RowBox[{SuperscriptBox["s","2"],"+",RowBox[{"HoldForm","[",SuperscriptBox[
+"2","2"],"]"}]}]],",",FractionBox["s",RowBox[{SuperscriptBox["s","2"],"+",RowBox[
+{"HoldForm","[",SuperscriptBox["3","2"],"]"}]}]]}],"}"}]}],";","\n",RowBox[{"(*",RowBox[
+{RowBox[{"List"," ","of"," ","functions"," ","in"," ","terms"," ","of"," ","t"," ","with"," ","s"}],"-","shift"}],"*)"}],"\[IndentingNewLine]",RowBox[
+{"fun2",":=",RowBox[{"{",RowBox[{RowBox[{"Row","[",RowBox[{"{",RowBox[{"\"(1)\"",",",SuperscriptBox[
+"\[ExponentialE]",RowBox[{"b"," ","t"}]]}],"}"}],"]"}],",",RowBox[{"Row","[",RowBox[
+{"{",RowBox[{"t",",",SuperscriptBox["\[ExponentialE]",RowBox[{"b"," ","t"}]]}],"}"}],"]"}],",",RowBox[
+{"Row","[",RowBox[{"{",RowBox[{SuperscriptBox["t","2"],",",SuperscriptBox["\[ExponentialE]",
+RowBox[{"b"," ","t"}]]}],"}"}],"]"}],",",RowBox[{"Exp","[",RowBox[{RowBox[{"HoldForm","[",RowBox[
+{"3"," ","t"}],"]"}],"+",RowBox[{"b"," ","t"}]}],"]"}],",",RowBox[{SuperscriptBox[
+"\[ExponentialE]",RowBox[{"b"," ","t"}]]," ",RowBox[{"Sin","[",RowBox[{"2"," ","t"}],"]"}]}],",",RowBox[
+{SuperscriptBox["\[ExponentialE]",RowBox[{"b"," ","t"}]]," ",RowBox[{"Cos","[",RowBox[
+{"3"," ","t"}],"]"}]}]}],"}"}]}],";"}],"\[IndentingNewLine]",")"}]}]}],"\n","]"}]],
+"Input",ExpressionUUID -> "4d9ba4ff-4b31-4417-b304-0830b955c864",CellLabel -> "In[4]:= "],Cell[
+BoxData[
+TagBox[StyleBox[DynamicModuleBox[{Set[a$$,0`],Set[i$$,1],Set[Typeset`show$$,True],Set[
+Typeset`bookmarkList$$,{}],Set[Typeset`bookmarkMode$$,"Menu"],Typeset`animator$$,Set[
+Typeset`animvar$$,1],Set[Typeset`name$$,"\"untitled\""],Set[Typeset`specs$$,{{Hold[
+Style["S-shift calculator",Bold]],Manipulate`Dump`ThisIsNotAControl},{Hold["Choose a function"],Manipulate`Dump`ThisIsNotAControl},{{Hold[
+i$$],1,""},{1 -> TraditionalForm[Equal[y,1]],2 -> TraditionalForm[Equal[y,t]],3 -> TraditionalForm[
+Equal[y,Power[t,2]]],4 -> TraditionalForm[Equal[y,Power[E,Times[3,t]]]],5 -> TraditionalForm[
+Equal[y,Sin[Times[2,t]]]],6 -> TraditionalForm[Equal[y,Cos[Times[3,t]]]]}},{Hold[
+a$$],0.0,5,0.1}}],Set[Typeset`size$$,Automatic],Set[Typeset`update$$,0],Set[Typeset`initDone$$,
+False],Set[Typeset`skipInitDone$$,False]},DynamicBox[Manipulate`ManipulateBoxes[1,
+StandardForm,RuleDelayed["Variables",{Set[a$$,0.0],Set[i$$,1]}],RuleDelayed["ControllerVariables",
+{}],RuleDelayed["OtherVariables",{Typeset`show$$,Typeset`bookmarkList$$,Typeset`bookmarkMode$$,Typeset`animator$$,Typeset`animvar$$,Typeset`name$$,Typeset`specs$$,Typeset`size$$,Typeset`update$$,Typeset`initDone$$,Typeset`skipInitDone$$}],
+RuleDelayed["Body",Module[{eq1$,eq2$},CompoundExpression[Set[eq1$,Equal[\[ScriptCapitalL][
+Part[fun1,i$$]],Part[ftr1,i$$]]],Set[eq2$,Equal[\[ScriptCapitalL][ReplaceAll[Part[
+fun2,i$$],b -> a$$]],ReplaceAll[Part[ftr1,i$$],{s -> Plus[s,Times[-1,a$$]]}]]],Text[
+Pane[Grid[{{TraditionalForm[eq1$]},{},{TraditionalForm[eq2$]}},Alignment -> Left]]]]]],
+RuleDelayed["Specifications",{Style["S-shift calculator",Bold],"Choose a function",{{i$$,1,""},{1 -> TraditionalForm[
+Equal[y,1]],2 -> TraditionalForm[Equal[y,t]],3 -> TraditionalForm[Equal[y,Power[t,
+2]]],4 -> TraditionalForm[Equal[y,Power[E,Times[3,t]]]],5 -> TraditionalForm[Equal[
+y,Sin[Times[2,t]]]],6 -> TraditionalForm[Equal[y,Cos[Times[3,t]]]]},ControlType -> PopupMenu},{a$$,0.0,5,0.1,Appearance -> "Labeled"}}],
+RuleDelayed["Options",{}],RuleDelayed["DefaultOptions",{}]],SingleEvaluation -> True],
+RuleDelayed[Initialization,CompoundExpression[CompoundExpression[SetDelayed[fun1,
+{1,t,Power[t,2],Power[E,Times[3,t]],Sin[Times[2,t]],Cos[Times[3,t]]}],SetDelayed[
+ftr1,{Times[1,Power[s,-1]],Times[1,Power[Power[s,2],-1]],Times[2,Power[Power[s,3],
+-1]],Times[1,Power[Plus[s,-3],-1]],Times[2,Power[Plus[Power[s,2],HoldForm[Power[2,
+2]]],-1]],Times[s,Power[Plus[Power[s,2],HoldForm[Power[3,2]]],-1]]}],SetDelayed[fun2,
+{Row[{"(1)",Power[E,Times[b,t]]}],Row[{t,Power[E,Times[b,t]]}],Row[{Power[t,2],Power[
+E,Times[b,t]]}],Exp[Plus[HoldForm[Times[3,t]],Times[b,t]]],Times[Power[E,Times[b,
+t]],Sin[Times[2,t]]],Times[Power[E,Times[b,t]],Cos[Times[3,t]]]}],Null],Set[Typeset`initDone$$,
+True]]],RuleDelayed[DynamicModuleValues,{}],RuleDelayed[Deinitialization,None],RuleDelayed[
+UntrackedVariables,{Typeset`size$$}],SynchronousInitialization -> True,RuleDelayed[
+UnsavedVariables,{Typeset`initDone$$}],RuleDelayed[UndoTrackedVariables,{Typeset`show$$,Typeset`bookmarkMode$$}],
+ExpressionUUID -> "578aed36-9ba1-46e3-ad6e-79408f0e5cb7"],"Manipulate",Deployed -> True,
+StripOnInput -> False],Manipulate`InterpretManipulate[1]],StandardForm],"Output",
+ExpressionUUID -> "84223db0-e95c-4466-8ebc-f832281fec04",CellLabel -> "Out[4]= "]},
+{2}],ExpressionUUID -> "ea1f2ca1-64c1-4f88-a95a-3c5afb07ebf7"]},Open],ExpressionUUID -> "6e65821d-2f4d-49f9-954c-8f6ff48a58d2"]},
+StyleDefinitions -> "Default.nb",FrontEndVersion -> "12.1 for Wolfram Cloud 1.54.2 (March 10, 2020)"]
