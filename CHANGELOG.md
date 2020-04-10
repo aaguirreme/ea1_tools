@@ -1,5 +1,13 @@
 # Changelog
 
+## 2020-04-10
+
+### Modified to the separation of variables notebook
+
+- Minimum changes. Increased the width of the popupmenu to improve the
+  visibility of the formulas. Also changed some mathematical equations to
+  standard mode to improve their readability.
+
 ## 2020-04-09
 
 ### Modified to the convolution notebook
