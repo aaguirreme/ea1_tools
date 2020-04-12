@@ -1,5 +1,18 @@
 # Changelog
 
+## 2020-04-11
+
+### Modified to the Gauss calculator
+
+- The determinant of the coefficient matrix turns red if its value is equal to
+  zero, which means that the system of equations does not have an unique
+  solution.
+
+### Added to the repository
+
+- Cramer's rule interactive solver. A python notebook that computes the solution
+  of a system of 3 equations with 3 unknowns using Cramer's rule.
+
 ## 2020-04-10
 
 ### Modified to the separation of variables notebook

@@ -338,9 +338,19 @@ def update_aug_matrix(change):
 
   detA = A.det()      # Compute determinant.
 
+  if detA == 0:
+    
+    detA_str = r'$\color{red}{ \det A =' + f'{detA}' + r'}$'
+  
+  else:
+  
+    detA_str = r'$\det A =' + f'{detA}' + r'$'
+    
+  # End if.
+  
   # Create the string with the initial augmented matrix in LaTeX format.
   latex_str = r'The augmented matrix $(\bf{A}|\bf{B})$ is:' + '\n $$' \
-    + convert_mat_to_latex(M) + '$$ \n' + f'with $\det{{\\bf A}} = {detA}$'
+    + convert_mat_to_latex(M) + r'$$ with ' + detA_str + '.'
  
   # Update object "amat_latex" with the augmented matrix in LaTeX format. 
   amat_latex.value=latex_str
