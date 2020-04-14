@@ -26,12 +26,12 @@ from ipywidgets import Layout, Text, HTML, HTMLMath, Box, HBox, VBox, Button, \
 # NOTE: These commands are executed when the library is imported.
 
 # Define initial values for the coefficient matrix A.
-A = sym.Matrix([[2, -6,  1],
-                [1,  2, -1],
-                [5,  7, -4]])
+A = sym.Matrix([[4,  1, -2],
+                [3, -1,  1],
+                [1, -1,  1]])
 
 # Define initial values for the constant (right hand side) matrix B.
-B = sym.Matrix([ 7, -1, 9])
+B = sym.Matrix([ 3, 2, 0])
 
 is_started = False
 
@@ -154,7 +154,7 @@ all_ctrls = Box( [swap_ctrl, mult_ctrl, add_ctrl],
 
 # Create a HTML object to show results in LaTeX format.
 results_html = HTMLMath(value='Results will be shown here.', 
-  layout=Layout(justify_content='center'))
+  layout=Layout(justify_content='center', height='300px'))
 
 
 #*******************************************************************************
@@ -355,7 +355,6 @@ def update_aug_matrix(change):
   # Update object "amat_latex" with the augmented matrix in LaTeX format. 
   amat_latex.value=latex_str
 
-
   # Clear the contents of the results_html output.
   results_html.value = '' 
 
@@ -419,7 +418,8 @@ def apply_row_swap(change):
     M_str     = convert_mat_to_latex(M)
 
     # Update output.
-    results_html.value = err_str + '$$' + M_old_str + row_op_str + M_str + '$$'
+    results_html.value += err_str + '$$ $$' + '$$' + M_old_str + row_op_str + \
+      M_str + '$$'
 
   # End if.
 
@@ -483,7 +483,8 @@ def apply_row_times_scalar(change):
     M_str     = convert_mat_to_latex(M)
 
     # Update output.
-    results_html.value = err_str + '$$' + M_old_str + row_op_str + M_str + '$$'
+    results_html.value += err_str + '$$ $$' + '$$' + M_old_str + row_op_str \
+      + M_str + '$$'
 
   # End if.
 
@@ -550,7 +551,8 @@ def apply_row_add(change):
     M_str     = convert_mat_to_latex(M)
 
     # Update output.
-    results_html.value = err_str + '$$' + M_old_str + row_op_str + M_str + '$$'
+    results_html.value += err_str + '$$ $$' + '$$' + M_old_str + row_op_str \
+      + M_str + '$$'
 
   # End if.
 

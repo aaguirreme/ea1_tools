@@ -1,5 +1,15 @@
 # Changelog
 
+## 2020-04-14
+
+### Modified to the Gauss calculator
+
+- The default problem was modified with one that it's easier to solver using
+  only integer operations.
+- The app now includes a full operation history, instead of just showing the
+  last operation. The HTMLMath object has now a fixed height of 300px, so a
+  scroll bar appears after the content is too big to show inside the object.
+
 ## 2020-04-11
 
 ### Modified to the Gauss calculator
