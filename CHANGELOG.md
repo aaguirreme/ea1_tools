@@ -1,5 +1,13 @@
 # Changelog
 
+## 2020-04-15
+
+### Added to the repository
+
+- Gauss elimination tutorials. The folder contains a LyX document (and its LaTeX
+  version) of the step-by-step process of Gauss elimination on a problem with
+  unique solution.
+
 ## 2020-04-14
 
 ### Modified to the Gauss calculator

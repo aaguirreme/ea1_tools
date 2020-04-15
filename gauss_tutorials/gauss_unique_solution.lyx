@@ -1,0 +1,566 @@
+#LyX 2.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 544
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass beamer
+\begin_preamble
+\beamertemplatenavigationsymbolsempty
+\setbeamercovered{transparent}
+\end_preamble
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures true
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize 12
+\spacing single
+\use_hyperref true
+\pdf_bookmarks true
+\pdf_bookmarksnumbered false
+\pdf_bookmarksopen false
+\pdf_bookmarksopenlevel 1
+\pdf_breaklinks false
+\pdf_pdfborder true
+\pdf_colorlinks false
+\pdf_backref false
+\pdf_pdfusetitle true
+\papersize default
+\use_geometry true
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\use_minted 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation skip
+\defskip smallskip
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style english
+\dynamic_quotes 0
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Example Problem
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+Solve the system of equations:
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace -1em
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{alignat*}{4}
+4x_{1} & \;+\; & x_{2} & \;-\; & 2x_{3} & \;=\; & 3\\
+3x_{1} & \;-\; & x_{2} & \;+\; & x_{3} & \;=\; & 2\\
+x_{1} & \;+\; & x_{2} & \;+\; & x_{3} & \;=\; & 0
+\end{alignat*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The process can be summarized as:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\begin{bmatrix}\begin{array}{rrr|r}
+4 & 1 & -2 & 3\\
+3 & -1 & 1 & 2\\
+1 & -1 & 1 & 0
+\end{array}\end{bmatrix}\stackrel{\text{Row operations}}{\Longrightarrow}\begin{bmatrix}\begin{array}{rrr|r}
+1 & 0 & 0 & 1\\
+0 & 1 & 0 & 3\\
+0 & 0 & 1 & 2
+\end{array}\end{bmatrix}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+For convenience, swap rows 1 and 3 to perform next operations with integers
+ instead of fractions.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+\begin{bmatrix}\begin{array}{rrr|r}
+{\color{blue}4} & {\color{blue}1} & {\color{blue}-2} & {\color{blue}3}\\
+3 & -1 & 1 & 2\\
+{\color{red}1} & {\color{red}-1} & {\color{red}1} & {\color{red}0}
+\end{array}\end{bmatrix}\stackrel{{\color{blue}R_{1}}\leftrightarrow{\color{red}R_{3}}}{\Rightarrow}\begin{bmatrix}\begin{array}{rrr|r}
+{\color{red}1} & {\color{red}-1} & {\color{red}1} & {\color{red}0}\\
+3 & -1 & 1 & 2\\
+{\color{blue}4} & {\color{blue}1} & {\color{blue}-2} & {\color{blue}3}
+\end{array}\end{bmatrix}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Make 
+\begin_inset Formula $a_{21}=0$
+\end_inset
+
+ using information from the first row.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+\begin{bmatrix}\begin{array}{rrr|r}
+{\color{blue}1} & {\color{blue}-1} & {\color{blue}1} & {\color{blue}0}\\
+{\color{red}3} & {\color{red}-1} & {\color{red}1} & {\color{red}2}\\
+4 & 1 & -2 & 3
+\end{array}\end{bmatrix}\stackrel{-3{\color{blue}R_{1}}+{\color{red}R_{2}}}{\Rightarrow}\begin{bmatrix}\begin{array}{rrr|r}
+{\color{blue}1} & {\color{blue}-1} & {\color{blue}1} & {\color{blue}0}\\
+0 & 2 & -2 & 2\\
+4 & 1 & -2 & 3
+\end{array}\end{bmatrix}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Make 
+\begin_inset Formula $a_{31}=0$
+\end_inset
+
+ using information from the first row.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+\begin{bmatrix}\begin{array}{rrr|r}
+{\color{blue}1} & {\color{blue}-1} & {\color{blue}1} & {\color{blue}0}\\
+0 & 2 & -2 & 2\\
+{\color{red}4} & {\color{red}1} & {\color{red}-2} & {\color{red}3}
+\end{array}\end{bmatrix}\stackrel{-4{\color{blue}R_{1}}+{\color{red}R_{3}}}{\Rightarrow}\begin{bmatrix}\begin{array}{rrr|r}
+{\color{blue}1} & {\color{blue}-1} & {\color{blue}1} & {\color{blue}0}\\
+0 & 2 & -2 & 2\\
+0 & 5 & -6 & 3
+\end{array}\end{bmatrix}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+For convenience, divide the second row by 2 to perform next operations with
+ integers instead of fractions.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+\begin{bmatrix}\begin{array}{rrr|r}
+1 & -1 & 1 & 0\\
+{\color{red}0} & {\color{red}2} & {\color{red}-2} & {\color{red}2}\\
+0 & 5 & -6 & 3
+\end{array}\end{bmatrix}\stackrel{-\nicefrac{1}{2}{\color{red}R}_{{\color{red}2}}}{\Rightarrow}\begin{bmatrix}\begin{array}{rrr|r}
+1 & -1 & 1 & 0\\
+0 & 1 & -1 & 1\\
+0 & 5 & -6 & 3
+\end{array}\end{bmatrix}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Make 
+\begin_inset Formula $a_{32}=0$
+\end_inset
+
+ using information from the second row.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+\begin{bmatrix}\begin{array}{rrr|r}
+1 & -1 & 1 & 0\\
+{\color{blue}0} & {\color{blue}1} & {\color{blue}-1} & {\color{blue}1}\\
+{\color{red}0} & {\color{red}5} & {\color{red}-6} & {\color{red}3}
+\end{array}\end{bmatrix}\stackrel{-5{\color{blue}R_{2}}+{\color{red}R_{3}}}{\Rightarrow}\begin{bmatrix}\begin{array}{rrr|r}
+1 & -1 & 1 & 0\\
+{\color{blue}0} & {\color{blue}1} & {\color{blue}-1} & {\color{blue}1}\\
+0 & 0 & -1 & -2
+\end{array}\end{bmatrix}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Operate the last row so that it translates to 
+\begin_inset Formula $z=2$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+\begin{bmatrix}\begin{array}{rrr|r}
+1 & -1 & 1 & 0\\
+0 & 1 & -1 & 1\\
+{\color{red}0} & {\color{red}0} & {\color{red}-1} & {\color{red}-2}
+\end{array}\end{bmatrix}\overset{-1{\color{red}R_{3}}}{\Rightarrow}\begin{bmatrix}\begin{array}{rrr|r}
+1 & -1 & 1 & 0\\
+0 & 1 & -1 & 1\\
+0 & 0 & 1 & 2
+\end{array}\end{bmatrix}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\begin{bmatrix}\begin{array}{rrr|r}
+1 & -1 & 1 & 0\\
+0 & 1 & -1 & 1\\
+0 & 0 & 1 & 2
+\end{array}\end{bmatrix}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace medskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The matrix is now in upper triangular form.
+ Hence the unknown values can be determined using back substitution.
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Argument 2
+status open
+
+\begin_layout Plain Layout
+a.
+\end_layout
+
+\end_inset
+
+Starting from row 3, 
+\begin_inset Formula $x_{3}=2$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Using 
+\begin_inset Formula $x_{3}=2$
+\end_inset
+
+ in row 2, 
+\begin_inset Formula $x_{2}=1+x_{3}=3$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Using 
+\begin_inset Formula $x_{3}=2$
+\end_inset
+
+ and 
+\begin_inset Formula $x_{2}=3$
+\end_inset
+
+ in row 1, 
+\begin_inset Formula $x_{1}=0+x_{2}-x_{3}=1$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace medskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Alternately, using Gauss-Jordan elimination, the left-hand side matrix can
+ be reduced to an identity matrix from which the solution can be determined
+ by inspection.
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+Make 
+\begin_inset Formula $a_{23}=0$
+\end_inset
+
+ using information from the third row.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+\begin{bmatrix}\begin{array}{rrr|r}
+1 & -1 & 1 & 0\\
+{\color{red}0} & {\color{red}1} & {\color{red}-1} & {\color{red}1}\\
+{\color{blue}0} & {\color{blue}0} & {\color{blue}1} & {\color{blue}2}
+\end{array}\end{bmatrix}\stackrel{{\color{blue}R_{3}}+{\color{red}R_{2}}}{\Rightarrow}\begin{bmatrix}\begin{array}{rrr|r}
+1 & -1 & 1 & 0\\
+0 & 1 & 0 & 3\\
+{\color{blue}0} & {\color{blue}0} & {\color{blue}1} & {\color{blue}2}
+\end{array}\end{bmatrix}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Make 
+\begin_inset Formula $a_{13}=0$
+\end_inset
+
+ using information from the third row.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+\begin{bmatrix}\begin{array}{rrr|r}
+{\color{red}1} & {\color{red}-1} & {\color{red}1} & {\color{red}0}\\
+0 & 1 & 0 & 3\\
+{\color{blue}0} & {\color{blue}0} & {\color{blue}1} & {\color{blue}2}
+\end{array}\end{bmatrix}\stackrel{-{\color{blue}R_{3}}+{\color{red}R_{1}}}{\Rightarrow}\begin{bmatrix}\begin{array}{rrr|r}
+1 & -1 & 0 & -2\\
+0 & 1 & 0 & 3\\
+{\color{blue}0} & {\color{blue}0} & {\color{blue}1} & {\color{blue}2}
+\end{array}\end{bmatrix}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Make 
+\begin_inset Formula $a_{12}=0$
+\end_inset
+
+ using information from the second row.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+\begin{bmatrix}\begin{array}{rrr|r}
+{\color{red}1} & {\color{red}-1} & {\color{red}0} & {\color{red}-2}\\
+{\color{blue}0} & {\color{blue}1} & {\color{blue}0} & {\color{blue}3}\\
+0 & 0 & 1 & 2
+\end{array}\end{bmatrix}\stackrel{{\color{blue}R_{2}}+{\color{red}R_{1}}}{\Rightarrow}\begin{bmatrix}\begin{array}{rrr|r}
+1 & 0 & 0 & 1\\
+{\color{blue}0} & {\color{blue}1} & {\color{blue}0} & {\color{blue}3}\\
+0 & 0 & 1 & 2
+\end{array}\end{bmatrix}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\end_body
+\end_document

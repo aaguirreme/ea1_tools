@@ -1,0 +1,236 @@
+%% LyX 2.3.4.2 created this file.  For more info, see http://www.lyx.org/.
+%% Do not edit unless you really know what you are doing.
+\documentclass[12pt,english]{beamer}
+\usepackage[T1]{fontenc}
+\usepackage[latin9]{inputenc}
+\setcounter{secnumdepth}{3}
+\setcounter{tocdepth}{3}
+\setlength{\parskip}{\smallskipamount}
+\setlength{\parindent}{0pt}
+\usepackage{babel}
+\usepackage{units}
+\usepackage{amstext}
+\ifx\hypersetup\undefined
+  \AtBeginDocument{%
+    \hypersetup{unicode=true,pdfusetitle,
+ bookmarks=true,bookmarksnumbered=false,bookmarksopen=false,
+ breaklinks=false,pdfborder={0 0 0},pdfborderstyle={},backref=false,colorlinks=false}
+  }
+\else
+  \hypersetup{unicode=true,pdfusetitle,
+ bookmarks=true,bookmarksnumbered=false,bookmarksopen=false,
+ breaklinks=false,pdfborder={0 0 0},pdfborderstyle={},backref=false,colorlinks=false}
+\fi
+
+\makeatletter
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Textclass specific LaTeX commands.
+% this default might be overridden by plain title style
+\newcommand\makebeamertitle{\frame{\maketitle}}%
+% (ERT) argument for the TOC
+\AtBeginDocument{%
+  \let\origtableofcontents=\tableofcontents
+  \def\tableofcontents{\@ifnextchar[{\origtableofcontents}{\gobbletableofcontents}}
+  \def\gobbletableofcontents#1{\origtableofcontents}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% User specified LaTeX commands.
+\beamertemplatenavigationsymbolsempty
+\setbeamercovered{transparent}
+
+\makeatother
+
+\begin{document}
+\begin{frame}{Example Problem}
+
+Solve the system of equations:
+
+\vspace{-1em}
+
+\begin{alignat*}{4}
+4x_{1} & \;+\; & x_{2} & \;-\; & 2x_{3} & \;=\; & 3\\
+3x_{1} & \;-\; & x_{2} & \;+\; & x_{3} & \;=\; & 2\\
+x_{1} & \;+\; & x_{2} & \;+\; & x_{3} & \;=\; & 0
+\end{alignat*}
+
+The process can be summarized as:
+
+\[
+\begin{bmatrix}\begin{array}{rrr|r}
+4 & 1 & -2 & 3\\
+3 & -1 & 1 & 2\\
+1 & -1 & 1 & 0
+\end{array}\end{bmatrix}\stackrel{\text{Row operations}}{\Longrightarrow}\begin{bmatrix}\begin{array}{rrr|r}
+1 & 0 & 0 & 1\\
+0 & 1 & 0 & 3\\
+0 & 0 & 1 & 2
+\end{array}\end{bmatrix}
+\]
+
+\end{frame}
+%
+\begin{frame}{}
+
+For convenience, swap rows 1 and 3 to perform next operations with
+integers instead of fractions.
+
+\begin{equation}
+\begin{bmatrix}\begin{array}{rrr|r}
+{\color{blue}4} & {\color{blue}1} & {\color{blue}-2} & {\color{blue}3}\\
+3 & -1 & 1 & 2\\
+{\color{red}1} & {\color{red}-1} & {\color{red}1} & {\color{red}0}
+\end{array}\end{bmatrix}\stackrel{{\color{blue}R_{1}}\leftrightarrow{\color{red}R_{3}}}{\Rightarrow}\begin{bmatrix}\begin{array}{rrr|r}
+{\color{red}1} & {\color{red}-1} & {\color{red}1} & {\color{red}0}\\
+3 & -1 & 1 & 2\\
+{\color{blue}4} & {\color{blue}1} & {\color{blue}-2} & {\color{blue}3}
+\end{array}\end{bmatrix}
+\end{equation}
+
+Make $a_{21}=0$ using information from the first row.
+
+\begin{equation}
+\begin{bmatrix}\begin{array}{rrr|r}
+{\color{blue}1} & {\color{blue}-1} & {\color{blue}1} & {\color{blue}0}\\
+{\color{red}3} & {\color{red}-1} & {\color{red}1} & {\color{red}2}\\
+4 & 1 & -2 & 3
+\end{array}\end{bmatrix}\stackrel{-3{\color{blue}R_{1}}+{\color{red}R_{2}}}{\Rightarrow}\begin{bmatrix}\begin{array}{rrr|r}
+{\color{blue}1} & {\color{blue}-1} & {\color{blue}1} & {\color{blue}0}\\
+0 & 2 & -2 & 2\\
+4 & 1 & -2 & 3
+\end{array}\end{bmatrix}
+\end{equation}
+
+Make $a_{31}=0$ using information from the first row.
+
+\begin{equation}
+\begin{bmatrix}\begin{array}{rrr|r}
+{\color{blue}1} & {\color{blue}-1} & {\color{blue}1} & {\color{blue}0}\\
+0 & 2 & -2 & 2\\
+{\color{red}4} & {\color{red}1} & {\color{red}-2} & {\color{red}3}
+\end{array}\end{bmatrix}\stackrel{-4{\color{blue}R_{1}}+{\color{red}R_{3}}}{\Rightarrow}\begin{bmatrix}\begin{array}{rrr|r}
+{\color{blue}1} & {\color{blue}-1} & {\color{blue}1} & {\color{blue}0}\\
+0 & 2 & -2 & 2\\
+0 & 5 & -6 & 3
+\end{array}\end{bmatrix}
+\end{equation}
+
+\end{frame}
+%
+\begin{frame}{}
+
+For convenience, divide the second row by 2 to perform next operations
+with integers instead of fractions.
+
+\begin{equation}
+\begin{bmatrix}\begin{array}{rrr|r}
+1 & -1 & 1 & 0\\
+{\color{red}0} & {\color{red}2} & {\color{red}-2} & {\color{red}2}\\
+0 & 5 & -6 & 3
+\end{array}\end{bmatrix}\stackrel{-\nicefrac{1}{2}{\color{red}R}_{{\color{red}2}}}{\Rightarrow}\begin{bmatrix}\begin{array}{rrr|r}
+1 & -1 & 1 & 0\\
+0 & 1 & -1 & 1\\
+0 & 5 & -6 & 3
+\end{array}\end{bmatrix}
+\end{equation}
+
+Make $a_{32}=0$ using information from the second row.
+
+\begin{equation}
+\begin{bmatrix}\begin{array}{rrr|r}
+1 & -1 & 1 & 0\\
+{\color{blue}0} & {\color{blue}1} & {\color{blue}-1} & {\color{blue}1}\\
+{\color{red}0} & {\color{red}5} & {\color{red}-6} & {\color{red}3}
+\end{array}\end{bmatrix}\stackrel{-5{\color{blue}R_{2}}+{\color{red}R_{3}}}{\Rightarrow}\begin{bmatrix}\begin{array}{rrr|r}
+1 & -1 & 1 & 0\\
+{\color{blue}0} & {\color{blue}1} & {\color{blue}-1} & {\color{blue}1}\\
+0 & 0 & -1 & -2
+\end{array}\end{bmatrix}
+\end{equation}
+
+Operate the last row so that it translates to $z=2$.
+
+\begin{equation}
+\begin{bmatrix}\begin{array}{rrr|r}
+1 & -1 & 1 & 0\\
+0 & 1 & -1 & 1\\
+{\color{red}0} & {\color{red}0} & {\color{red}-1} & {\color{red}-2}
+\end{array}\end{bmatrix}\overset{-1{\color{red}R_{3}}}{\Rightarrow}\begin{bmatrix}\begin{array}{rrr|r}
+1 & -1 & 1 & 0\\
+0 & 1 & -1 & 1\\
+0 & 0 & 1 & 2
+\end{array}\end{bmatrix}
+\end{equation}
+
+\end{frame}
+%
+\begin{frame}{}
+
+\[
+\begin{bmatrix}\begin{array}{rrr|r}
+1 & -1 & 1 & 0\\
+0 & 1 & -1 & 1\\
+0 & 0 & 1 & 2
+\end{array}\end{bmatrix}
+\]
+
+\medskip{}
+
+The matrix is now in upper triangular form. Hence the unknown values
+can be determined using back substitution.
+\begin{enumerate}[a.]
+\item Starting from row 3, $x_{3}=2$.
+\item Using $x_{3}=2$ in row 2, $x_{2}=1+x_{3}=3$.
+\item Using $x_{3}=2$ and $x_{2}=3$ in row 1, $x_{1}=0+x_{2}-x_{3}=1$.
+\end{enumerate}
+\medskip{}
+
+Alternately, using Gauss-Jordan elimination, the left-hand side matrix
+can be reduced to an identity matrix from which the solution can be
+determined by inspection.
+\end{frame}
+%
+\begin{frame}{}
+
+Make $a_{23}=0$ using information from the third row.
+
+\begin{equation}
+\begin{bmatrix}\begin{array}{rrr|r}
+1 & -1 & 1 & 0\\
+{\color{red}0} & {\color{red}1} & {\color{red}-1} & {\color{red}1}\\
+{\color{blue}0} & {\color{blue}0} & {\color{blue}1} & {\color{blue}2}
+\end{array}\end{bmatrix}\stackrel{{\color{blue}R_{3}}+{\color{red}R_{2}}}{\Rightarrow}\begin{bmatrix}\begin{array}{rrr|r}
+1 & -1 & 1 & 0\\
+0 & 1 & 0 & 3\\
+{\color{blue}0} & {\color{blue}0} & {\color{blue}1} & {\color{blue}2}
+\end{array}\end{bmatrix}
+\end{equation}
+
+Make $a_{13}=0$ using information from the third row.
+
+\begin{equation}
+\begin{bmatrix}\begin{array}{rrr|r}
+{\color{red}1} & {\color{red}-1} & {\color{red}1} & {\color{red}0}\\
+0 & 1 & 0 & 3\\
+{\color{blue}0} & {\color{blue}0} & {\color{blue}1} & {\color{blue}2}
+\end{array}\end{bmatrix}\stackrel{-{\color{blue}R_{3}}+{\color{red}R_{1}}}{\Rightarrow}\begin{bmatrix}\begin{array}{rrr|r}
+1 & -1 & 0 & -2\\
+0 & 1 & 0 & 3\\
+{\color{blue}0} & {\color{blue}0} & {\color{blue}1} & {\color{blue}2}
+\end{array}\end{bmatrix}
+\end{equation}
+
+Make $a_{12}=0$ using information from the second row.
+
+\begin{equation}
+\begin{bmatrix}\begin{array}{rrr|r}
+{\color{red}1} & {\color{red}-1} & {\color{red}0} & {\color{red}-2}\\
+{\color{blue}0} & {\color{blue}1} & {\color{blue}0} & {\color{blue}3}\\
+0 & 0 & 1 & 2
+\end{array}\end{bmatrix}\stackrel{{\color{blue}R_{2}}+{\color{red}R_{1}}}{\Rightarrow}\begin{bmatrix}\begin{array}{rrr|r}
+1 & 0 & 0 & 1\\
+{\color{blue}0} & {\color{blue}1} & {\color{blue}0} & {\color{blue}3}\\
+0 & 0 & 1 & 2
+\end{array}\end{bmatrix}
+\end{equation}
+\end{frame}
+
+\end{document}
