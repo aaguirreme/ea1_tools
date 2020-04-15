@@ -4,9 +4,9 @@
 
 ### Added to the repository
 
-- Gauss elimination tutorials. The folder contains a LyX document (and its LaTeX
-  version) of the step-by-step process of Gauss elimination on a problem with
-  unique solution.
+- Gauss elimination tutorials. The folder contains LyX documents (and their LaTeX
+  versions) of the step-by-step process of Gauss elimination of problems with
+  unique solution and infinite number of solutions.
 
 ## 2020-04-14
 

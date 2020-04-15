@@ -1,0 +1,199 @@
+%% LyX 2.3.4.2 created this file.  For more info, see http://www.lyx.org/.
+%% Do not edit unless you really know what you are doing.
+\documentclass[12pt,english]{beamer}
+\usepackage[T1]{fontenc}
+\usepackage[latin9]{inputenc}
+\setcounter{secnumdepth}{3}
+\setcounter{tocdepth}{3}
+\setlength{\parskip}{\smallskipamount}
+\setlength{\parindent}{0pt}
+\usepackage{babel}
+\usepackage{units}
+\usepackage{amstext}
+\ifx\hypersetup\undefined
+  \AtBeginDocument{%
+    \hypersetup{unicode=true,pdfusetitle,
+ bookmarks=true,bookmarksnumbered=false,bookmarksopen=false,
+ breaklinks=false,pdfborder={0 0 0},pdfborderstyle={},backref=false,colorlinks=false}
+  }
+\else
+  \hypersetup{unicode=true,pdfusetitle,
+ bookmarks=true,bookmarksnumbered=false,bookmarksopen=false,
+ breaklinks=false,pdfborder={0 0 0},pdfborderstyle={},backref=false,colorlinks=false}
+\fi
+
+\makeatletter
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Textclass specific LaTeX commands.
+% this default might be overridden by plain title style
+\newcommand\makebeamertitle{\frame{\maketitle}}%
+% (ERT) argument for the TOC
+\AtBeginDocument{%
+  \let\origtableofcontents=\tableofcontents
+  \def\tableofcontents{\@ifnextchar[{\origtableofcontents}{\gobbletableofcontents}}
+  \def\gobbletableofcontents#1{\origtableofcontents}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% User specified LaTeX commands.
+\beamertemplatenavigationsymbolsempty
+\setbeamercovered{transparent}
+
+\makeatother
+
+\begin{document}
+\begin{frame}{Example problem - infinite number of solutions}
+
+Solve the system of equations:
+
+\vspace{-1em}
+
+\begin{alignat*}{4}
+4x_{1} & \;+\; & x_{2} & \;-\; & 2x_{3} & \;=\; &  & 7\\
+3x_{1} & \;-\; & 4x_{2} & \;+\; & 8x_{3} & \;=\; & - & 9\\
+x_{1} & \;+\; & 2x_{2} & \;-\; & 4x_{3} & \;=\; &  & 7
+\end{alignat*}
+
+The process can be summarized as:
+
+\[
+\begin{bmatrix}\begin{array}{rrr|r}
+4 & 1 & -2 & 7\\
+3 & -4 & 8 & -9\\
+1 & 2 & -4 & 7
+\end{array}\end{bmatrix}\stackrel{\text{Row operations}}{\Longrightarrow}\begin{bmatrix}\begin{array}{rrr|r}
+1 & 0 & 0 & 1\\
+0 & 1 & -2 & 3\\
+0 & 0 & 0 & 0
+\end{array}\end{bmatrix}
+\]
+
+\end{frame}
+%
+\begin{frame}{}
+
+For convenience, swap rows 1 and 3 to perform next operations with
+integers instead of fractions.
+
+{\small{}
+\begin{equation}
+\begin{bmatrix}\begin{array}{rrr|r}
+{\color{blue}4} & {\color{blue}1} & {\color{blue}-2} & {\color{blue}7}\\
+3 & -4 & 8 & -9\\
+{\color{red}1} & {\color{red}2} & {\color{red}-4} & {\color{red}7}
+\end{array}\end{bmatrix}\stackrel{{\color{blue}R_{1}}\leftrightarrow{\color{red}R_{3}}}{\Rightarrow}\begin{bmatrix}\begin{array}{rrr|r}
+{\color{red}1} & {\color{red}2} & {\color{red}-4} & {\color{red}7}\\
+3 & -4 & 8 & -9\\
+{\color{blue}4} & {\color{blue}1} & {\color{blue}-2} & {\color{blue}7}
+\end{array}\end{bmatrix}
+\end{equation}
+}{\small\par}
+
+Make $a_{21}=0$ using information from the first row.
+
+{\small{}
+\begin{equation}
+\begin{bmatrix}\begin{array}{rrr|r}
+{\color{blue}1} & {\color{blue}2} & {\color{blue}-4} & {\color{blue}7}\\
+{\color{red}3} & {\color{red}-4} & {\color{red}8} & {\color{red}-9}\\
+4 & 1 & -2 & 7
+\end{array}\end{bmatrix}\stackrel{-3{\color{blue}R_{1}}+{\color{red}R_{2}}}{\Rightarrow}\begin{bmatrix}\begin{array}{rrr|r}
+{\color{blue}1} & {\color{blue}2} & {\color{blue}-4} & {\color{blue}7}\\
+0 & -10 & 20 & -30\\
+4 & 1 & -2 & 7
+\end{array}\end{bmatrix}
+\end{equation}
+}{\small\par}
+
+Make $a_{31}=0$ using information from the first row.
+
+{\small{}
+\begin{equation}
+\begin{bmatrix}\begin{array}{rrr|r}
+{\color{blue}1} & {\color{blue}2} & {\color{blue}-4} & {\color{blue}7}\\
+0 & -10 & 20 & -30\\
+{\color{red}4} & {\color{red}1} & {\color{red}-2} & {\color{red}7}
+\end{array}\end{bmatrix}\stackrel{-4{\color{blue}R_{1}}+{\color{red}R_{3}}}{\Rightarrow}\begin{bmatrix}\begin{array}{rrr|r}
+{\color{blue}1} & {\color{blue}2} & {\color{blue}-4} & {\color{blue}7}\\
+0 & -10 & 20 & -30\\
+0 & -7 & 14 & -21
+\end{array}\end{bmatrix}
+\end{equation}
+}{\small\par}
+\end{frame}
+%
+\begin{frame}{}
+
+For convenience, divide the second row by $-5$ to perform next operations
+with integers instead of fractions.
+
+\begin{equation}
+\begin{bmatrix}\begin{array}{rrr|r}
+1 & 2 & -4 & 7\\
+{\color{red}0} & {\color{red}-10} & {\color{red}20} & {\color{red}-30}\\
+0 & -7 & 14 & -21
+\end{array}\end{bmatrix}\stackrel{-\nicefrac{1}{10}{\color{red}R_{2}}}{\Rightarrow}\begin{bmatrix}\begin{array}{rrr|r}
+1 & 2 & -4 & 7\\
+0 & 1 & -2 & 3\\
+0 & -7 & 14 & -21
+\end{array}\end{bmatrix}
+\end{equation}
+
+Make $a_{32}=0$ using information from the second row.
+
+\begin{equation}
+\begin{bmatrix}\begin{array}{rrr|r}
+1 & 2 & -4 & 7\\
+{\color{blue}0} & {\color{blue}1} & {\color{blue}-2} & {\color{blue}3}\\
+{\color{red}0} & {\color{red}-7} & {\color{red}14} & {\color{red}-21}
+\end{array}\end{bmatrix}\stackrel{7{\color{blue}R_{2}}+{\color{red}R_{3}}}{\Rightarrow}\begin{bmatrix}\begin{array}{rrr|r}
+1 & 2 & -4 & 7\\
+{\color{blue}0} & {\color{blue}1} & {\color{blue}-2} & {\color{blue}3}\\
+0 & 0 & 0 & 0
+\end{array}\end{bmatrix}
+\end{equation}
+
+\end{frame}
+%
+\begin{frame}{}
+
+\[
+\begin{bmatrix}\begin{array}{rrr|r}
+1 & 2 & -4 & 7\\
+0 & 1 & -2 & 3\\
+0 & 0 & 0 & 0
+\end{array}\end{bmatrix}
+\]
+
+\medskip{}
+
+The matrix is now in upper triangular form. Hence the unknown values
+can be determined using back substitution.
+\begin{enumerate}[a.]
+\item Starting from row 3, $x_{3}=t$, where $t$ is an arbitrary constant.
+\item Using $x_{3}=t$ in row 2, $x_{2}=3+2x_{3}=3+2t$.
+\item Using $x_{3}=t$ and $x_{2}=3+2t$ in row 1, $x_{1}=7-2x_{2}+4x_{3}=7-6-4t+4t=1$.
+\end{enumerate}
+\medskip{}
+
+Alternately, using Gauss-Jordan elimination, the left-hand side matrix
+can be reduced to an identity matrix from which the solution can be
+determined by inspection.
+\end{frame}
+%
+\begin{frame}{}
+
+Make $a_{12}=0$ using information from the second row.
+
+\begin{equation}
+\begin{bmatrix}\begin{array}{rrr|r}
+{\color{red}1} & {\color{red}2} & {\color{red}-4} & {\color{red}7}\\
+{\color{blue}0} & {\color{blue}1} & {\color{blue}-2} & {\color{blue}3}\\
+0 & 0 & 0 & 0
+\end{array}\end{bmatrix}\stackrel{{\color{blue}-2R_{2}}+{\color{red}R_{1}}}{\Rightarrow}\begin{bmatrix}\begin{array}{rrr|r}
+1 & 0 & 0 & 1\\
+{\color{blue}0} & {\color{blue}1} & {\color{blue}-2} & {\color{blue}3}\\
+0 & 0 & 0 & 0
+\end{array}\end{bmatrix}
+\end{equation}
+\end{frame}
+
+\end{document}

@@ -95,7 +95,7 @@
 status open
 
 \begin_layout Plain Layout
-Example problem - unique solution
+Example problem - infinite number of solutions
 \end_layout
 
 \end_inset
@@ -118,9 +118,9 @@ Solve the system of equations:
 \begin_layout Standard
 \begin_inset Formula 
 \begin{alignat*}{4}
-4x_{1} & \;+\; & x_{2} & \;-\; & 2x_{3} & \;=\; & 3\\
-3x_{1} & \;-\; & x_{2} & \;+\; & x_{3} & \;=\; & 2\\
-x_{1} & \;+\; & x_{2} & \;+\; & x_{3} & \;=\; & 0
+4x_{1} & \;+\; & x_{2} & \;-\; & 2x_{3} & \;=\; &  & 7\\
+3x_{1} & \;-\; & 4x_{2} & \;+\; & 8x_{3} & \;=\; & - & 9\\
+x_{1} & \;+\; & 2x_{2} & \;-\; & 4x_{3} & \;=\; &  & 7
 \end{alignat*}
 
 \end_inset
@@ -136,13 +136,13 @@ The process can be summarized as:
 \begin_inset Formula 
 \[
 \begin{bmatrix}\begin{array}{rrr|r}
-4 & 1 & -2 & 3\\
-3 & -1 & 1 & 2\\
-1 & -1 & 1 & 0
+4 & 1 & -2 & 7\\
+3 & -4 & 8 & -9\\
+1 & 2 & -4 & 7
 \end{array}\end{bmatrix}\stackrel{\text{Row operations}}{\Longrightarrow}\begin{bmatrix}\begin{array}{rrr|r}
 1 & 0 & 0 & 1\\
-0 & 1 & 0 & 3\\
-0 & 0 & 1 & 2
+0 & 1 & -2 & 3\\
+0 & 0 & 0 & 0
 \end{array}\end{bmatrix}
 \]
 
@@ -179,16 +179,18 @@ For convenience, swap rows 1 and 3 to perform next operations with integers
 \end_layout
 
 \begin_layout Standard
+
+\size small
 \begin_inset Formula 
 \begin{equation}
 \begin{bmatrix}\begin{array}{rrr|r}
-{\color{blue}4} & {\color{blue}1} & {\color{blue}-2} & {\color{blue}3}\\
-3 & -1 & 1 & 2\\
-{\color{red}1} & {\color{red}-1} & {\color{red}1} & {\color{red}0}
+{\color{blue}4} & {\color{blue}1} & {\color{blue}-2} & {\color{blue}7}\\
+3 & -4 & 8 & -9\\
+{\color{red}1} & {\color{red}2} & {\color{red}-4} & {\color{red}7}
 \end{array}\end{bmatrix}\stackrel{{\color{blue}R_{1}}\leftrightarrow{\color{red}R_{3}}}{\Rightarrow}\begin{bmatrix}\begin{array}{rrr|r}
-{\color{red}1} & {\color{red}-1} & {\color{red}1} & {\color{red}0}\\
-3 & -1 & 1 & 2\\
-{\color{blue}4} & {\color{blue}1} & {\color{blue}-2} & {\color{blue}3}
+{\color{red}1} & {\color{red}2} & {\color{red}-4} & {\color{red}7}\\
+3 & -4 & 8 & -9\\
+{\color{blue}4} & {\color{blue}1} & {\color{blue}-2} & {\color{blue}7}
 \end{array}\end{bmatrix}
 \end{equation}
 
@@ -206,16 +208,18 @@ Make
 \end_layout
 
 \begin_layout Standard
+
+\size small
 \begin_inset Formula 
 \begin{equation}
 \begin{bmatrix}\begin{array}{rrr|r}
-{\color{blue}1} & {\color{blue}-1} & {\color{blue}1} & {\color{blue}0}\\
-{\color{red}3} & {\color{red}-1} & {\color{red}1} & {\color{red}2}\\
-4 & 1 & -2 & 3
+{\color{blue}1} & {\color{blue}2} & {\color{blue}-4} & {\color{blue}7}\\
+{\color{red}3} & {\color{red}-4} & {\color{red}8} & {\color{red}-9}\\
+4 & 1 & -2 & 7
 \end{array}\end{bmatrix}\stackrel{-3{\color{blue}R_{1}}+{\color{red}R_{2}}}{\Rightarrow}\begin{bmatrix}\begin{array}{rrr|r}
-{\color{blue}1} & {\color{blue}-1} & {\color{blue}1} & {\color{blue}0}\\
-0 & 2 & -2 & 2\\
-4 & 1 & -2 & 3
+{\color{blue}1} & {\color{blue}2} & {\color{blue}-4} & {\color{blue}7}\\
+0 & -10 & 20 & -30\\
+4 & 1 & -2 & 7
 \end{array}\end{bmatrix}
 \end{equation}
 
@@ -233,16 +237,18 @@ Make
 \end_layout
 
 \begin_layout Standard
+
+\size small
 \begin_inset Formula 
 \begin{equation}
 \begin{bmatrix}\begin{array}{rrr|r}
-{\color{blue}1} & {\color{blue}-1} & {\color{blue}1} & {\color{blue}0}\\
-0 & 2 & -2 & 2\\
-{\color{red}4} & {\color{red}1} & {\color{red}-2} & {\color{red}3}
+{\color{blue}1} & {\color{blue}2} & {\color{blue}-4} & {\color{blue}7}\\
+0 & -10 & 20 & -30\\
+{\color{red}4} & {\color{red}1} & {\color{red}-2} & {\color{red}7}
 \end{array}\end{bmatrix}\stackrel{-4{\color{blue}R_{1}}+{\color{red}R_{3}}}{\Rightarrow}\begin{bmatrix}\begin{array}{rrr|r}
-{\color{blue}1} & {\color{blue}-1} & {\color{blue}1} & {\color{blue}0}\\
-0 & 2 & -2 & 2\\
-0 & 5 & -6 & 3
+{\color{blue}1} & {\color{blue}2} & {\color{blue}-4} & {\color{blue}7}\\
+0 & -10 & 20 & -30\\
+0 & -7 & 14 & -21
 \end{array}\end{bmatrix}
 \end{equation}
 
@@ -275,7 +281,7 @@ status open
 \begin_deeper
 \begin_layout Standard
 For convenience, divide the second row by 
-\begin_inset Formula $2$
+\begin_inset Formula $-5$
 \end_inset
 
  to perform next operations with integers instead of fractions.
@@ -285,13 +291,13 @@ For convenience, divide the second row by
 \begin_inset Formula 
 \begin{equation}
 \begin{bmatrix}\begin{array}{rrr|r}
-1 & -1 & 1 & 0\\
-{\color{red}0} & {\color{red}2} & {\color{red}-2} & {\color{red}2}\\
-0 & 5 & -6 & 3
-\end{array}\end{bmatrix}\stackrel{-\nicefrac{1}{2}{\color{red}R}_{{\color{red}2}}}{\Rightarrow}\begin{bmatrix}\begin{array}{rrr|r}
-1 & -1 & 1 & 0\\
-0 & 1 & -1 & 1\\
-0 & 5 & -6 & 3
+1 & 2 & -4 & 7\\
+{\color{red}0} & {\color{red}-10} & {\color{red}20} & {\color{red}-30}\\
+0 & -7 & 14 & -21
+\end{array}\end{bmatrix}\stackrel{-\nicefrac{1}{10}{\color{red}R_{2}}}{\Rightarrow}\begin{bmatrix}\begin{array}{rrr|r}
+1 & 2 & -4 & 7\\
+0 & 1 & -2 & 3\\
+0 & -7 & 14 & -21
 \end{array}\end{bmatrix}
 \end{equation}
 
@@ -312,40 +318,13 @@ Make
 \begin_inset Formula 
 \begin{equation}
 \begin{bmatrix}\begin{array}{rrr|r}
-1 & -1 & 1 & 0\\
-{\color{blue}0} & {\color{blue}1} & {\color{blue}-1} & {\color{blue}1}\\
-{\color{red}0} & {\color{red}5} & {\color{red}-6} & {\color{red}3}
-\end{array}\end{bmatrix}\stackrel{-5{\color{blue}R_{2}}+{\color{red}R_{3}}}{\Rightarrow}\begin{bmatrix}\begin{array}{rrr|r}
-1 & -1 & 1 & 0\\
-{\color{blue}0} & {\color{blue}1} & {\color{blue}-1} & {\color{blue}1}\\
-0 & 0 & -1 & -2
-\end{array}\end{bmatrix}
-\end{equation}
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-Operate the last row so that it translates to 
-\begin_inset Formula $z=2$
-\end_inset
-
-.
-\end_layout
-
-\begin_layout Standard
-\begin_inset Formula 
-\begin{equation}
-\begin{bmatrix}\begin{array}{rrr|r}
-1 & -1 & 1 & 0\\
-0 & 1 & -1 & 1\\
-{\color{red}0} & {\color{red}0} & {\color{red}-1} & {\color{red}-2}
-\end{array}\end{bmatrix}\overset{-1{\color{red}R_{3}}}{\Rightarrow}\begin{bmatrix}\begin{array}{rrr|r}
-1 & -1 & 1 & 0\\
-0 & 1 & -1 & 1\\
-0 & 0 & 1 & 2
+1 & 2 & -4 & 7\\
+{\color{blue}0} & {\color{blue}1} & {\color{blue}-2} & {\color{blue}3}\\
+{\color{red}0} & {\color{red}-7} & {\color{red}14} & {\color{red}-21}
+\end{array}\end{bmatrix}\stackrel{7{\color{blue}R_{2}}+{\color{red}R_{3}}}{\Rightarrow}\begin{bmatrix}\begin{array}{rrr|r}
+1 & 2 & -4 & 7\\
+{\color{blue}0} & {\color{blue}1} & {\color{blue}-2} & {\color{blue}3}\\
+0 & 0 & 0 & 0
 \end{array}\end{bmatrix}
 \end{equation}
 
@@ -380,9 +359,9 @@ status open
 \begin_inset Formula 
 \[
 \begin{bmatrix}\begin{array}{rrr|r}
-1 & -1 & 1 & 0\\
-0 & 1 & -1 & 1\\
-0 & 0 & 1 & 2
+1 & 2 & -4 & 7\\
+0 & 1 & -2 & 3\\
+0 & 0 & 0 & 0
 \end{array}\end{bmatrix}
 \]
 
@@ -414,19 +393,23 @@ a.
 \end_inset
 
 Starting from row 3, 
-\begin_inset Formula $x_{3}=2$
+\begin_inset Formula $x_{3}=t$
 \end_inset
 
-.
+, where 
+\begin_inset Formula $t$
+\end_inset
+
+ is an arbitrary constant.
 \end_layout
 
 \begin_layout Enumerate
 Using 
-\begin_inset Formula $x_{3}=2$
+\begin_inset Formula $x_{3}=t$
 \end_inset
 
  in row 2, 
-\begin_inset Formula $x_{2}=1+x_{3}=3$
+\begin_inset Formula $x_{2}=3+2x_{3}=3+2t$
 \end_inset
 
 .
@@ -434,15 +417,15 @@ Using
 
 \begin_layout Enumerate
 Using 
-\begin_inset Formula $x_{3}=2$
+\begin_inset Formula $x_{3}=t$
 \end_inset
 
  and 
-\begin_inset Formula $x_{2}=3$
+\begin_inset Formula $x_{2}=3+2t$
 \end_inset
 
  in row 1, 
-\begin_inset Formula $x_{1}=0+x_{2}-x_{3}=1$
+\begin_inset Formula $x_{1}=7-2x_{2}+4x_{3}=7-6-4t+4t=1$
 \end_inset
 
 .
@@ -485,60 +468,6 @@ status open
 \begin_deeper
 \begin_layout Standard
 Make 
-\begin_inset Formula $a_{23}=0$
-\end_inset
-
- using information from the third row.
-\end_layout
-
-\begin_layout Standard
-\begin_inset Formula 
-\begin{equation}
-\begin{bmatrix}\begin{array}{rrr|r}
-1 & -1 & 1 & 0\\
-{\color{red}0} & {\color{red}1} & {\color{red}-1} & {\color{red}1}\\
-{\color{blue}0} & {\color{blue}0} & {\color{blue}1} & {\color{blue}2}
-\end{array}\end{bmatrix}\stackrel{{\color{blue}R_{3}}+{\color{red}R_{2}}}{\Rightarrow}\begin{bmatrix}\begin{array}{rrr|r}
-1 & -1 & 1 & 0\\
-0 & 1 & 0 & 3\\
-{\color{blue}0} & {\color{blue}0} & {\color{blue}1} & {\color{blue}2}
-\end{array}\end{bmatrix}
-\end{equation}
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-Make 
-\begin_inset Formula $a_{13}=0$
-\end_inset
-
- using information from the third row.
-\end_layout
-
-\begin_layout Standard
-\begin_inset Formula 
-\begin{equation}
-\begin{bmatrix}\begin{array}{rrr|r}
-{\color{red}1} & {\color{red}-1} & {\color{red}1} & {\color{red}0}\\
-0 & 1 & 0 & 3\\
-{\color{blue}0} & {\color{blue}0} & {\color{blue}1} & {\color{blue}2}
-\end{array}\end{bmatrix}\stackrel{-{\color{blue}R_{3}}+{\color{red}R_{1}}}{\Rightarrow}\begin{bmatrix}\begin{array}{rrr|r}
-1 & -1 & 0 & -2\\
-0 & 1 & 0 & 3\\
-{\color{blue}0} & {\color{blue}0} & {\color{blue}1} & {\color{blue}2}
-\end{array}\end{bmatrix}
-\end{equation}
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-Make 
 \begin_inset Formula $a_{12}=0$
 \end_inset
 
@@ -549,13 +478,13 @@ Make
 \begin_inset Formula 
 \begin{equation}
 \begin{bmatrix}\begin{array}{rrr|r}
-{\color{red}1} & {\color{red}-1} & {\color{red}0} & {\color{red}-2}\\
-{\color{blue}0} & {\color{blue}1} & {\color{blue}0} & {\color{blue}3}\\
-0 & 0 & 1 & 2
-\end{array}\end{bmatrix}\stackrel{{\color{blue}R_{2}}+{\color{red}R_{1}}}{\Rightarrow}\begin{bmatrix}\begin{array}{rrr|r}
+{\color{red}1} & {\color{red}2} & {\color{red}-4} & {\color{red}7}\\
+{\color{blue}0} & {\color{blue}1} & {\color{blue}-2} & {\color{blue}3}\\
+0 & 0 & 0 & 0
+\end{array}\end{bmatrix}\stackrel{{\color{blue}-2R_{2}}+{\color{red}R_{1}}}{\Rightarrow}\begin{bmatrix}\begin{array}{rrr|r}
 1 & 0 & 0 & 1\\
-{\color{blue}0} & {\color{blue}1} & {\color{blue}0} & {\color{blue}3}\\
-0 & 0 & 1 & 2
+{\color{blue}0} & {\color{blue}1} & {\color{blue}-2} & {\color{blue}3}\\
+0 & 0 & 0 & 0
 \end{array}\end{bmatrix}
 \end{equation}
 
