@@ -7,6 +7,7 @@
 - Fixed a little mistake in the infinite solutions document. On the 3rd slide,
   the first paragraph should say "For convenience, divide the second row by
   -10".
+- Added a new document for the "no solutions" case.
 
 ### Modified to the Gauss calculator
 
