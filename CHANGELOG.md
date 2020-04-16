@@ -2,11 +2,15 @@
 
 ## 2020-04-16
 
-### Changed in Gauss tutorials
+### Modified in Gauss tutorials
 
 - Fixed a little mistake in the infinite solutions document. On the 3rd slide,
   the first paragraph should say "For convenience, divide the second row by
   -10".
+
+### Modified to the Gauss calculator
+
+- The row operations now state clearly the row that is being modified.
 
 ## 2020-04-15
 

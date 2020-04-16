@@ -408,7 +408,7 @@ def apply_row_swap(change):
       err_str = ''
 
       row_op_str = \
-        r'\stackrel{{ R_{:d} \leftrightarrow R_{:d} }}{{\Rightarrow}}'.format(
+        r'\stackrel{{ R_{:d} \leftrightarrow R_{:d} }}{{\Longrightarrow}}'.format(
         rid1, rid2)
 
     # End if.
@@ -474,7 +474,8 @@ def apply_row_times_scalar(change):
       err_str = ''
 
       row_op_str = \
-        r'\stackrel{{ {:s} \, R_{:d} }}{{\Rightarrow}}'.format(str(c), rid)
+        r'\stackrel{{ {:s} \, R_{:d} \to R_{:d} }}{{\Longrightarrow}}'.format(
+          str(c), rid, rid)
 
     # End if.
 
@@ -541,8 +542,8 @@ def apply_row_add(change):
       err_str = ''
 
       row_op_str = \
-        r'\stackrel{{ {:s} \, R_{:d} + R_{:d} }}{{\Rightarrow}}'.format(
-        str(c1), rid1, rid2)
+        r'\stackrel{{ {:s} \, R_{:d} + R_{:d} \to R_{:d} }}{{\Longrightarrow}}'.format(
+          str(c1), rid1, rid2, rid2)
 
     # End if.
 
