@@ -281,7 +281,7 @@ status open
 \begin_deeper
 \begin_layout Standard
 For convenience, divide the second row by 
-\begin_inset Formula $-5$
+\begin_inset Formula $-10$
 \end_inset
 
  to perform next operations with integers instead of fractions.

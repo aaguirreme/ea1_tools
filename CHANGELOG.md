@@ -1,5 +1,13 @@
 # Changelog
 
+## 2020-04-16
+
+### Changed in Gauss tutorials
+
+- Fixed a little mistake in the infinite solutions document. On the 3rd slide,
+  the first paragraph should say "For convenience, divide the second row by
+  -10".
+
 ## 2020-04-15
 
 ### Added to the repository
