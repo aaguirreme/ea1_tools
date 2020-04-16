@@ -6,8 +6,12 @@
 \origin unavailable
 \textclass beamer
 \begin_preamble
+\usepackage{xcolor}
+
 \beamertemplatenavigationsymbolsempty
 \setbeamercovered{transparent}
+
+\definecolor{green}{RGB}{0,164,0}
 \end_preamble
 \use_default_options true
 \maintain_unincluded_children false
@@ -185,7 +189,7 @@ For convenience, swap rows 1 and 3 to perform next operations with integers
 {\color{blue}4} & {\color{blue}1} & {\color{blue}-2} & {\color{blue}3}\\
 3 & -1 & 1 & 2\\
 {\color{red}1} & {\color{red}-1} & {\color{red}1} & {\color{red}0}
-\end{array}\end{bmatrix}\stackrel{{\color{blue}R_{1}}\leftrightarrow{\color{red}R_{3}}}{\Rightarrow}\begin{bmatrix}\begin{array}{rrr|r}
+\end{array}\end{bmatrix}\stackrel{{\color{blue}R_{1}}\leftrightarrow{\color{red}R_{3}}}{\Longrightarrow}\begin{bmatrix}\begin{array}{rrr|r}
 {\color{red}1} & {\color{red}-1} & {\color{red}1} & {\color{red}0}\\
 3 & -1 & 1 & 2\\
 {\color{blue}4} & {\color{blue}1} & {\color{blue}-2} & {\color{blue}3}
@@ -212,9 +216,9 @@ Make
 {\color{blue}1} & {\color{blue}-1} & {\color{blue}1} & {\color{blue}0}\\
 {\color{red}3} & {\color{red}-1} & {\color{red}1} & {\color{red}2}\\
 4 & 1 & -2 & 3
-\end{array}\end{bmatrix}\stackrel{-3{\color{blue}R_{1}}+{\color{red}R_{2}}}{\Rightarrow}\begin{bmatrix}\begin{array}{rrr|r}
+\end{array}\end{bmatrix}\stackrel{-3{\color{blue}R_{1}}+{\color{red}R_{2}}\to{\color{green}R_{2}}}{\Longrightarrow}\begin{bmatrix}\begin{array}{rrr|r}
 {\color{blue}1} & {\color{blue}-1} & {\color{blue}1} & {\color{blue}0}\\
-0 & 2 & -2 & 2\\
+{\color{green}0} & {\color{green}2} & {\color{green}-2} & {\color{green}2}\\
 4 & 1 & -2 & 3
 \end{array}\end{bmatrix}
 \end{equation}
@@ -239,10 +243,10 @@ Make
 {\color{blue}1} & {\color{blue}-1} & {\color{blue}1} & {\color{blue}0}\\
 0 & 2 & -2 & 2\\
 {\color{red}4} & {\color{red}1} & {\color{red}-2} & {\color{red}3}
-\end{array}\end{bmatrix}\stackrel{-4{\color{blue}R_{1}}+{\color{red}R_{3}}}{\Rightarrow}\begin{bmatrix}\begin{array}{rrr|r}
+\end{array}\end{bmatrix}\stackrel{-4{\color{blue}R_{1}}+{\color{red}R_{3}}\to{\color{green}R_{3}}}{\Longrightarrow}\begin{bmatrix}\begin{array}{rrr|r}
 {\color{blue}1} & {\color{blue}-1} & {\color{blue}1} & {\color{blue}0}\\
 0 & 2 & -2 & 2\\
-0 & 5 & -6 & 3
+{\color{green}0} & {\color{green}5} & {\color{green}-6} & {\color{green}3}
 \end{array}\end{bmatrix}
 \end{equation}
 
@@ -288,9 +292,9 @@ For convenience, divide the second row by
 1 & -1 & 1 & 0\\
 {\color{red}0} & {\color{red}2} & {\color{red}-2} & {\color{red}2}\\
 0 & 5 & -6 & 3
-\end{array}\end{bmatrix}\stackrel{-\nicefrac{1}{2}{\color{red}R}_{{\color{red}2}}}{\Rightarrow}\begin{bmatrix}\begin{array}{rrr|r}
+\end{array}\end{bmatrix}\stackrel{-\nicefrac{1}{2}{\color{red}R}_{{\color{red}2}}\to{\color{green}R_{2}}}{\Longrightarrow}\begin{bmatrix}\begin{array}{rrr|r}
 1 & -1 & 1 & 0\\
-0 & 1 & -1 & 1\\
+{\color{green}0} & {\color{green}1} & {\color{green}-1} & {\color{green}1}\\
 0 & 5 & -6 & 3
 \end{array}\end{bmatrix}
 \end{equation}
@@ -315,10 +319,10 @@ Make
 1 & -1 & 1 & 0\\
 {\color{blue}0} & {\color{blue}1} & {\color{blue}-1} & {\color{blue}1}\\
 {\color{red}0} & {\color{red}5} & {\color{red}-6} & {\color{red}3}
-\end{array}\end{bmatrix}\stackrel{-5{\color{blue}R_{2}}+{\color{red}R_{3}}}{\Rightarrow}\begin{bmatrix}\begin{array}{rrr|r}
+\end{array}\end{bmatrix}\stackrel{-5{\color{blue}R_{2}}+{\color{red}R_{3}}\to{\color{green}R_{3}}}{\Longrightarrow}\begin{bmatrix}\begin{array}{rrr|r}
 1 & -1 & 1 & 0\\
 {\color{blue}0} & {\color{blue}1} & {\color{blue}-1} & {\color{blue}1}\\
-0 & 0 & -1 & -2
+{\color{green}0} & {\color{green}0} & {\color{green}-1} & {\color{green}-2}
 \end{array}\end{bmatrix}
 \end{equation}
 
@@ -342,10 +346,10 @@ Operate the last row so that it translates to
 1 & -1 & 1 & 0\\
 0 & 1 & -1 & 1\\
 {\color{red}0} & {\color{red}0} & {\color{red}-1} & {\color{red}-2}
-\end{array}\end{bmatrix}\overset{-1{\color{red}R_{3}}}{\Rightarrow}\begin{bmatrix}\begin{array}{rrr|r}
+\end{array}\end{bmatrix}\overset{-1{\color{red}R_{3}}\to{\color{green}R_{3}}}{\Longrightarrow}\begin{bmatrix}\begin{array}{rrr|r}
 1 & -1 & 1 & 0\\
 0 & 1 & -1 & 1\\
-0 & 0 & 1 & 2
+{\color{green}0} & {\color{green}0} & {\color{green}1} & {\color{green}2}
 \end{array}\end{bmatrix}
 \end{equation}
 
@@ -498,9 +502,9 @@ Make
 1 & -1 & 1 & 0\\
 {\color{red}0} & {\color{red}1} & {\color{red}-1} & {\color{red}1}\\
 {\color{blue}0} & {\color{blue}0} & {\color{blue}1} & {\color{blue}2}
-\end{array}\end{bmatrix}\stackrel{{\color{blue}R_{3}}+{\color{red}R_{2}}}{\Rightarrow}\begin{bmatrix}\begin{array}{rrr|r}
+\end{array}\end{bmatrix}\stackrel{{\color{blue}R_{3}}+{\color{red}R_{2}}\to{\color{green}R_{2}}}{\Longrightarrow}\begin{bmatrix}\begin{array}{rrr|r}
 1 & -1 & 1 & 0\\
-0 & 1 & 0 & 3\\
+{\color{green}0} & {\color{green}1} & {\color{green}0} & {\color{green}3}\\
 {\color{blue}0} & {\color{blue}0} & {\color{blue}1} & {\color{blue}2}
 \end{array}\end{bmatrix}
 \end{equation}
@@ -525,8 +529,8 @@ Make
 {\color{red}1} & {\color{red}-1} & {\color{red}1} & {\color{red}0}\\
 0 & 1 & 0 & 3\\
 {\color{blue}0} & {\color{blue}0} & {\color{blue}1} & {\color{blue}2}
-\end{array}\end{bmatrix}\stackrel{-{\color{blue}R_{3}}+{\color{red}R_{1}}}{\Rightarrow}\begin{bmatrix}\begin{array}{rrr|r}
-1 & -1 & 0 & -2\\
+\end{array}\end{bmatrix}\stackrel{-{\color{blue}R_{3}}+{\color{red}R_{1}}\to{\color{green}R_{1}}}{\Longrightarrow}\begin{bmatrix}\begin{array}{rrr|r}
+{\color{green}1} & {\color{green}-1} & {\color{green}0} & {\color{green}-2}\\
 0 & 1 & 0 & 3\\
 {\color{blue}0} & {\color{blue}0} & {\color{blue}1} & {\color{blue}2}
 \end{array}\end{bmatrix}
@@ -552,8 +556,8 @@ Make
 {\color{red}1} & {\color{red}-1} & {\color{red}0} & {\color{red}-2}\\
 {\color{blue}0} & {\color{blue}1} & {\color{blue}0} & {\color{blue}3}\\
 0 & 0 & 1 & 2
-\end{array}\end{bmatrix}\stackrel{{\color{blue}R_{2}}+{\color{red}R_{1}}}{\Rightarrow}\begin{bmatrix}\begin{array}{rrr|r}
-1 & 0 & 0 & 1\\
+\end{array}\end{bmatrix}\stackrel{{\color{blue}R_{2}}+{\color{red}R_{1}}\to{\color{green}R_{1}}}{\Longrightarrow}\begin{bmatrix}\begin{array}{rrr|r}
+{\color{green}1} & {\color{green}0} & {\color{green}0} & {\color{green}1}\\
 {\color{blue}0} & {\color{blue}1} & {\color{blue}0} & {\color{blue}3}\\
 0 & 0 & 1 & 2
 \end{array}\end{bmatrix}

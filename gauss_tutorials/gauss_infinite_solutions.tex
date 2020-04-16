@@ -34,8 +34,12 @@
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%% User specified LaTeX commands.
+\usepackage{xcolor}
+
 \beamertemplatenavigationsymbolsempty
 \setbeamercovered{transparent}
+
+\definecolor{green}{RGB}{0,164,0}
 
 \makeatother
 
@@ -79,7 +83,7 @@ integers instead of fractions.
 {\color{blue}4} & {\color{blue}1} & {\color{blue}-2} & {\color{blue}7}\\
 3 & -4 & 8 & -9\\
 {\color{red}1} & {\color{red}2} & {\color{red}-4} & {\color{red}7}
-\end{array}\end{bmatrix}\stackrel{{\color{blue}R_{1}}\leftrightarrow{\color{red}R_{3}}}{\Rightarrow}\begin{bmatrix}\begin{array}{rrr|r}
+\end{array}\end{bmatrix}\stackrel{{\color{blue}R_{1}}\leftrightarrow{\color{red}R_{3}}}{\Longrightarrow}\begin{bmatrix}\begin{array}{rrr|r}
 {\color{red}1} & {\color{red}2} & {\color{red}-4} & {\color{red}7}\\
 3 & -4 & 8 & -9\\
 {\color{blue}4} & {\color{blue}1} & {\color{blue}-2} & {\color{blue}7}
@@ -95,9 +99,9 @@ Make $a_{21}=0$ using information from the first row.
 {\color{blue}1} & {\color{blue}2} & {\color{blue}-4} & {\color{blue}7}\\
 {\color{red}3} & {\color{red}-4} & {\color{red}8} & {\color{red}-9}\\
 4 & 1 & -2 & 7
-\end{array}\end{bmatrix}\stackrel{-3{\color{blue}R_{1}}+{\color{red}R_{2}}}{\Rightarrow}\begin{bmatrix}\begin{array}{rrr|r}
+\end{array}\end{bmatrix}\stackrel{-3{\color{blue}R_{1}}+{\color{red}R_{2}}\to{\color{green}R_{2}}}{\Longrightarrow}\begin{bmatrix}\begin{array}{rrr|r}
 {\color{blue}1} & {\color{blue}2} & {\color{blue}-4} & {\color{blue}7}\\
-0 & -10 & 20 & -30\\
+{\color{green}0} & {\color{green}-10} & {\color{green}20} & {\color{green}-30}\\
 4 & 1 & -2 & 7
 \end{array}\end{bmatrix}
 \end{equation}
@@ -111,10 +115,10 @@ Make $a_{31}=0$ using information from the first row.
 {\color{blue}1} & {\color{blue}2} & {\color{blue}-4} & {\color{blue}7}\\
 0 & -10 & 20 & -30\\
 {\color{red}4} & {\color{red}1} & {\color{red}-2} & {\color{red}7}
-\end{array}\end{bmatrix}\stackrel{-4{\color{blue}R_{1}}+{\color{red}R_{3}}}{\Rightarrow}\begin{bmatrix}\begin{array}{rrr|r}
+\end{array}\end{bmatrix}\stackrel{-4{\color{blue}R_{1}}+{\color{red}R_{3}}\to{\color{green}R_{3}}}{\Longrightarrow}\begin{bmatrix}\begin{array}{rrr|r}
 {\color{blue}1} & {\color{blue}2} & {\color{blue}-4} & {\color{blue}7}\\
 0 & -10 & 20 & -30\\
-0 & -7 & 14 & -21
+{\color{green}0} & {\color{green}-7} & {\color{green}14} & {\color{green}-21}
 \end{array}\end{bmatrix}
 \end{equation}
 }{\small\par}
@@ -130,9 +134,9 @@ with integers instead of fractions.
 1 & 2 & -4 & 7\\
 {\color{red}0} & {\color{red}-10} & {\color{red}20} & {\color{red}-30}\\
 0 & -7 & 14 & -21
-\end{array}\end{bmatrix}\stackrel{-\nicefrac{1}{10}{\color{red}R_{2}}}{\Rightarrow}\begin{bmatrix}\begin{array}{rrr|r}
+\end{array}\end{bmatrix}\stackrel{-\nicefrac{1}{10}{\color{red}R_{2}}\to{\color{green}R_{2}}}{\Longrightarrow}\begin{bmatrix}\begin{array}{rrr|r}
 1 & 2 & -4 & 7\\
-0 & 1 & -2 & 3\\
+{\color{green}0} & {\color{green}1} & {\color{green}-2} & {\color{green}3}\\
 0 & -7 & 14 & -21
 \end{array}\end{bmatrix}
 \end{equation}
@@ -144,10 +148,10 @@ Make $a_{32}=0$ using information from the second row.
 1 & 2 & -4 & 7\\
 {\color{blue}0} & {\color{blue}1} & {\color{blue}-2} & {\color{blue}3}\\
 {\color{red}0} & {\color{red}-7} & {\color{red}14} & {\color{red}-21}
-\end{array}\end{bmatrix}\stackrel{7{\color{blue}R_{2}}+{\color{red}R_{3}}}{\Rightarrow}\begin{bmatrix}\begin{array}{rrr|r}
+\end{array}\end{bmatrix}\stackrel{7{\color{blue}R_{2}}+{\color{red}R_{3}}\to{\color{green}R_{3}}}{\Longrightarrow}\begin{bmatrix}\begin{array}{rrr|r}
 1 & 2 & -4 & 7\\
 {\color{blue}0} & {\color{blue}1} & {\color{blue}-2} & {\color{blue}3}\\
-0 & 0 & 0 & 0
+{\color{green}0} & {\color{green}0} & {\color{green}0} & {\color{green}0}
 \end{array}\end{bmatrix}
 \end{equation}
 
@@ -188,8 +192,8 @@ Make $a_{12}=0$ using information from the second row.
 {\color{red}1} & {\color{red}2} & {\color{red}-4} & {\color{red}7}\\
 {\color{blue}0} & {\color{blue}1} & {\color{blue}-2} & {\color{blue}3}\\
 0 & 0 & 0 & 0
-\end{array}\end{bmatrix}\stackrel{{\color{blue}-2R_{2}}+{\color{red}R_{1}}}{\Rightarrow}\begin{bmatrix}\begin{array}{rrr|r}
-1 & 0 & 0 & 1\\
+\end{array}\end{bmatrix}\stackrel{{\color{blue}-2R_{2}}+{\color{red}R_{1}}\to{\color{green}R_{1}}}{\Longrightarrow}\begin{bmatrix}\begin{array}{rrr|r}
+{\color{green}1} & {\color{green}0} & {\color{green}0} & {\color{green}1}\\
 {\color{blue}0} & {\color{blue}1} & {\color{blue}-2} & {\color{blue}3}\\
 0 & 0 & 0 & 0
 \end{array}\end{bmatrix}

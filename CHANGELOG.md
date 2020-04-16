@@ -8,6 +8,9 @@
   the first paragraph should say "For convenience, divide the second row by
   -10".
 - Added a new document for the "no solutions" case.
+- Modified the notation used for the elementary row operations of the infinite
+  solutions and unique solution documents to state clearly the row that is being
+  modified. The green color is used to highlight such row.
 
 ### Modified to the Gauss calculator
 
