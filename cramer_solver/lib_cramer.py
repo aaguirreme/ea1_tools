@@ -90,7 +90,7 @@ start_input = VBox( [start_text, start_btn])
 # Create a HTML object to show the augmented equation in LaTeX format.
 eq_latex = HTMLMath(
   value=r'The matrix $\bf{A}$ and the vector $\bf{B}$ will appear here.',
-  layout=Layout(justify_content='center'))
+  layout=Layout(justify_content='center', height='120px', width='300px'))
 
 # Put together all inputs.
 all_inputs = Box( [mat_input, rhs_input, start_input, eq_latex], 
@@ -116,7 +116,7 @@ var_ctrl = VBox( [ var_text, var_drop, var_btn ] )
 
 # Create a HTML object to show results in LaTeX format.
 results_html = HTMLMath(value='Results will be shown here.', 
-  layout=Layout(justify_content='center'))
+  layout=Layout(justify_content='center', height='120px', width='400px'))
 
 # Put together all controls
 other_widgets = Box( [var_ctrl, results_html], 
@@ -207,7 +207,7 @@ def apply_cramer(change):
     latex_str = r'$$' + f' \det A_{k} = ' + r'\left|' + \
       convert_mat_to_latex(Ak,k) + r'\right| = ' + f'{detAk}' + \
       f',\quad x_{{ {k} }} =' + r'\frac{ \det A_' + f'{k}' + r'}{\det A}' + \
-      f' = {xk}' + r'$$'
+      f' = \\frac{{ {str(detAk)} }}{{ {str(detA)} }}' + f' = {xk}' + r'$$'
     
     results_html.value = latex_str
   

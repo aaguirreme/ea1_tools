@@ -1,5 +1,13 @@
 # Changelog
 
+## 2020-04-17
+
+### Modified to Cramer's solver
+
+- Added evaluated values of det(A_k) and det(A) to the output of solution.
+- Minor changes to output HTMLMath objects to have fixed height and width
+  defined in pixels.
+
 ## 2020-04-16
 
 ### Modified in Gauss tutorials
