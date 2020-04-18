@@ -1,5 +1,12 @@
 # Changelog
 
+## 2020-04-18
+
+### Modified to Gauss calculator
+
+- Added color to the outputs to match the color code used by the Gauss
+  tutorials.
+
 ## 2020-04-17
 
 ### Modified to Cramer's solver
