@@ -1,12 +1,10 @@
-# Name:         Gauss interactive calculator
-# Description:  This library includes the functions required by the Gauss
-#               interactive calculator to work.
+# Name:         Inverse by row operations calculator
+# Description:  This library includes the functions required by the inverse
+#               matrix calculator to work.
 # Author:       Andres M. Aguirre-Mesa
 #               PhD student, Mechanical Engineering.
 #               University of Texas at San Antonio.
-# Date:         June 10, 2019.
-# Update:       January 19, 2019.
-
+# Date:         April 18, 2020.
 
 #*******************************************************************************
 #                        Import libraries and functions
@@ -19,6 +17,9 @@ from sympy.parsing.sympy_parser import parse_expr
 from ipywidgets import Layout, Text, HTML, HTMLMath, Box, HBox, VBox, Button, \
   Dropdown
 
+from lib_gauss import convert_mat_to_latex, row_swap, row_times_scalar, row_add 
+
+
 #*******************************************************************************
 #           Global variables definition and notebook initialization
 #*******************************************************************************
@@ -30,8 +31,8 @@ A = sym.Matrix([[4,  1, -2],
                 [3, -1,  1],
                 [1, -1,  1]])
 
-# Define initial values for the constant (right hand side) matrix B.
-B = sym.Matrix([ 3, 2, 0])
+# Define initial values for the right hand side matrix B.
+B = sym.eye(3)
 
 is_started = False
 
@@ -56,14 +57,20 @@ A31_tbox = Text(value=str(A[2,0]), layout=cell_layout)
 A32_tbox = Text(value=str(A[2,1]), layout=cell_layout)
 A33_tbox = Text(value=str(A[2,2]), layout=cell_layout)
 
-# Create text boxes to enter the values of the right hand side vector.
-B1_tbox  = Text(value=str(B[0]), layout=cell_layout)
-B2_tbox  = Text(value=str(B[1]), layout=cell_layout)
-B3_tbox  = Text(value=str(B[2]), layout=cell_layout)
+# # Create text boxes to enter the values of the right hand side vector.
+# B11_tbox = Text(value=str(B[0,0]), layout=cell_layout)
+# B12_tbox = Text(value=str(B[0,1]), layout=cell_layout)
+# B13_tbox = Text(value=str(B[0,2]), layout=cell_layout)
+# B21_tbox = Text(value=str(B[1,0]), layout=cell_layout)
+# B22_tbox = Text(value=str(B[1,1]), layout=cell_layout)
+# B23_tbox = Text(value=str(B[1,2]), layout=cell_layout)
+# B31_tbox = Text(value=str(B[2,0]), layout=cell_layout)
+# B32_tbox = Text(value=str(B[2,1]), layout=cell_layout)
+# B33_tbox = Text(value=str(B[2,2]), layout=cell_layout)
 
 # Create a description for the matrix.
 mat_text = HTMLMath( 
-  value=r'Enter here the values of the coefficient matrix $\bf{A}$',
+  value=r'Enter here the values of matrix $\bf{A}$',
   layout=Layout(width='90px') ) 
 
 # Group the text boxes in the shape of a 3x3 matrix.
@@ -74,16 +81,18 @@ mat_values = VBox([HBox([A11_tbox, A12_tbox, A13_tbox]),
 # Put together description and values of the matrix.
 mat_input = HBox([mat_text, mat_values]) 
 
-# Create a description for the RHS (right hand side) vector.
-rhs_text = HTMLMath(
-  value=r'Enter here the values of the constant matrix $\bf{B}$',
-  layout=Layout(width='90px') ) 
-
-# Group the text boxes in the shape of a 3x1 vector.
-rhs_values = VBox( [B1_tbox, B2_tbox, B3_tbox], layout=Layout(width='50px') )
-
-# Put together description and values of the matrix.
-rhs_input = HBox([rhs_values, rhs_text]) 
+# # Create a description for the RHS (right hand side) vector.
+# rhs_text = HTMLMath(
+#   value=r'Enter here the values of the right-hand side matrix $\bf{B}$',
+#   layout=Layout(width='90px') ) 
+# 
+# # Group the text boxes in the shape of a 3x1 vector.
+# rhs_values = VBox([HBox([B11_tbox, B12_tbox, B13_tbox]),
+#                    HBox([B21_tbox, B22_tbox, B23_tbox]),
+#                    HBox([B31_tbox, B32_tbox, B33_tbox])])
+# 
+# # Put together description and values of the matrix.
+# rhs_input = HBox([rhs_values, rhs_text]) 
 
 # Create a text to describe the function of the start button.
 start_text = HTML(
@@ -100,8 +109,12 @@ amat_latex = HTMLMath(
   value=r'The augmented matrix $(\bf{A}|\bf{B})$ will appear here.',
   layout=Layout(justify_content='center'))
 
+# # Put together all inputs.
+# all_inputs = Box( [mat_input, rhs_input, start_input, amat_latex], 
+#   layout=Layout(justify_content='space-around', flex_flow='row wrap') )
+
 # Put together all inputs.
-all_inputs = Box( [mat_input, rhs_input, start_input, amat_latex], 
+all_inputs = Box( [mat_input, start_input, amat_latex], 
   layout=Layout(justify_content='space-around', flex_flow='row wrap') )
 
 # Controls
@@ -163,208 +176,6 @@ results_html = HTMLMath(value='Results will be shown here.',
 
 
 #*******************************************************************************
-def row_swap(M, rid1, rid2):
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  '''
-  Swap two rows of a SymPy matrix.
-
-  M:    SymPy matrix to be modified.
-  rid1: integer identificator of a row. One based (1, 2, ...).
-  rid2: identificator of another row. One based (1, 2, ...).
-
-  Returns a new matrix with swapped rows.
-  '''
-#*******************************************************************************
- 
-  nrows = M.rows            # Get the number of rows.
-
-  if (rid1 == rid2):        # Verify if the swap is not valid
-  
-    print('Error. No rows were swapped.')
-
-    new_M = M.copy()
-
-  elif (rid1 > nrows) or (rid2 > nrows):
-
-    print(f'Error. Please use row indices from 1 through {nrows}.')
-
-    new_M = M.copy()
-
-  elif (rid1 == 0) or (rid2 == 0):
-  
-    print(f'Error. Please use row indices from 1 through {nrows}.')
-
-    new_M = M.copy()
-
-  else:
-
-    # Create a list of indices.
-    id_lst = [k for k in range(nrows)]    # Create a list of indices.
-
-    id_lst[rid1 - 1] = rid2 - 1           # Swap indices in the list.
-    id_lst[rid2 - 1] = rid1 - 1
-
-    new_M = M[id_lst,:]                   # Reorganize matrix.
-
-  # End if. 
-
-  return new_M
- 
-#-------------------------------------------------------------------------------
-
-
-#*******************************************************************************
-def row_add(M, new_rid, c1, rid1, c2, rid2):
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  '''
-  Set new values for a row that are the linear combination of two existing rows.
-
-  M:        SymPy matrix to be modified.
-  new_rid:  integer identificator of the row to be modified. One based (1, 2,
-            ...).
-  c1:       real, scalar value to multiply row 1.
-  rid1:     integer identificator of row 1. One based (1, 2, ...).
-  c2:       real, scalar value to multiply row 2.
-  rid2:     integer identificator of row 2. One based (1, 2, ...).
-  '''
-#*******************************************************************************
-
-  new_M = M.copy()
-
-  if (new_rid != rid1) and (new_rid != rid2):
-
-    print(f'Error. The index of the new row is {new_rid}.')
-    print(f'It must be either {rid1} or {rid2}.')
-
-  else:
- 
-    new_M[new_rid - 1, :] = c1*M[rid1 - 1, :] + c2*M[rid2 - 1, :]
-
-  # End if.
-
-  return new_M
-
-#-------------------------------------------------------------------------------
-
-
-#*******************************************************************************
-def row_times_scalar(M, c, rid):
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  '''
-  Multiplies the row of a Sympy matrix times a scalar value.
-
-  M:        SymPy matrix to be modified.
-  c:        real, scalar value to multiply the row.
-  rid:      integer identificator of the row. One based (1, 2, ...).
-  '''
-#*******************************************************************************
-
-  new_M = M.copy()
-
-  new_M[rid - 1, :] = c*M[rid - 1, :]
-
-  return new_M
-
-#-------------------------------------------------------------------------------
-
-
-#*******************************************************************************
-def generate_latex_string_per_row(row, color_str=''):
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  '''
-  Convert the row of a matrix in Sympy format into LaTeX code. The code
-  generated by this needs to be wrapped in an array LaTeX environment to work.
-
-  row:        Sympy row of a matrix. Mutable dense matrix.
-  color_str:  Optional. String containing the name of a color compatible with
-              Jupyter/ipywidgets/Mathjax.
-  '''
-#*******************************************************************************
-
-  ncols = len(row)
-
-  latex_str = ''
-
-  if color_str != '':
-
-    for k in range(ncols):                      # Loop over row elements.
-
-      latex_str += r'\color{{ {:s} }}{{ {:s} }}'.format(color_str, str(row[k]))
-
-      if k < ncols - 1:                         # Add column separators.
-
-        latex_str += ' & '
-
-      # End if. Add column separator.
-
-    # End for. Loop over row elements.
-
-  else:
-
-    for k in range(ncols):                      # Loop over row elements.
-
-      latex_str += r'{:s}'.format(str(row[k]))
-
-      if k < ncols - 1:                         # Add column separators 
-
-        latex_str += ' & '
-
-      # End if. Add column separator.
-
-    # End for. Loop over row elements.
-
-  # End if. Select case for the optional color argument.
-
-  return latex_str
-
-#-------------------------------------------------------------------------------
-
-
-#*******************************************************************************
-def convert_mat_to_latex(M, color_dict):
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  '''
-  Convert a Sympy matrix to a LaTeX. It generates the code to print the
-  augmented matrix used for the Gauss elimination process.
-
-  M:              SymPy matrix to converted.
-  color_R1...R3:  Optional. String containing the name of a color compatible
-                  with Jupyter/ipywidgets/Mathjax.
-  '''
-#*******************************************************************************
-
-  nrows = M.rows
- 
-  latex_str = r'\left[ \begin{array}{rrr|r}' + '\n'
-
-  for k in range(nrows):
-
-    row = M.row(k)
-
-    row_color = color_dict[k]
-
-    row_str = generate_latex_string_per_row(row, row_color)
-
-    latex_str += row_str
-
-    if k < nrows - 1:
-
-      latex_str += r' \\'
-
-    # End if. Add row separator.
-
-    latex_str += '\n'
-
-  # End for. Loop over rows of the matrix. 
-
-  latex_str += r'\end{array} \right]'
-
-  return latex_str
-
-#-------------------------------------------------------------------------------
-
-
-#*******************************************************************************
 def update_aug_matrix(change):
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   '''
@@ -392,9 +203,17 @@ def update_aug_matrix(change):
   A[2,1] = parse_expr(A32_tbox.value)
   A[2,2] = parse_expr(A33_tbox.value)
 
-  B[0] = parse_expr(B1_tbox.value)
-  B[1] = parse_expr(B2_tbox.value)
-  B[2] = parse_expr(B3_tbox.value)
+  # B[0,0] = parse_expr(B11_tbox.value)
+  # B[0,1] = parse_expr(B12_tbox.value)
+  # B[0,2] = parse_expr(B13_tbox.value)
+  # B[1,0] = parse_expr(B21_tbox.value)
+  # B[1,1] = parse_expr(B22_tbox.value)
+  # B[1,2] = parse_expr(B23_tbox.value)
+  # B[2,0] = parse_expr(B31_tbox.value)
+  # B[2,1] = parse_expr(B32_tbox.value)
+  # B[2,2] = parse_expr(B33_tbox.value)
+
+  B = sym.eye(3)
 
   # Create the augmented matrix.
   M = A.row_join(B)
@@ -418,8 +237,9 @@ def update_aug_matrix(change):
   color_dict = {0: '', 1: '', 2: ''}
 
   # Create the string with the initial augmented matrix in LaTeX format.
-  latex_str = r'The augmented matrix $(\bf{A}|\bf{B})$ is:' + '\n $$' \
-    + convert_mat_to_latex(M, color_dict) + r'$$ with ' + detA_str + '.'
+  latex_str = r'The augmented matrix $(\bf{A}|\bf{I})$ is:' + '\n $$' \
+    + convert_mat_to_latex(M, color_dict, 'rrr|rrr') + r'$$ with ' \
+    + detA_str + '.'
  
   # Update object "amat_latex" with the augmented matrix in LaTeX format. 
   amat_latex.value=latex_str
@@ -492,8 +312,8 @@ def apply_row_swap(change):
     # End if.
 
     # Update sympy matrices.
-    M_old_str = convert_mat_to_latex(M_old, color_M_old)    
-    M_str     = convert_mat_to_latex(M, color_M)
+    M_old_str = convert_mat_to_latex(M_old, color_M_old, 'rrr|rrr')    
+    M_str     = convert_mat_to_latex(M, color_M, 'rrr|rrr')
 
     # Update output.
     results_html.value += err_str + '$$ $$' + '$$' + M_old_str + row_op_str + \
@@ -565,8 +385,8 @@ def apply_row_times_scalar(change):
     # End if.
 
     # Update sympy matrices.
-    M_old_str = convert_mat_to_latex(M_old, color_M_old)    
-    M_str     = convert_mat_to_latex(M, color_M)
+    M_old_str = convert_mat_to_latex(M_old, color_M_old, 'rrr|rrr')
+    M_str     = convert_mat_to_latex(M, color_M, 'rrr|rrr')
 
     # Update output.
     results_html.value += err_str + '$$ $$' + '$$' + M_old_str + row_op_str \
@@ -644,8 +464,8 @@ def apply_row_add(change):
     # End if.
 
     # Update sympy matrices.
-    M_old_str = convert_mat_to_latex(M_old, color_M_old)    
-    M_str     = convert_mat_to_latex(M, color_M)
+    M_old_str = convert_mat_to_latex(M_old, color_M_old, 'rrr|rrr')
+    M_str     = convert_mat_to_latex(M, color_M, 'rrr|rrr')
 
     # Update output.
     results_html.value += err_str + '$$ $$' + '$$' + M_old_str + row_op_str \
@@ -654,6 +474,8 @@ def apply_row_add(change):
   # End if.
 
 #-------------------------------------------------------------------------------
+
+
 
 
 #*******************************************************************************

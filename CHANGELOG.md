@@ -1,5 +1,20 @@
 # Changelog
 
+## 2020-04-19
+
+### Modified to Gauss calculator (now Gauss apps)
+
+- Changed the name of the folder to Gauss apps.
+- Modified the folder structure. Moved all Python files a folder called
+  "libraries".
+- Added a new app for computing the inverse of a matrix using the row
+  operations. The Python code to make it work is in the libraries folder, at the
+  file called inverse_row_ops_app.py. The notebook is called
+  inverse_by_row_operations_notebook.
+- Separated the file lib_gauss.py into two files: lib_gauss.py and gauss_app.
+  The module lib_gauss is also used by the new inverse app.
+
+
 ## 2020-04-18
 
 ### Modified to Gauss calculator
