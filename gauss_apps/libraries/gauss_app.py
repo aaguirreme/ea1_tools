@@ -219,8 +219,8 @@ def update_aug_matrix(change):
 
   # Create the string with the initial augmented matrix in LaTeX format.
   latex_str = r'The augmented matrix $(\bf{A}|\bf{B})$ is:' + '\n $$' \
-    + convert_mat_to_latex(M, color_dict, 'rrr|r') + r'$$ with ' \
-    + detA_str + '.'
+    + r'\left [' + convert_mat_to_latex(M, color_dict, 'rrr|r')       \
+    + r'\right ] $$ with ' + detA_str + '.'
  
   # Update object "amat_latex" with the augmented matrix in LaTeX format. 
   amat_latex.value=latex_str
@@ -297,8 +297,9 @@ def apply_row_swap(change):
     M_str     = convert_mat_to_latex(M, color_M, 'rrr|r')
 
     # Update output.
-    results_html.value += err_str + '$$ $$' + '$$' + M_old_str + row_op_str + \
-      M_str + '$$'
+    results_html.value += err_str + '$$ $$'                     \
+      + '$$ \left[' + M_old_str + r'\right ]'     + row_op_str  \
+      + '\left ['   + M_str     + r'\right ] $$'
 
   # End if.
 
@@ -370,8 +371,9 @@ def apply_row_times_scalar(change):
     M_str     = convert_mat_to_latex(M, color_M, 'rrr|r')
 
     # Update output.
-    results_html.value += err_str + '$$ $$' + '$$' + M_old_str + row_op_str \
-      + M_str + '$$'
+    results_html.value += err_str + '$$ $$'                     \
+      + '$$ \left[' + M_old_str + r'\right ]'     + row_op_str  \
+      + '\left ['   + M_str     + r'\right ] $$'
 
   # End if.
 
@@ -449,8 +451,9 @@ def apply_row_add(change):
     M_str     = convert_mat_to_latex(M, color_M, 'rrr|r')
 
     # Update output.
-    results_html.value += err_str + '$$ $$' + '$$' + M_old_str + row_op_str \
-      + M_str + '$$'
+    results_html.value += err_str + '$$ $$'                     \
+      + '$$ \left[' + M_old_str + r'\right ]'     + row_op_str  \
+      + '\left ['   + M_str     + r'\right ] $$'
 
   # End if.
 

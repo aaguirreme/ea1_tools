@@ -1,5 +1,16 @@
 # Changelog
 
+## 2020-04-20
+
+### Modified to Gauss apps
+
+- Modified the function "convert_mat_to_latex" from the module lib_gauss to
+  output the latex matrix without delimiters. All files that depend on this
+  function were updated.
+- Added new functions to the module lib_gauss for elementary column operations:
+  col_swap, col_add and col_times_scalar.
+- Created a new app to compute determinant by reduction to triangular matrix.
+
 ## 2020-04-19
 
 ### Modified to Gauss calculator (now Gauss apps)
@@ -13,7 +24,6 @@
   inverse_by_row_operations_notebook.
 - Separated the file lib_gauss.py into two files: lib_gauss.py and gauss_app.
   The module lib_gauss is also used by the new inverse app.
-
 
 ## 2020-04-18
 
