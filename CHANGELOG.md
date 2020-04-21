@@ -10,6 +10,9 @@
 - Added new functions to the module lib_gauss for elementary column operations:
   col_swap, col_add and col_times_scalar.
 - Created a new app to compute determinant by reduction to triangular matrix.
+  The new app is called "determinant properties notebook". It shows the
+  determinant under each matrix to allow to easily verify different determinant
+  properties.
 
 ## 2020-04-19
 

@@ -328,6 +328,9 @@ def apply_swap(change):
 
     # End if.
 
+    det_M_old = M_old.det()     # Compute determinants of M and M_old.
+    det_M     = M.det()
+
     # Update sympy matrices.
     M_old_str = convert_mat_to_latex(M_old, align_opt='rrr')    
     M_str     = convert_mat_to_latex(M,     align_opt='rrr')
@@ -356,10 +359,12 @@ def apply_swap(change):
 
     # Update output.
     results_html.value += \
-      err_str + '$$ $$' + r'$$ \overset{' + op_str + r'}{'  \
-      + prod_old_str + r'\left |' + M_old_str + r'\right |'     \
-      + r'\qquad = \qquad'                                      \
-      + prod_str     + r'\left |' + M_str     + r'\right | }$$'
+      err_str + '$$ $$' + r'$$ \overset{' + op_str + r'}{' + prod_old_str \
+      + r'\underset{' + r'\det =' + str(det_M_old) + r'}{'                \
+      + r'\underbrace{ \left |'   + M_old_str + r'\right |' + r'}}'       \
+      + r'\qquad = \qquad'        + prod_str                              \
+      + r'\underset{' + r'\det =' + str(det_M)     + r'}{'                \
+      + r'\underbrace{ \left |' + M_str       + r'\right | }}}$$'
 
   # End if.
 
@@ -435,6 +440,9 @@ def apply_row_or_col_times_scalar(change):
 
     # End if.
 
+    det_M_old = M_old.det()     # Compute determinants of M and M_old.
+    det_M     = M.det()
+
     # Update sympy matrices.
     M_old_str = convert_mat_to_latex(M_old, align_opt='rrr')    
     M_str     = convert_mat_to_latex(M,     align_opt='rrr')
@@ -463,10 +471,12 @@ def apply_row_or_col_times_scalar(change):
 
     # Update output.
     results_html.value += \
-      err_str + '$$ $$' + r'$$ \overset{' + op_str + r'}{'  \
-      + prod_old_str + r'\left |' + M_old_str + r'\right |'     \
-      + r'\qquad = \qquad'                                      \
-      + prod_str     + r'\left |' + M_str     + r'\right | }$$'
+      err_str + '$$ $$' + r'$$ \overset{' + op_str + r'}{' + prod_old_str \
+      + r'\underset{' + r'\det =' + str(det_M_old) + r'}{'                \
+      + r'\underbrace{ \left |' + M_old_str + r'\right |' + r'}}'         \
+      + r'\qquad = \qquad'      + prod_str                                \
+      + r'\underset{' + r'\det =' + str(det_M)     + r'}{'                \
+      + r'\underbrace{ \left |' + M_str     + r'\right | }}}$$'
 
   # End if.
 
@@ -540,6 +550,9 @@ def apply_row_or_col_add(change):
 
     # End if.
 
+    det_M_old = M_old.det()     # Compute determinants of M and M_old.
+    det_M     = M.det()
+
     # Update sympy matrices.
     M_old_str = convert_mat_to_latex(M_old, align_opt='rrr')    
     M_str     = convert_mat_to_latex(M,     align_opt='rrr')
@@ -557,10 +570,12 @@ def apply_row_or_col_add(change):
 
     # Update output.
     results_html.value += \
-      err_str + '$$ $$' + r'$$ \overset{' + op_str + r'}{'  \
-      + prod_str + r'\left |' + M_old_str + r'\right |'     \
-      + r'\qquad = \qquad'                                      \
-      + prod_str  + r'\left |' + M_str     + r'\right | }$$'
+      err_str + '$$ $$' + r'$$ \overset{' + op_str + r'}{'  + prod_str  \
+      + r'\underset{' + r'\det =' + str(det_M_old) + r'}{'              \
+      + r'\underbrace{ \left |' + M_old_str + r'\right |'   + r'}}'     \
+      + r'\qquad = \qquad'      + prod_str                              \
+      + r'\underset{' + r'\det =' + str(det_M)     + r'}{'              \
+      + r'\underbrace{ \left |' + M_str     + r'\right | }}}$$'
 
   # End if.
 
