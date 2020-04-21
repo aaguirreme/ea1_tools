@@ -1,5 +1,12 @@
 # Changelog
 
+## 2020-04-21
+
+### Modified to Gauss apps
+
+- Fixed a bug in the notebook called "inverse_by_row_operations_notebook.ipynb".
+  The notebook was calling a module with the wrong name.
+
 ## 2020-04-20
 
 ### Modified to Gauss apps
