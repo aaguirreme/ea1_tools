@@ -78,7 +78,7 @@ for i in range(len(B)):
 # End for.
 
 # Put together description and values of the matrix.
-rhs_input = HBox([rhs_values, rhs_text]) 
+rhs_input = HBox([rhs_values, rhs_text], layout=Layout(width='150px'))
 
 # Create a text to describe the function of the start button.
 start_text = HTML(
