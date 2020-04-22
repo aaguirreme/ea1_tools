@@ -63,7 +63,8 @@ for i in range(A.rows):
 # End for. Loop over rows.
 
 # Put together description and values of the matrix.
-mat_input = HBox([mat_text, mat_values], layout=Layout(width='250px')) 
+mat_input = HBox([mat_text, mat_values], layout=Layout(width='250px',
+  height='120px')) 
 
 # Create a text to describe the function of the start button.
 start_text = HTML(
@@ -78,7 +79,7 @@ start_input = VBox( [start_text, start_btn])
 # Create a HTML object to show the augmented equation in LaTeX format.
 amat_latex = HTMLMath(
   value=r'The augmented matrix $(\bf{A}|\bf{I})$ will appear here.',
-  layout=Layout(justify_content='center'))
+  layout=Layout(justify_content='center', height='150px'))
 
 # Put together all inputs.
 all_inputs = Box( [mat_input, start_input, amat_latex], 

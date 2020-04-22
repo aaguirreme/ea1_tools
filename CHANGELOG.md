@@ -7,8 +7,12 @@
 - Added a new function to the library lib_gauss to create an array of text boxes
   based on the GridBox widget from ipywidgets. Previously, each text box of the
   array was defined individually.
-- Modified the modules gauss_app and inverse_app to use the new text box array
-  generator function.
+- Modified the modules gauss_app, inverse_app and determinant_app to use the new
+  text box array generator function.
+- Minimum cosmetic changes to all apps to control the height of some objects.
+  This avoids unnecessary scroll bars to show up.
+- Added outputs of old matrix A and current matrix B to determinant_app.
+- Added a transpose operation to determinant_app.
 
 ## 2020-04-21
 

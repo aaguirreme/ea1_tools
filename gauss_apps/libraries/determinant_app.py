@@ -17,7 +17,7 @@ from sympy.parsing.sympy_parser import parse_expr
 from ipywidgets import Layout, Text, HTML, HTMLMath, Box, HBox, VBox, Button, \
   Dropdown, RadioButtons
 
-from lib_gauss import convert_mat_to_latex, row_swap, col_swap, \
+from lib_gauss import gen_text_grid, convert_mat_to_latex, row_swap, col_swap, \
   row_times_scalar, col_times_scalar, row_add, col_add
 
 
@@ -29,45 +29,37 @@ from lib_gauss import convert_mat_to_latex, row_swap, col_swap, \
 
 
 # Define initial values for the coefficient matrix A.
-A = sym.Matrix([[4,  1, -2],
-                [3, -1,  1],
-                [1, -1,  1]])
+A0 = sym.Matrix([[4,  1, -2],
+                 [3, -1,  1],
+                 [1, -1,  1]])
 
 is_started = False
 
-# Create the matrix.
-M = A.copy()
-
 # Store two copies of the matrix.
-M_0    = M.copy()   # Initial matrix.
-M_old  = M.copy()   # Old matrix.
+B = A0.copy()   # Current matrix.
+A = A0.copy()   # Old matrix.
 
 # Define layout for all text boxes that form the input matrix.
 cell_layout = Layout(width='40px', height='35px')
 
-# Create text boxes to enter the values of the matrix.
-A11_tbox = Text(value=str(A[0,0]), layout=cell_layout)
-A12_tbox = Text(value=str(A[0,1]), layout=cell_layout)
-A13_tbox = Text(value=str(A[0,2]), layout=cell_layout)
-A21_tbox = Text(value=str(A[1,0]), layout=cell_layout)
-A22_tbox = Text(value=str(A[1,1]), layout=cell_layout)
-A23_tbox = Text(value=str(A[1,2]), layout=cell_layout)
-A31_tbox = Text(value=str(A[2,0]), layout=cell_layout)
-A32_tbox = Text(value=str(A[2,1]), layout=cell_layout)
-A33_tbox = Text(value=str(A[2,2]), layout=cell_layout)
-
 # Create a description for the matrix.
 mat_text = HTMLMath( 
-  value=r'Enter here the values of matrix $\bf{A}$',
+  value=r'Enter here the values of the matrix $\bf{A}$',
   layout=Layout(width='90px') ) 
 
-# Group the text boxes in the shape of a 3x3 matrix.
-mat_values = VBox([HBox([A11_tbox, A12_tbox, A13_tbox]),
-                   HBox([A21_tbox, A22_tbox, A23_tbox]),
-                   HBox([A31_tbox, A32_tbox, A33_tbox])])
+# Create a 3x3 array of the text boxes.
+mat_values = gen_text_grid(A.rows, A.cols, cell_layout, '45px')
+
+# Define the values of the text boxes.
+for i in range(A.rows):
+  for j in range(A.cols):
+    mat_values.children[A.rows*i + j].value = str(A[i,j])
+  # End for. Loop over columns
+# End for. Loop over rows.
 
 # Put together description and values of the matrix.
-mat_input = HBox([mat_text, mat_values]) 
+mat_input = HBox([mat_text, mat_values], layout=Layout(width='250px',
+  height='120px')) 
 
 # Create a text to describe the function of the start button.
 start_text = HTML(
@@ -81,8 +73,8 @@ start_input = VBox( [start_text, start_btn])
 
 # Create a HTML object to show the equation in LaTeX format.
 amat_latex = HTMLMath(
-  value=r'Matrix $\bf{A}$ will appear here.', 
-  layout=Layout(justify_content='center'))
+  value=r'The initial matrix $\bf{A}_0$ will appear here.', 
+  layout=Layout(justify_content='center', height='150px'))
 
 # Put together all inputs.
 all_inputs = Box( [mat_input, start_input, amat_latex], 
@@ -136,13 +128,30 @@ add_id2_drop = Dropdown( options=['1', '2', '3'], value='2',
 
 add_btn = Button(description='Add rows')
 
-add_ctrl =  VBox([add_radiobtn, add_id1_drop, add_sc_tbox, add_id2_drop, add_btn])
+add_ctrl = VBox([add_radiobtn, add_id1_drop, add_sc_tbox, add_id2_drop, add_btn])
 
-# Put together all controls
+# Controls for matrix transpose.
+
+transp_btn = Button(description='Transpose matrix', 
+  layout=Layout(width='150px'))
+
+# Put together all row operation controls
 all_ctrls = Box( [swap_ctrl, mult_ctrl, add_ctrl], 
   layout=Layout(justify_content='space-around', flex_flow='row wrap') )
 
 # Display area
+
+A_latex = HTMLMath(
+  value=r'The old matrix $\bf{A}$ will appear here.', 
+  layout=Layout(justify_content='center', height='150px'))
+
+B_latex = HTMLMath(
+  value=r'The current matrix $\bf{B}$ will appear here.', 
+  layout=Layout(justify_content='center', height='150px'))
+
+transp_and_AB = Box( [transp_btn, A_latex, B_latex], 
+  layout=Layout(justify_content='space-around', flex_flow='row wrap',
+  align_items='center') )
 
 # Create a HTML object to show results in LaTeX format.
 results_html = HTMLMath(value='Results will be shown here.', 
@@ -168,7 +177,7 @@ def update_matrix(change):
   '''
 #*******************************************************************************
 
-  global is_started, M, M_0, M_old, coeffs_lst, coeffs_lst_old
+  global is_started, A0, A, B, coeffs_lst, coeffs_lst_old
   
   is_started = True
 
@@ -176,25 +185,24 @@ def update_matrix(change):
   
   coeffs_lst_old = coeffs_lst.copy()
 
-  M[0,0] = parse_expr(A11_tbox.value)   # Get matrix for computations.
-  M[0,1] = parse_expr(A12_tbox.value)
-  M[0,2] = parse_expr(A13_tbox.value)
-  M[1,0] = parse_expr(A21_tbox.value)
-  M[1,1] = parse_expr(A22_tbox.value)
-  M[1,2] = parse_expr(A23_tbox.value)
-  M[2,0] = parse_expr(A31_tbox.value)
-  M[2,1] = parse_expr(A32_tbox.value)
-  M[2,2] = parse_expr(A33_tbox.value)
+  # Update matrix.
+
+  for i in range(A0.rows):
+    for j in range(A0.cols):
+      A0[i,j] = parse_expr(mat_values.children[A0.rows*i + j].value)
+    # End for. Loop over columns
+  # End for. Loop over rows.
 
   # Store two copies of the matrix.
-  M_0    = M.copy()   # Initial matrix.
-  M_old  = M.copy()   # Old matrix.
+  B = A0.copy()                         # Current matrix.
+  A = A0.copy()                         # Old matrix.
 
-  color_dict = {0: '', 1: '', 2: ''}
+  det_A0 = A0.det()                     # Compute determinant of A0.
 
   # Create the string with the initial matrix in LaTeX format.
-  latex_str = r'The initial matrix $\bf{A}$ is:' + '\n $$'  \
-    + r'\left [' + convert_mat_to_latex(M, color_dict, 'rrr') + r'\right ] $$'
+  latex_str = r'Initial matrix: <br><br> $$ {\bf{A}}_0 = '                     \
+    + r'\left [' + convert_mat_to_latex(A0, align_opt='rrr') + r'\right ] $$' \
+    + r'<br> $$\det {\bf{A}}_0 = ' + f'{det_A0}' + r'$$'
  
   # Update object "amat_latex" with the matrix in LaTeX format. 
   amat_latex.value=latex_str
@@ -259,6 +267,73 @@ def update_add_labels(change):
 
 #-------------------------------------------------------------------------------
 
+#*******************************************************************************
+def apply_transpose(change):
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  '''
+  Performs the transpose of the matrix when the button "transp_btn" is pressed.
+  Updates the Sympy matrices A and B, and the HTMLMath object "results_hmtl".
+
+  change:   dictionary holding information about the change of the button
+            "transp_btn". This argument is used to be compatible with the button
+            object but not involved in the code of this function.
+  '''
+#*******************************************************************************
+
+  global A, B, coeffs_lst
+
+  if (not is_started):
+
+    results_html.value = \
+      'Error. Please enter a matrix and press the start button.'
+
+  else:
+
+    A = B.copy()                          # Store the old matrix.
+
+    B = A.T                               # Set B as the transpose.
+
+    op_str = r'( \text{Transpose} )'
+
+    det_A = A.det()                       # Compute determinants of A and B.
+    det_B = B.det()
+
+    A_str = convert_mat_to_latex(A, align_opt='rrr')    
+    B_str = convert_mat_to_latex(B, align_opt='rrr')
+
+    prod = sym.S(1)
+    for num in coeffs_lst:
+      prod *= num
+    # End for.
+
+    if prod == sym.S(1):
+      prod_str = ''
+    else:
+      prod_str = str(prod) + r'\cdot'
+    # End if.
+
+    # Update old matrix
+    A_latex.value = 'Old matrix: <br><br>'                  \
+      + r'$$ {\bf{A}} = \left [' + A_str + r'\right ]$$'    \
+      + r'<br> $$\det {\bf{A}} = ' + f'{det_A}' + r'$$'
+
+    # Update current matrix
+    B_latex.value = 'Current matrix: <br><br>'              \
+      + r'$$ {\bf{B}} = \left [' + B_str + r'\right ]$$'    \
+      + r'<br> $$\det {\bf{B}} = ' + f'{det_B}' + r'$$'
+
+    # Update output.
+    results_html.value += \
+      '$$ $$' + r'$$ \overset{' + op_str + r'}{' + prod_str         \
+      + r'\underset{' + r'\det =' + str(det_A) + r'}{'              \
+      + r'\underbrace{ \left |'   + A_str + r'\right |'   + r'}}'   \
+      + r'\qquad = \qquad'        + prod_str                        \
+      + r'\underset{' + r'\det =' + str(det_B)     + r'}{'          \
+      + r'\underbrace{ \left |'   + B_str     + r'\right | }}}$$'
+  
+  # End if.
+
+#-------------------------------------------------------------------------------
 
 #*******************************************************************************
 def apply_swap(change):
@@ -274,7 +349,7 @@ def apply_swap(change):
   '''
 #*******************************************************************************
 
-  global M, M_old, coeffs_lst, coeffs_lst_old
+  global A, B, coeffs_lst, coeffs_lst_old
 
   id1 = int(swap_id1_drop.value)          # Read row or column indices.
   id2 = int(swap_id2_drop.value)
@@ -286,7 +361,7 @@ def apply_swap(change):
 
   else:
 
-    M_old = M.copy()                      # Store the old matrix.
+    A = B.copy()                          # Store the old matrix.
 
     coeffs_lst_old = coeffs_lst.copy()    # Store the old coefficients list.
 
@@ -308,14 +383,14 @@ def apply_swap(change):
 
       if swap_opt == 'columns':
 
-        M = col_swap(M_old, id1, id2)
+        B = col_swap(A, id1, id2)
 
         op_str = r'(' + r'C_{:d}'.format(id1)  \
           + r' \leftrightarrow ' + r'C_{:d}'.format(id2) + r' )'
 
       else:
 
-        M = row_swap(M_old, id1, id2)
+        B = row_swap(A, id1, id2)
 
         op_str = r'(' + r'R_{:d}'.format(id1)  \
           + r' \leftrightarrow ' + r'R_{:d}'.format(id2) + r' )'
@@ -328,12 +403,11 @@ def apply_swap(change):
 
     # End if.
 
-    det_M_old = M_old.det()     # Compute determinants of M and M_old.
-    det_M     = M.det()
+    det_A = A.det()       # Compute determinants of A and B.
+    det_B = B.det()
 
-    # Update sympy matrices.
-    M_old_str = convert_mat_to_latex(M_old, align_opt='rrr')    
-    M_str     = convert_mat_to_latex(M,     align_opt='rrr')
+    A_str = convert_mat_to_latex(A, align_opt='rrr')    
+    B_str = convert_mat_to_latex(B, align_opt='rrr')
 
     prod_old = sym.S(1)
     for num in coeffs_lst_old:
@@ -343,7 +417,7 @@ def apply_swap(change):
     if prod_old == sym.S(1):
       prod_old_str = ''
     else:
-      prod_old_str = str(prod_old)
+      prod_old_str = str(prod_old) + r'\cdot'
     # End if.
 
     prod = sym.S(1)
@@ -354,17 +428,27 @@ def apply_swap(change):
     if prod == sym.S(1):
       prod_str = ''
     else:
-      prod_str = str(prod)
+      prod_str = str(prod) + r'\cdot'
     # End if.
+
+    # Update old matrix
+    A_latex.value = 'Old matrix: $$ $$'                     \
+      + r'$$ {\bf{A}} = \left [' + A_str + r'\right ]$$'    \
+      + r'$$ $$ $$\det {\bf{A}} = ' + f'{det_A}' + r'$$'
+
+    # Update current matrix
+    B_latex.value = 'Current matrix: $$ $$'                 \
+      + r'$$ {\bf{B}} = \left [' + B_str + r'\right ]$$'    \
+      + r'$$ $$ $$\det {\bf{B}} = ' + f'{det_B}' + r'$$'
 
     # Update output.
     results_html.value += \
-      err_str + '$$ $$' + r'$$ \overset{' + op_str + r'}{' + prod_old_str \
-      + r'\underset{' + r'\det =' + str(det_M_old) + r'}{'                \
-      + r'\underbrace{ \left |'   + M_old_str + r'\right |' + r'}}'       \
-      + r'\qquad = \qquad'        + prod_str                              \
-      + r'\underset{' + r'\det =' + str(det_M)     + r'}{'                \
-      + r'\underbrace{ \left |' + M_str       + r'\right | }}}$$'
+      err_str + '$$ $$' + r'$$ \overset{' + op_str  + r'}{'  + prod_old_str \
+      + r'\underset{' + r'\det =' + str(det_A)  + r'}{'                     \
+      + r'\underbrace{ \left |'   + A_str       + r'\right |' + r'}}'       \
+      + r'\qquad = \qquad'        + prod_str                                \
+      + r'\underset{' + r'\det =' + str(det_B)  + r'}{'                     \
+      + r'\underbrace{ \left |'   + B_str       + r'\right | }}}$$'
 
   # End if.
 
@@ -385,7 +469,7 @@ def apply_row_or_col_times_scalar(change):
   '''
 #*******************************************************************************
 
-  global M, M_old, coeffs_lst, coeffs_lst_old
+  global A, B, coeffs_lst, coeffs_lst_old
 
   rcid = int(mult_id_drop.value)          # Read row or column index.
   c    = parse_expr(mult_sc_tbox.value)   # Read scalar value.
@@ -397,7 +481,7 @@ def apply_row_or_col_times_scalar(change):
 
   else:
 
-    M_old = M.copy()                      # Store the old matrix.
+    A = B.copy()                          # Store the old matrix.
 
     coeffs_lst_old = coeffs_lst.copy()    # Store the old coefficients list.
 
@@ -420,14 +504,14 @@ def apply_row_or_col_times_scalar(change):
 
       if mult_opt == 'column':
 
-        M = col_times_scalar(M, c, rcid)
+        B = col_times_scalar(A, c, rcid)
 
         op_str = r'( {:s} \,'.format(str(c)) + r'C_{:d}'.format(rcid) \
           + r' \to ' + r'C_{:d}'.format(rcid) + r' )'
 
       else:
 
-        M = row_times_scalar(M, c, rcid)
+        B = row_times_scalar(A, c, rcid)
 
         op_str = r'( {:s} \,'.format(str(c)) + r'R_{:d}'.format(rcid) \
           + r' \to ' + r'R_{:d}'.format(rcid) + r' )'
@@ -440,12 +524,11 @@ def apply_row_or_col_times_scalar(change):
 
     # End if.
 
-    det_M_old = M_old.det()     # Compute determinants of M and M_old.
-    det_M     = M.det()
+    det_A = A.det()       # Compute determinants of A and B.
+    det_B = B.det()
 
-    # Update sympy matrices.
-    M_old_str = convert_mat_to_latex(M_old, align_opt='rrr')    
-    M_str     = convert_mat_to_latex(M,     align_opt='rrr')
+    A_str = convert_mat_to_latex(A, align_opt='rrr')    
+    B_str = convert_mat_to_latex(B, align_opt='rrr')
 
     prod_old = sym.S(1)
     for num in coeffs_lst_old:
@@ -455,7 +538,7 @@ def apply_row_or_col_times_scalar(change):
     if prod_old == sym.S(1):
       prod_old_str = ''
     else:
-      prod_old_str = str(prod_old)
+      prod_old_str = str(prod_old) + r'\cdot'
     # End if.
 
     prod = sym.S(1)
@@ -466,17 +549,27 @@ def apply_row_or_col_times_scalar(change):
     if prod == sym.S(1):
       prod_str = ''
     else:
-      prod_str = str(prod)
+      prod_str = str(prod) + r'\cdot'
     # End if.
+
+    # Update old matrix
+    A_latex.value = 'Old matrix: $$ $$'                     \
+      + r'$$ {\bf{A}} = \left [' + A_str + r'\right ]$$'    \
+      + r'$$ $$ $$\det {\bf{A}} = ' + f'{det_A}' + r'$$'
+
+    # Update current matrix
+    B_latex.value = 'Current matrix: $$ $$'                 \
+      + r'$$ {\bf{B}} = \left [' + B_str + r'\right ]$$'    \
+      + r'$$ $$ $$\det {\bf{B}} = ' + f'{det_B}' + r'$$'
 
     # Update output.
     results_html.value += \
-      err_str + '$$ $$' + r'$$ \overset{' + op_str + r'}{' + prod_old_str \
-      + r'\underset{' + r'\det =' + str(det_M_old) + r'}{'                \
-      + r'\underbrace{ \left |' + M_old_str + r'\right |' + r'}}'         \
-      + r'\qquad = \qquad'      + prod_str                                \
-      + r'\underset{' + r'\det =' + str(det_M)     + r'}{'                \
-      + r'\underbrace{ \left |' + M_str     + r'\right | }}}$$'
+      err_str + '$$ $$' + r'$$ \overset{' + op_str  + r'}{' + prod_old_str  \
+      + r'\underset{'   + r'\det =' + str(det_A)    + r'}{'                 \
+      + r'\underbrace{ \left |'     + A_str         + r'\right |' + r'}}'   \
+      + r'\qquad = \qquad'          + prod_str                              \
+      + r'\underset{'   + r'\det =' + str(det_B)    + r'}{'                 \
+      + r'\underbrace{ \left |'     + B_str         + r'\right | }}}$$'
 
   # End if.
 
@@ -497,7 +590,7 @@ def apply_row_or_col_add(change):
   '''
 #*******************************************************************************
 
-  global M, M_old, coeffs_lst, coeffs_lst_old
+  global A, B, coeffs_lst, coeffs_lst_old
 
   id1  = int(add_id1_drop.value)          # Read row or column indices.
   id2  = int(add_id2_drop.value)
@@ -511,7 +604,7 @@ def apply_row_or_col_add(change):
 
   else:
 
-    M_old = M.copy()    # Store the old matrix.
+    A = B.copy()    # Store the old matrix.
 
     # Verify if the two row indices the same.
 
@@ -532,14 +625,14 @@ def apply_row_or_col_add(change):
 
       if add_opt == 'columns':
 
-        M = col_add(M_old, id2, c1, id1, c2, id2)
+        B = col_add(A, id2, c1, id1, c2, id2)
 
         op_str = r'(' + '{:s}'.format(str(c1)) + r'C_{:d}'.format(id1) + ' + ' \
           + r'C_{:d}'.format(id2) + r' \to ' + r'C_{:d}'.format(id2) + r')'
 
       else:
 
-        M = row_add(M_old, id2, c1, id1, c2, id2)
+        B = row_add(A, id2, c1, id1, c2, id2)
 
         op_str = r'(' + '{:s}'.format(str(c1)) + r'R_{:d}'.format(id1) + ' + ' \
           + r'R_{:d}'.format(id2) + r' \to ' + r'R_{:d}'.format(id2) + r')'
@@ -550,12 +643,11 @@ def apply_row_or_col_add(change):
 
     # End if.
 
-    det_M_old = M_old.det()     # Compute determinants of M and M_old.
-    det_M     = M.det()
+    det_A = A.det()       # Compute determinants of A and B.
+    det_B = B.det()
 
-    # Update sympy matrices.
-    M_old_str = convert_mat_to_latex(M_old, align_opt='rrr')    
-    M_str     = convert_mat_to_latex(M,     align_opt='rrr')
+    A_str = convert_mat_to_latex(A, align_opt='rrr')    
+    B_str = convert_mat_to_latex(B, align_opt='rrr')
 
     prod = sym.S(1)
     for num in coeffs_lst:
@@ -565,17 +657,27 @@ def apply_row_or_col_add(change):
     if prod == sym.S(1):
       prod_str = ''
     else:
-      prod_str = str(prod)
+      prod_str = str(prod) + r'\cdot'
     # End if.
+
+    # Update old matrix
+    A_latex.value = 'Old matrix: $$ $$'                     \
+      + r'$$ {\bf{A}} = \left [' + A_str + r'\right ]$$'    \
+      + r'$$ $$ $$\det {\bf{A}} = ' + f'{det_A}' + r'$$'
+
+    # Update current matrix
+    B_latex.value = 'Current matrix: $$ $$'                 \
+      + r'$$ {\bf{B}} = \left [' + B_str + r'\right ]$$'    \
+      + r'$$ $$ $$\det {\bf{B}} = ' + f'{det_B}' + r'$$'
 
     # Update output.
     results_html.value += \
-      err_str + '$$ $$' + r'$$ \overset{' + op_str + r'}{'  + prod_str  \
-      + r'\underset{' + r'\det =' + str(det_M_old) + r'}{'              \
-      + r'\underbrace{ \left |' + M_old_str + r'\right |'   + r'}}'     \
-      + r'\qquad = \qquad'      + prod_str                              \
-      + r'\underset{' + r'\det =' + str(det_M)     + r'}{'              \
-      + r'\underbrace{ \left |' + M_str     + r'\right | }}}$$'
+      err_str + '$$ $$' + r'$$ \overset{' + op_str + r'}{' + prod_str   \
+      + r'\underset{' + r'\det =' + str(det_A) + r'}{'                  \
+      + r'\underbrace{ \left |'   + A_str + r'\right |'   + r'}}'       \
+      + r'\qquad = \qquad'        + prod_str                            \
+      + r'\underset{' + r'\det =' + str(det_B)     + r'}{'              \
+      + r'\underbrace{ \left |'   + B_str     + r'\right | }}}$$'
 
   # End if.
 
@@ -597,10 +699,12 @@ def run_app():
   swap_btn.on_click(apply_swap)
   mult_btn.on_click(apply_row_or_col_times_scalar)
   add_btn.on_click(apply_row_or_col_add)
+  transp_btn.on_click(apply_transpose) 
 
   # Display all objects.
   display(all_inputs)     # Inputs.
   display(all_ctrls)      # Controls.
+  display(transp_and_AB)  # Transpose controls, matrices A and B.
   display(results_html)   # Output.
 
 #-------------------------------------------------------------------------------
