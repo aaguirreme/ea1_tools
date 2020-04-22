@@ -1,5 +1,13 @@
 # Changelog
 
+## 2020-04-22
+
+### Modified to Gauss apps
+
+- Added a new function to the library lib_gauss to create an array of text boxes
+  based on the GridBox widget from ipywidgets. Previously, each text box of the
+  array was defined individually.
+
 ## 2020-04-21
 
 ### Modified to Gauss apps

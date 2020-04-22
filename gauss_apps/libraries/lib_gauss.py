@@ -15,12 +15,39 @@ import sympy as sym
 
 from sympy.parsing.sympy_parser import parse_expr
 
-from ipywidgets import Layout, Text, HTML, HTMLMath, Box, HBox, VBox, Button, \
-  Dropdown
+from ipywidgets import Layout, Text, HTML, HTMLMath, Box, HBox, VBox, GridBox, \
+  Button, Dropdown
 
 #*******************************************************************************
 #                             Function definitions
 #*******************************************************************************
+
+
+#*******************************************************************************
+def gen_text_grid(nrows, ncols, cell_layout, col_width):
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  '''
+  Creates an array of text boxes by providing the dimensions of the array, the
+  layout of the cells, and the width of each column.
+
+  nrows:        number of rows
+  ncols:        number of columns
+  cell_layout:  ipywidgets layout object containing the global layout
+                specifications for all cells.
+  col_width:    string containing the width of the column. E.g. '45px'.
+  '''
+#*******************************************************************************
+  
+  nitems = nrows*ncols
+
+  items = [Text(layout=cell_layout) for i in range(nitems)]
+
+  tgrid = GridBox(items, 
+    layout=Layout(grid_template_columns=f'repeat({ncols}, {col_width})'))
+
+  return tgrid
+
+#-------------------------------------------------------------------------------
 
 
 #*******************************************************************************
