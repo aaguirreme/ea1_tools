@@ -159,6 +159,14 @@ add_btn = Button(description='Add rows')
 add_ctrl = HBox( [ VBox([add_rid1_drop, add_sc_tbox]), 
                    VBox([add_rid2_drop, add_btn    ]) ] )
 
+# Controls for verification of the inverse.
+
+check_btn = Button(description='Check inverse')
+
+check_ctrl = Box( [check_btn], 
+  layout=Layout(justify_content='space-around', flex_flow='row wrap',
+    align_items='center', height='70px'))
+
 # Put together all controls
 all_ctrls = Box( [swap_ctrl, mult_ctrl, add_ctrl], 
   layout=Layout(justify_content='space-around', flex_flow='row wrap') )
@@ -246,6 +254,47 @@ def update_aug_matrix(change):
 
   # Clear the contents of the results_html output.
   results_html.value = '' 
+
+#-------------------------------------------------------------------------------
+
+
+#*******************************************************************************
+def check_inverse(change):
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#*******************************************************************************
+
+  global M, M_old
+
+  rid1 = int(swap_rid1_drop.value)        # Read row indices.
+  rid2 = int(swap_rid2_drop.value)
+
+  color_M_old = {0: '', 1: '', 2: ''}     # Initialize color dictionaries.
+  color_M     = {0: '', 1: '', 2: ''}
+
+  if (not is_started):
+
+    results_html.value = \
+      'Error. Please enter the system of equations and press the start button.'
+
+  else:
+
+    err_str = ''
+
+    B = M[:,3:]                           # Extract the RHS of aug. matrix M.
+
+    AB = A*B                              # Multiply A times B.
+
+    A_str = convert_mat_to_latex(A, align_opt='rrr')
+    B_str = convert_mat_to_latex(B, align_opt='rrr')
+
+    AB_str = convert_mat_to_latex(AB, align_opt='rrr')
+
+    # Update output.
+    results_html.value += err_str + '$$ $$' + r'$$ {\bf A} {\bf B} = '      \
+      + r'\left [' + A_str + r'\right ]' + r'\left [' + B_str + r'\right ]' \
+      + r'= \left [' + AB_str + r'\right ] $$'
+
+  # End if.
 
 #-------------------------------------------------------------------------------
 
@@ -487,10 +536,12 @@ def run_app():
   swap_btn.on_click(apply_row_swap)           # with each button.
   mult_btn.on_click(apply_row_times_scalar)
   add_btn.on_click(apply_row_add)
+  check_btn.on_click(check_inverse)
 
   # Display all objects.
   display(all_inputs)     # Inputs.
   display(all_ctrls)      # Controls.
+  display(check_ctrl)     # Check button.
   display(results_html)   # Output.
 
 #-------------------------------------------------------------------------------

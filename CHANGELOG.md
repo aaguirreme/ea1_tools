@@ -6,6 +6,8 @@
 
 - Fixed a bug in the notebook called "inverse_by_row_operations_notebook.ipynb".
   The notebook was calling a module with the wrong name.
+- Added a button to the inverse notebook to check if the right-hand side of the
+  augmented matrix, B, is the inverse of the initial matrix, A.
 
 ## 2020-04-20
 
