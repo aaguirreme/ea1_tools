@@ -17,7 +17,8 @@ from sympy.parsing.sympy_parser import parse_expr
 from ipywidgets import Layout, Text, HTML, HTMLMath, Box, HBox, VBox, Button, \
   Dropdown
 
-from lib_gauss import convert_mat_to_latex, row_swap, row_times_scalar, row_add 
+from lib_gauss import gen_text_grid, convert_mat_to_latex, row_swap, \
+  row_times_scalar, row_add 
 
 
 #*******************************************************************************
@@ -46,53 +47,23 @@ M_old  = M.copy()   # Old matrix.
 # Define layout for all text boxes that form the input matrix.
 cell_layout = Layout(width='40px', height='35px')
 
-# Create text boxes to enter the values of the matrix.
-A11_tbox = Text(value=str(A[0,0]), layout=cell_layout)
-A12_tbox = Text(value=str(A[0,1]), layout=cell_layout)
-A13_tbox = Text(value=str(A[0,2]), layout=cell_layout)
-A21_tbox = Text(value=str(A[1,0]), layout=cell_layout)
-A22_tbox = Text(value=str(A[1,1]), layout=cell_layout)
-A23_tbox = Text(value=str(A[1,2]), layout=cell_layout)
-A31_tbox = Text(value=str(A[2,0]), layout=cell_layout)
-A32_tbox = Text(value=str(A[2,1]), layout=cell_layout)
-A33_tbox = Text(value=str(A[2,2]), layout=cell_layout)
-
-# # Create text boxes to enter the values of the right hand side vector.
-# B11_tbox = Text(value=str(B[0,0]), layout=cell_layout)
-# B12_tbox = Text(value=str(B[0,1]), layout=cell_layout)
-# B13_tbox = Text(value=str(B[0,2]), layout=cell_layout)
-# B21_tbox = Text(value=str(B[1,0]), layout=cell_layout)
-# B22_tbox = Text(value=str(B[1,1]), layout=cell_layout)
-# B23_tbox = Text(value=str(B[1,2]), layout=cell_layout)
-# B31_tbox = Text(value=str(B[2,0]), layout=cell_layout)
-# B32_tbox = Text(value=str(B[2,1]), layout=cell_layout)
-# B33_tbox = Text(value=str(B[2,2]), layout=cell_layout)
-
 # Create a description for the matrix.
 mat_text = HTMLMath( 
-  value=r'Enter here the values of matrix $\bf{A}$',
+  value=r'Enter here the values of the matrix $\bf{A}$',
   layout=Layout(width='90px') ) 
 
-# Group the text boxes in the shape of a 3x3 matrix.
-mat_values = VBox([HBox([A11_tbox, A12_tbox, A13_tbox]),
-                   HBox([A21_tbox, A22_tbox, A23_tbox]),
-                   HBox([A31_tbox, A32_tbox, A33_tbox])])
+# Create a 3x3 array of the text boxes.
+mat_values = gen_text_grid(A.rows, A.cols, cell_layout, '45px')
+
+# Define the values of the text boxes.
+for i in range(A.rows):
+  for j in range(A.cols):
+    mat_values.children[A.rows*i + j].value = str(A[i,j])
+  # End for. Loop over columns
+# End for. Loop over rows.
 
 # Put together description and values of the matrix.
-mat_input = HBox([mat_text, mat_values]) 
-
-# # Create a description for the RHS (right hand side) vector.
-# rhs_text = HTMLMath(
-#   value=r'Enter here the values of the right-hand side matrix $\bf{B}$',
-#   layout=Layout(width='90px') ) 
-# 
-# # Group the text boxes in the shape of a 3x1 vector.
-# rhs_values = VBox([HBox([B11_tbox, B12_tbox, B13_tbox]),
-#                    HBox([B21_tbox, B22_tbox, B23_tbox]),
-#                    HBox([B31_tbox, B32_tbox, B33_tbox])])
-# 
-# # Put together description and values of the matrix.
-# rhs_input = HBox([rhs_values, rhs_text]) 
+mat_input = HBox([mat_text, mat_values], layout=Layout(width='250px')) 
 
 # Create a text to describe the function of the start button.
 start_text = HTML(
@@ -108,10 +79,6 @@ start_input = VBox( [start_text, start_btn])
 amat_latex = HTMLMath(
   value=r'The augmented matrix $(\bf{A}|\bf{I})$ will appear here.',
   layout=Layout(justify_content='center'))
-
-# # Put together all inputs.
-# all_inputs = Box( [mat_input, rhs_input, start_input, amat_latex], 
-#   layout=Layout(justify_content='space-around', flex_flow='row wrap') )
 
 # Put together all inputs.
 all_inputs = Box( [mat_input, start_input, amat_latex], 
@@ -201,25 +168,13 @@ def update_aug_matrix(change):
   
   is_started = True
 
-  A[0,0] = parse_expr(A11_tbox.value)   # Update augmented matrix.
-  A[0,1] = parse_expr(A12_tbox.value)
-  A[0,2] = parse_expr(A13_tbox.value)
-  A[1,0] = parse_expr(A21_tbox.value)
-  A[1,1] = parse_expr(A22_tbox.value)
-  A[1,2] = parse_expr(A23_tbox.value)
-  A[2,0] = parse_expr(A31_tbox.value)
-  A[2,1] = parse_expr(A32_tbox.value)
-  A[2,2] = parse_expr(A33_tbox.value)
+  # Update matrix.
 
-  # B[0,0] = parse_expr(B11_tbox.value)
-  # B[0,1] = parse_expr(B12_tbox.value)
-  # B[0,2] = parse_expr(B13_tbox.value)
-  # B[1,0] = parse_expr(B21_tbox.value)
-  # B[1,1] = parse_expr(B22_tbox.value)
-  # B[1,2] = parse_expr(B23_tbox.value)
-  # B[2,0] = parse_expr(B31_tbox.value)
-  # B[2,1] = parse_expr(B32_tbox.value)
-  # B[2,2] = parse_expr(B33_tbox.value)
+  for i in range(A.rows):
+    for j in range(A.cols):
+      A[i,j] = parse_expr(mat_values.children[A.rows*i + j].value)
+    # End for. Loop over columns
+  # End for. Loop over rows.
 
   B = sym.eye(3)
 

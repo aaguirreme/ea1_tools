@@ -7,6 +7,8 @@
 - Added a new function to the library lib_gauss to create an array of text boxes
   based on the GridBox widget from ipywidgets. Previously, each text box of the
   array was defined individually.
+- Modified the modules gauss_app and inverse_app to use the new text box array
+  generator function.
 
 ## 2020-04-21
 
