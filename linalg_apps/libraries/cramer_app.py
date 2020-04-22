@@ -98,8 +98,6 @@ all_inputs = Box( [mat_input, rhs_input, start_input, eq_latex],
 
 # Controls
 
-# Controls for row swapping.
-
 # Create a text to describe the function of the start button.
 var_text = HTML(
   value='Choose a variable to solve for.',

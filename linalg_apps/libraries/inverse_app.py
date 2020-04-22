@@ -17,7 +17,7 @@ from sympy.parsing.sympy_parser import parse_expr
 from ipywidgets import Layout, Text, HTML, HTMLMath, Box, HBox, VBox, Button, \
   Dropdown
 
-from lib_gauss import gen_text_grid, convert_mat_to_latex, row_swap, \
+from lib_linalg import gen_text_grid, convert_mat_to_latex, row_swap, \
   row_times_scalar, row_add 
 
 

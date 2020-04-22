@@ -2,7 +2,7 @@
 
 ## 2020-04-22
 
-### Modified to Gauss apps
+### Modified to linear algebra apps (previously called Gauss apps)
 
 - Added a new function to the library lib_gauss to create an array of text boxes
   based on the GridBox widget from ipywidgets. Previously, each text box of the
@@ -13,6 +13,8 @@
   This avoids unnecessary scroll bars to show up.
 - Added outputs of old matrix A and current matrix B to determinant_app.
 - Added a transpose operation to determinant_app.
+- Renamed the library lib_gauss.py to lib_linalg.py
+- Moved all Cramer's solver files to the linear algebra apps folder.
 
 ### Modified to Gauss tutorials
 

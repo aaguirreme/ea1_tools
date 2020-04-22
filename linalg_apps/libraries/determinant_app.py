@@ -17,7 +17,7 @@ from sympy.parsing.sympy_parser import parse_expr
 from ipywidgets import Layout, Text, HTML, HTMLMath, Box, HBox, VBox, Button, \
   Dropdown, RadioButtons
 
-from lib_gauss import gen_text_grid, convert_mat_to_latex, row_swap, col_swap, \
+from lib_linalg import gen_text_grid, convert_mat_to_latex, row_swap, col_swap, \
   row_times_scalar, col_times_scalar, row_add, col_add
 
 
@@ -26,7 +26,6 @@ from lib_gauss import gen_text_grid, convert_mat_to_latex, row_swap, col_swap, \
 #*******************************************************************************
 
 # NOTE: These commands are executed when the library is imported.
-
 
 # Define initial values for the coefficient matrix A.
 A0 = sym.Matrix([[4,  1, -2],
