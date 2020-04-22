@@ -14,6 +14,10 @@
 - Added outputs of old matrix A and current matrix B to determinant_app.
 - Added a transpose operation to determinant_app.
 
+### Modified to Gauss tutorials
+
+- Fixed a sign mistake on the first slide of gauss_unique_solution.
+
 ## 2020-04-21
 
 ### Modified to Gauss apps
