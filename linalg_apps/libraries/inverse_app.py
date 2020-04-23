@@ -131,12 +131,16 @@ add_ctrl = HBox( [ VBox([add_rid1_drop, add_sc_tbox]),
 
 check_btn = Button(description='Check inverse')
 
-check_ctrl = Box( [check_btn], 
-  layout=Layout(justify_content='space-around', flex_flow='row wrap',
-    align_items='center', height='70px'))
+check_html = HTMLMath(value=r'A verification of ${\bf AB}$ will appear here ' \
+  + r'after pressing the Check inverse button, where ${\bf B}$ is the '       \
+  + r'current right-hand side.', layout=Layout(justify_content='center', 
+  height='110px', width='550px'))
+
+check_ctrl = Box( [check_btn, check_html], layout=Layout(flex_flow='row wrap', 
+  align_items='center', height='130px'))
 
 # Put together all controls
-all_ctrls = Box( [swap_ctrl, mult_ctrl, add_ctrl], 
+all_ctrls = Box( [swap_ctrl, mult_ctrl, add_ctrl, check_ctrl], 
   layout=Layout(justify_content='space-around', flex_flow='row wrap') )
 
 # Display area
@@ -229,12 +233,10 @@ def check_inverse(change):
 
   if (not is_started):
 
-    results_html.value = \
+    check_html.value = \
       'Error. Please enter the system of equations and press the start button.'
 
   else:
-
-    err_str = ''
 
     B = M[:,3:]                           # Extract the RHS of aug. matrix M.
 
@@ -246,7 +248,7 @@ def check_inverse(change):
     AB_str = convert_mat_to_latex(AB, align_opt='rrr')
 
     # Update output.
-    results_html.value += err_str + '$$ $$' + r'$$ {\bf A} {\bf B} = '      \
+    check_html.value = '<br>' + r'$$ {\bf A} {\bf B} = '                    \
       + r'\left [' + A_str + r'\right ]' + r'\left [' + B_str + r'\right ]' \
       + r'= \left [' + AB_str + r'\right ] $$'
 
@@ -293,7 +295,7 @@ def apply_row_swap(change):
       # If the indices are equal, create the error message, and do not call
       # the swapping function.
 
-      err_str    = '$$ $$' + 'Error. No rows were swapped.\n'
+      err_str    = '<br>' + 'Error. No rows were swapped.\n'
       row_op_str = r'\Rightarrow'
     
     else: 
@@ -321,7 +323,7 @@ def apply_row_swap(change):
     M_str     = convert_mat_to_latex(M, color_M, 'rrr|rrr')
 
     # Update output.
-    results_html.value += err_str + '$$ $$'                     \
+    results_html.value += err_str + '<br>'                      \
       + '$$ \left[' + M_old_str + r'\right ]'     + row_op_str  \
       + '\left ['   + M_str     + r'\right ] $$'
 
@@ -368,7 +370,7 @@ def apply_row_times_scalar(change):
       # If the constant is zero, create the error message, and do not call
       # the multiplication function.
 
-      err_str    = '$$ $$' + 'Error. The constant must not be zero. ' +\
+      err_str    = '<br>' + 'Error. The constant must not be zero. ' +\
         'No operation was performed.\n'
       row_op_str = r'\Rightarrow'
     
@@ -395,7 +397,7 @@ def apply_row_times_scalar(change):
     M_str     = convert_mat_to_latex(M, color_M, 'rrr|rrr')
 
     # Update output.
-    results_html.value += err_str + '$$ $$'                     \
+    results_html.value += err_str + '<br>'                      \
       + '$$ \left[' + M_old_str + r'\right ]'     + row_op_str  \
       + '\left ['   + M_str     + r'\right ] $$'
 
@@ -444,7 +446,7 @@ def apply_row_add(change):
       # If the indices are equal, create the error message, and do not call
       # the addition function.
 
-      err_str    = '$$ $$' + 'Error. The selection of rows for the addition ' +\
+      err_str    = '<br>' + 'Error. The selection of rows for the addition ' +\
         'is not valid. No operation was performed.'
       row_op_str = r'\Rightarrow'
     
@@ -475,7 +477,7 @@ def apply_row_add(change):
     M_str     = convert_mat_to_latex(M, color_M, 'rrr|rrr')
 
     # Update output.
-    results_html.value += err_str + '$$ $$'                     \
+    results_html.value += err_str + '<br>'                      \
       + '$$ \left[' + M_old_str + r'\right ]'     + row_op_str  \
       + '\left ['   + M_str     + r'\right ] $$'
 
@@ -497,7 +499,6 @@ def run_app():
   # Display all objects.
   display(all_inputs)     # Inputs.
   display(all_ctrls)      # Controls.
-  display(check_ctrl)     # Check button.
   display(results_html)   # Output.
 
 #-------------------------------------------------------------------------------

@@ -6,6 +6,8 @@
 
 - Improved the Cramer's solver app by separating the outputs into different
   lines and adding colors to the determinants.
+- Modified the Inverse by reduction app by separation the verification output
+  from the history of operations.
 
 ## 2020-04-22
 
