@@ -18,6 +18,8 @@ from sympy.parsing.sympy_parser import parse_expr
 from ipywidgets import Layout, Text, HTML, HTMLMath, Box, HBox, VBox, Button, \
   Dropdown
 
+from lib_linalg import gen_text_grid
+
 #*******************************************************************************
 #           Global variables definition and notebook initialization
 #*******************************************************************************
@@ -37,45 +39,39 @@ is_started = False
 # Define layout for all text boxes that form the input matrix.
 cell_layout = Layout(width='40px', height='35px')
 
-# Create text boxes to enter the values of the matrix.
-A11_tbox = Text(value=str(A[0,0]), layout=cell_layout)
-A12_tbox = Text(value=str(A[0,1]), layout=cell_layout)
-A13_tbox = Text(value=str(A[0,2]), layout=cell_layout)
-A21_tbox = Text(value=str(A[1,0]), layout=cell_layout)
-A22_tbox = Text(value=str(A[1,1]), layout=cell_layout)
-A23_tbox = Text(value=str(A[1,2]), layout=cell_layout)
-A31_tbox = Text(value=str(A[2,0]), layout=cell_layout)
-A32_tbox = Text(value=str(A[2,1]), layout=cell_layout)
-A33_tbox = Text(value=str(A[2,2]), layout=cell_layout)
-
-# Create text boxes to enter the values of the right hand side vector.
-B1_tbox  = Text(value=str(B[0]), layout=cell_layout)
-B2_tbox  = Text(value=str(B[1]), layout=cell_layout)
-B3_tbox  = Text(value=str(B[2]), layout=cell_layout)
-
 # Create a description for the matrix.
 mat_text = HTMLMath( 
-  value=r'Enter here the values of the coefficient matrix $\bf{A}$',
+  value=r'Enter here the values of the matrix $\bf{A}$',
   layout=Layout(width='90px') ) 
 
-# Group the text boxes in the shape of a 3x3 matrix.
-mat_values = VBox([HBox([A11_tbox, A12_tbox, A13_tbox]),
-                   HBox([A21_tbox, A22_tbox, A23_tbox]),
-                   HBox([A31_tbox, A32_tbox, A33_tbox])])
+# Create a 3x3 array of the text boxes.
+mat_values = gen_text_grid(A.rows, A.cols, cell_layout, '45px')
+
+# Define the values of the text boxes.
+for i in range(A.rows):
+  for j in range(A.cols):
+    mat_values.children[A.rows*i + j].value = str(A[i,j])
+  # End for. Loop over columns
+# End for. Loop over rows.
 
 # Put together description and values of the matrix.
-mat_input = HBox([mat_text, mat_values]) 
+mat_input = HBox([mat_text, mat_values], layout=Layout(width='250px',
+  height='120px')) 
 
 # Create a description for the RHS (right hand side) vector.
 rhs_text = HTMLMath(
   value=r'Enter here the values of the constant matrix $\bf{B}$',
   layout=Layout(width='90px') ) 
 
-# Group the text boxes in the shape of a 3x1 vector.
-rhs_values = VBox( [B1_tbox, B2_tbox, B3_tbox], layout=Layout(width='50px') )
+rhs_values = gen_text_grid(len(B), 1, cell_layout, '45px')
+
+for i in range(len(B)):
+  rhs_values.children[i].value = str(B[i])
+# End for.
 
 # Put together description and values of the matrix.
-rhs_input = HBox([rhs_values, rhs_text]) 
+rhs_input = HBox([rhs_values, rhs_text], layout=Layout(width='150px',
+  height='120px'))
 
 # Create a text to describe the function of the start button.
 start_text = HTML(
@@ -114,7 +110,7 @@ var_ctrl = VBox( [ var_text, var_drop, var_btn ] )
 
 # Create a HTML object to show results in LaTeX format.
 results_html = HTMLMath(value='Results will be shown here.', 
-  layout=Layout(justify_content='center', height='120px', width='400px'))
+  layout=Layout(justify_content='center', height='250px', width='400px'))
 
 # Put together all controls
 other_widgets = Box( [var_ctrl, results_html], 
@@ -124,9 +120,6 @@ other_widgets = Box( [var_ctrl, results_html],
 #*******************************************************************************
 #                             Function definitions
 #*******************************************************************************
-
-
-
 
 
 #*******************************************************************************
@@ -202,10 +195,18 @@ def apply_cramer(change):
     
     xk = detAk/detA                   # Find the value of the variable x_k.
   
-    latex_str = r'$$' + f' \det A_{k} = ' + r'\left|' + \
-      convert_mat_to_latex(Ak,k) + r'\right| = ' + f'{detAk}' + \
-      f',\quad x_{{ {k} }} =' + r'\frac{ \det A_' + f'{k}' + r'}{\det A}' + \
-      f' = \\frac{{ {str(detAk)} }}{{ {str(detA)} }}' + f' = {xk}' + r'$$'
+    latex_str = \
+      r'$$'   + r' \color{green}{\det A} = '  + r'\left|'                     \
+      + convert_mat_to_latex(A,0)             + r'\right| = '                 \
+      + f'\color{{green}}{{ {detA}}}'         + r'$$ <br>'                    \
+      + r'$$' + f' \color{{red}}{{ \det A_{k} }} = ' + r'\left|'              \
+      + convert_mat_to_latex(Ak,k)            + r'\right| = '                 \
+      + f'\color{{red}}{{ {detAk} }}'         + r'$$ <br>'                    \
+      + f'$$ x_{{ {k} }} =' + r'\frac{ \color{red}{\det A_' + f'{k}' + r'}}'  \
+      + r'{\color{green}{ \det A }}'                                          \
+      + r' = \frac{ \color{red}{' + f'{str(detAk)}' + r'}}'                   \
+      + r'{\color{green}{'        + f'{str(detA)}'  + r'}}'                   \
+      + f' = {xk}' + r'$$'
     
     results_html.value = latex_str
   
@@ -325,19 +326,15 @@ def update_system(change):
   
   is_started = True
 
-  A[0,0] = parse_expr(A11_tbox.value)   # Update augmented matrix.
-  A[0,1] = parse_expr(A12_tbox.value)
-  A[0,2] = parse_expr(A13_tbox.value)
-  A[1,0] = parse_expr(A21_tbox.value)
-  A[1,1] = parse_expr(A22_tbox.value)
-  A[1,2] = parse_expr(A23_tbox.value)
-  A[2,0] = parse_expr(A31_tbox.value)
-  A[2,1] = parse_expr(A32_tbox.value)
-  A[2,2] = parse_expr(A33_tbox.value)
+  for i in range(A.rows):
+    for j in range(A.cols):
+      A[i,j] = parse_expr(mat_values.children[A.rows*i + j].value)
+    # End for. Loop over columns
+  # End for. Loop over rows.
 
-  B[0] = parse_expr(B1_tbox.value)
-  B[1] = parse_expr(B2_tbox.value)
-  B[2] = parse_expr(B3_tbox.value)
+  for i in range(len(B)):
+    B[i] = parse_expr(rhs_values.children[i].value)
+  # End for. Loop over rows.
 
   detA = A.det()      # Compute determinant.
 

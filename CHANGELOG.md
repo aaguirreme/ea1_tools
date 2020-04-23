@@ -1,5 +1,12 @@
 # Changelog
 
+## 2020-04-23
+
+### Modified to linear algebra apps
+
+- Improved the Cramer's solver app by separating the outputs into different
+  lines and adding colors to the determinants.
+
 ## 2020-04-22
 
 ### Modified to linear algebra apps (previously called Gauss apps)
