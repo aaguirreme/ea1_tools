@@ -8,6 +8,10 @@
   lines and adding colors to the determinants.
 - Modified the Inverse by reduction app by separation the verification output
   from the history of operations.
+- Simplified the determinant properties app to just demonstrate the properties.
+  The history of operations was removed. A copy of the old notebook was created
+  to consider a future app more clear on its purpose of computing the
+  determinant of a matrix using properties and reduction to triangular matrix.
 
 ## 2020-04-22
 
