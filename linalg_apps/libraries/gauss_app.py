@@ -186,7 +186,7 @@ def update_aug_matrix(change):
   # End for. Loop over rows.
 
   for i in range(len(B)):
-    B[i] = parse_expr(mat_values.children[i].value)
+    B[i] = parse_expr(rhs_values.children[i].value)
   # End for. Loop over rows.
 
   # Create the augmented matrix.
