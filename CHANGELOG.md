@@ -1,5 +1,11 @@
 # Changelog
 
+## 2020-04-28
+
+### Added to Gauss tutorials
+
+- New inverse by row operations tutorial.
+
 ## 2020-04-23
 
 ### Modified to linear algebra apps

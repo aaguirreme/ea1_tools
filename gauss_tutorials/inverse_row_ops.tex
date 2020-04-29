@@ -1,0 +1,239 @@
+%% LyX 2.3.4.2 created this file.  For more info, see http://www.lyx.org/.
+%% Do not edit unless you really know what you are doing.
+\documentclass[12pt,english]{beamer}
+\usepackage[T1]{fontenc}
+\usepackage[latin9]{inputenc}
+\setcounter{secnumdepth}{3}
+\setcounter{tocdepth}{3}
+\setlength{\parskip}{\smallskipamount}
+\setlength{\parindent}{0pt}
+\usepackage{babel}
+\usepackage{bm}
+\usepackage{amstext}
+\ifx\hypersetup\undefined
+  \AtBeginDocument{%
+    \hypersetup{unicode=true,pdfusetitle,
+ bookmarks=true,bookmarksnumbered=false,bookmarksopen=false,
+ breaklinks=false,pdfborder={0 0 0},pdfborderstyle={},backref=false,colorlinks=false}
+  }
+\else
+  \hypersetup{unicode=true,pdfusetitle,
+ bookmarks=true,bookmarksnumbered=false,bookmarksopen=false,
+ breaklinks=false,pdfborder={0 0 0},pdfborderstyle={},backref=false,colorlinks=false}
+\fi
+
+\makeatletter
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Textclass specific LaTeX commands.
+% this default might be overridden by plain title style
+\newcommand\makebeamertitle{\frame{\maketitle}}%
+% (ERT) argument for the TOC
+\AtBeginDocument{%
+  \let\origtableofcontents=\tableofcontents
+  \def\tableofcontents{\@ifnextchar[{\origtableofcontents}{\gobbletableofcontents}}
+  \def\gobbletableofcontents#1{\origtableofcontents}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% User specified LaTeX commands.
+\usepackage{xcolor}
+
+\beamertemplatenavigationsymbolsempty
+\setbeamercovered{transparent}
+
+\definecolor{green}{RGB}{0,164,0}
+
+\makeatother
+
+\begin{document}
+\begin{frame}{Example problem - inverse by row operations}
+
+Find the inverse of $\bm{A}$ using row operations.
+
+{\scriptsize{}
+\[
+\bm{A}=\left[\begin{array}{rrr}
+0 & 1 & -1\\
+1 & 4 & 5\\
+1 & 5 & 3
+\end{array}\right]
+\]
+}\vspace{-1em}
+
+Create an augmented matrix with $\bm{A}$ and the identity matrix.
+Then use Gauss-Jordan elimination to convert the matrix $\bm{A}$
+to the identity matrix. The process will convert the right-hand identitiy
+matrix to $\bm{A}^{-1}$.
+
+\vspace{-1em}
+
+{\scriptsize{}
+\[
+\begin{bmatrix}\begin{array}{rrr|rrr}
+0 & 1 & -1 & 1 & 0 & 0\\
+1 & 4 & 5 & 0 & 1 & 0\\
+1 & 5 & 3 & 0 & 0 & 1
+\end{array}\end{bmatrix}\stackrel{\text{Row operations}}{\Longrightarrow}\begin{bmatrix}\begin{array}{rrr|rrr}
+1 & 0 & 0 & -13 & -8 & 9\\
+0 & 1 & 0 & 2 & 1 & -1\\
+0 & 0 & 1 & 1 & 1 & -1
+\end{array}\end{bmatrix}
+\]
+}{\scriptsize\par}
+
+As a check, one can multiply $\bm{A}^{-1}\bm{A}$ or $\bm{A}\bm{A}^{-1}$
+to verify that the product is the identity matrix.
+
+{\scriptsize{}
+\[
+\bm{A}\bm{A}^{-1}=\left[\begin{array}{rrr}
+0 & 1 & -1\\
+1 & 4 & 5\\
+1 & 5 & 3
+\end{array}\right]\left[\begin{array}{rrr}
+-13 & -8 & 9\\
+2 & 1 & -1\\
+1 & 1 & -1
+\end{array}\right]=\left[\begin{array}{rrr}
+1 & 0 & 0\\
+0 & 1 & 0\\
+0 & 0 & 1
+\end{array}\right]=\bm{I}
+\]
+}{\scriptsize\par}
+\end{frame}
+%
+\begin{frame}{{\small{}Perform Gauss-Jordan elimination}}
+
+For convenience, swap rows 1 and 3 to perform the row elimination
+using $a_{11}=1$, and to make $a_{31}=0$.
+
+{\scriptsize{}
+\begin{equation}
+\begin{bmatrix}\begin{array}{rrr|rcr}
+{\color{blue}0} & {\color{blue}1} & {\color{blue}-1} & {\color{blue}1} & {\color{blue}0} & {\color{blue}0}\\
+1 & 4 & 5 & 0 & 1 & 0\\
+{\color{red}1} & {\color{red}5} & {\color{red}3} & {\color{red}0} & {\color{red}0} & {\color{red}1}
+\end{array}\end{bmatrix}\stackrel{{\color{blue}R_{1}}\leftrightarrow{\color{red}R_{3}}}{\Longrightarrow}\begin{bmatrix}\begin{array}{rrr|rcr}
+{\color{red}1} & {\color{red}5} & {\color{red}3} & {\color{red}0} & {\color{red}0} & {\color{red}1}\\
+1 & 4 & 5 & 0 & 1 & 0\\
+{\color{blue}0} & {\color{blue}1} & {\color{blue}-1} & {\color{blue}1} & {\color{blue}0} & {\color{blue}0}
+\end{array}\end{bmatrix}
+\end{equation}
+}{\scriptsize\par}
+
+Make $a_{21}=0$ using information from the first row.
+
+{\scriptsize{}
+\begin{equation}
+\begin{bmatrix}\begin{array}{rrr|rcc}
+{\color{blue}1} & {\color{blue}5} & {\color{blue}3} & {\color{blue}0} & {\color{blue}0} & {\color{blue}1}\\
+{\color{red}1} & {\color{red}4} & {\color{red}5} & {\color{red}0} & {\color{red}1} & {\color{red}0}\\
+0 & 1 & -1 & 1 & 0 & 0
+\end{array}\end{bmatrix}\stackrel{-{\color{blue}R_{1}}+{\color{red}R_{2}}\to{\color{green}R_{2}}}{\Longrightarrow}\begin{bmatrix}\begin{array}{rrr|rrr}
+{\color{blue}1} & {\color{blue}5} & {\color{blue}3} & {\color{blue}0} & {\color{blue}0} & {\color{blue}1}\\
+{\color{green}0} & {\color{green}-1} & {\color{green}2} & {\color{green}0} & {\color{green}1} & {\color{green}-1}\\
+0 & 1 & -1 & 1 & 0 & 0
+\end{array}\end{bmatrix}
+\end{equation}
+}{\scriptsize\par}
+
+Continue the elimination process by making $a_{32}=0$ using information
+from the second row. 
+
+{\scriptsize{}
+\begin{equation}
+\begin{bmatrix}\begin{array}{rrr|rrr}
+1 & 5 & 3 & 0 & 0 & 1\\
+{\color{blue}0} & {\color{blue}-1} & {\color{blue}2} & {\color{blue}0} & {\color{blue}1} & {\color{blue}-1}\\
+{\color{red}0} & {\color{red}1} & {\color{red}-1} & {\color{red}1} & {\color{red}0} & {\color{red}0}
+\end{array}\end{bmatrix}\stackrel{{\color{blue}R_{2}}+{\color{red}R_{3}}\to{\color{green}R_{3}}}{\Longrightarrow}\begin{bmatrix}\begin{array}{rrr|rrr}
+1 & 5 & 3 & 0 & 0 & 1\\
+{\color{blue}0} & {\color{blue}-1} & {\color{blue}2} & {\color{blue}0} & {\color{blue}1} & {\color{blue}-1}\\
+{\color{green}0} & {\color{green}0} & {\color{green}1} & {\color{green}1} & {\color{green}1} & {\color{green}-1}
+\end{array}\end{bmatrix}
+\end{equation}
+}{\scriptsize\par}
+\end{frame}
+%
+\begin{frame}{}
+
+To put the augmented matrix in row-echelon form, multiply the second
+row by $-1$.
+
+{\scriptsize{}
+\begin{equation}
+\begin{bmatrix}\begin{array}{rrr|rrr}
+1 & 5 & 3 & 0 & 0 & 1\\
+{\color{red}0} & {\color{red}-1} & {\color{red}2} & {\color{red}0} & {\color{red}1} & {\color{red}-1}\\
+0 & 0 & 1 & 1 & 1 & -1
+\end{array}\end{bmatrix}\stackrel{-{\color{red}R_{2}}\to{\color{green}R_{2}}}{\Longrightarrow}\begin{bmatrix}\begin{array}{rrr|rrr}
+1 & 5 & 3 & 0 & 0 & 1\\
+{\color{green}0} & {\color{green}1} & {\color{green}-2} & {\color{green}0} & {\color{green}-1} & {\color{green}1}\\
+0 & 0 & 1 & 1 & 1 & -1
+\end{array}\end{bmatrix}
+\end{equation}
+}{\scriptsize\par}
+
+Make $a_{23}=0$ using information from the third row.
+
+{\scriptsize{}
+\begin{equation}
+\begin{bmatrix}\begin{array}{rrr|rrr}
+1 & 5 & 3 & 0 & 0 & 1\\
+{\color{red}0} & {\color{red}1} & {\color{red}-2} & {\color{red}0} & {\color{red}-1} & {\color{red}1}\\
+{\color{blue}0} & {\color{blue}0} & {\color{blue}1} & {\color{blue}1} & {\color{blue}1} & {\color{blue}-1}
+\end{array}\end{bmatrix}\stackrel{2{\color{blue}R_{3}}+{\color{red}R_{2}}\to{\color{green}R_{2}}}{\Longrightarrow}\begin{bmatrix}\begin{array}{rrr|rrr}
+1 & 5 & 3 & 0 & 0 & 1\\
+{\color{green}0} & {\color{green}1} & {\color{green}0} & {\color{green}2} & {\color{green}1} & {\color{green}-1}\\
+{\color{blue}0} & {\color{blue}0} & {\color{blue}1} & {\color{blue}1} & {\color{blue}1} & {\color{blue}-1}
+\end{array}\end{bmatrix}
+\end{equation}
+}{\scriptsize\par}
+
+Make $a_{13}=0$ using information from the third row.
+
+{\scriptsize{}
+\begin{equation}
+\begin{bmatrix}\begin{array}{rrr|rrr}
+{\color{red}1} & {\color{red}5} & {\color{red}3} & {\color{red}0} & {\color{red}0} & {\color{red}1}\\
+0 & 1 & 0 & 2 & 1 & -1\\
+{\color{blue}0} & {\color{blue}0} & {\color{blue}1} & {\color{blue}1} & {\color{blue}1} & {\color{blue}-1}
+\end{array}\end{bmatrix}\stackrel{-3{\color{blue}R_{3}}+{\color{red}R_{1}}\to{\color{green}R_{1}}}{\Longrightarrow}\begin{bmatrix}\begin{array}{rrr|rrr}
+{\color{green}1} & {\color{green}5} & {\color{green}0} & {\color{green}-3} & {\color{green}-3} & {\color{green}4}\\
+0 & 1 & 0 & 2 & 1 & -1\\
+{\color{blue}0} & {\color{blue}0} & {\color{blue}1} & {\color{blue}1} & {\color{blue}1} & {\color{blue}-1}
+\end{array}\end{bmatrix}
+\end{equation}
+}{\scriptsize\par}
+\end{frame}
+%
+\begin{frame}{}
+
+Make $a_{12}=0$ using information from the second row.
+
+{\scriptsize{}
+\begin{equation}
+\begin{bmatrix}\begin{array}{rrr|rrr}
+{\color{red}1} & {\color{red}5} & {\color{red}0} & {\color{red}-3} & {\color{red}-3} & {\color{red}4}\\
+{\color{blue}0} & {\color{blue}1} & {\color{blue}0} & {\color{blue}2} & {\color{blue}1} & {\color{blue}-1}\\
+0 & 0 & 1 & 1 & 1 & -1
+\end{array}\end{bmatrix}\stackrel{-5{\color{blue}R_{2}}+{\color{red}R_{1}}\to{\color{green}R_{1}}}{\Longrightarrow}\begin{bmatrix}\begin{array}{rrr|rrr}
+{\color{green}1} & {\color{green}0} & {\color{green}0} & {\color{green}-13} & {\color{green}-8} & {\color{green}9}\\
+{\color{blue}0} & {\color{blue}1} & {\color{blue}0} & {\color{blue}2} & {\color{blue}1} & {\color{blue}-1}\\
+0 & 0 & 1 & 1 & 1 & -1
+\end{array}\end{bmatrix}
+\end{equation}
+}{\scriptsize\par}
+
+The augmented matrix is now in reduced row-echelon form, and the inverse
+of $\bm{A}$ is now the matrix on the right hand side.
+
+\[
+\bm{A}^{-1}=\left[\begin{array}{rrr}
+-13 & -8 & 9\\
+2 & 1 & -1\\
+1 & 1 & -1
+\end{array}\right]
+\]
+\end{frame}
+
+\end{document}
