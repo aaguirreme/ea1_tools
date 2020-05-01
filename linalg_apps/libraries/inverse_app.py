@@ -28,9 +28,9 @@ from lib_linalg import gen_text_grid, convert_mat_to_latex, row_swap, \
 # NOTE: These commands are executed when the library is imported.
 
 # Define initial values for the coefficient matrix A.
-A = sym.Matrix([[4,  1, -2],
-                [3, -1,  1],
-                [1, -1,  1]])
+A = sym.Matrix([[0,  1, -1],
+                [1,  4,  5],
+                [1,  5,  3]])
 
 # Define initial values for the right hand side matrix B.
 B = sym.eye(3)
