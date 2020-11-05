@@ -385,7 +385,7 @@ status open
 The matrix is now in upper triangular form.
  However, notice that the last row contains a contradiction.
  It reads 
-\begin_inset Formula $0x+0y+0z=2$
+\begin_inset Formula $0x_{1}+0x_{2}+0x_{3}=2$
 \end_inset
 
 , or simply 
